@@ -82,6 +82,8 @@
             <div class="content">
                 <div class="title m-b-md">
                     Sito pubblico
+
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro odio consequatur velit maxime veniam ex nam corrupti aspernatur itaque delectus quia fugit rerum ab earum saepe, recusandae voluptates voluptatem magni!</p>
                 </div>
             </div>
         </div>
