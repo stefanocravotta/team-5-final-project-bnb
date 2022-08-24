@@ -28,6 +28,8 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    /* <------------ GESTIONE LOG IN ANCHE IN ALTRE PAGINE -----------> */
+
     /**
      * Create a new controller instance.
      *
@@ -36,5 +38,9 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+
+        /* $this->redirectTo = url()->previous(); */
+
+        /* <------ REINDIRIZZO ALL'ULTIMA PAGINA VISITATA -----> */
     }
 }
