@@ -7,6 +7,25 @@ use Illuminate\Support\Str;
 
 class Dwelling extends Model
 {
+    protected $fillable = [
+        'user_id',
+        'name',
+        'slug',
+        'category',
+        'rooms',
+        'beds',
+        'bathrooms',
+        'dimentions',
+        'long',
+        'lat',
+        'address',
+        'city',
+        'description',
+        'image',
+        'visible',
+        'price'
+    ];
+
     public function sponsorisations() {
         return $this->belongsToMany('App\Sponsorisation');
     }
