@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Dwelling extends Model
 {
@@ -33,4 +34,19 @@ class Dwelling extends Model
     // public function category() {
     //     return $this->belongsTo('App\Models\Category');
     // }
+
+    public static function generateSlug($nome){
+        $slug = Str::slug($nome, '-');
+        $base_slug = $slug;
+        $slug_exist = Dwelling::where('slug', $slug)->first();
+        $c = 1;
+
+        while($slug_exist){
+            $slug = $base_slug . '-' . $c;
+            $c++;
+            $slug_exist = Dwelling::where('slug', $slug)->first();
+        }
+
+        return $slug;
+    }
 }
