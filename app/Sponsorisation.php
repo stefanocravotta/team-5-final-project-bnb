@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Perk extends Model
+class Sponsorisation extends Model
 {
     public function dwellings() {
-        return $this->belongsToMany('App\Models\Dwelling');
+        return $this->belongsToMany('App\Dwelling');
     }
 }

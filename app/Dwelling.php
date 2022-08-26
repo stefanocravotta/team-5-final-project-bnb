@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -8,31 +8,31 @@ use Illuminate\Support\Str;
 class Dwelling extends Model
 {
     public function sponsorisations() {
-        return $this->belongsToMany('App\Models\Sponsorisation');
+        return $this->belongsToMany('App\Sponsorisation');
     }
 
     public function perks() {
-        return $this->belongsToMany('App\Models\Perk');
+        return $this->belongsToMany('App\Perk');
     }
 
     public function user() {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\User');
     }
 
     public function messages() {
-        return $this->hasMany('App\Models\Message');
+        return $this->hasMany('App\Message');
     }
 
     public function views() {
-        return $this->hasMany('App\Models\View');
+        return $this->hasMany('App\View');
     }
 
     // public function images() {
-    //     return $this->hasMany('App\Models\Image');
+    //     return $this->hasMany('App\Image');
     // }
 
     // public function category() {
-    //     return $this->belongsTo('App\Models\Category');
+    //     return $this->belongsTo('App\Category');
     // }
 
     public static function generateSlug($nome){

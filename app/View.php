@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 class View extends Model
 {
     public function dwelling() {
-        return $this->belongsTo('App\Models\Dwelling');
+        return $this->belongsTo('App\Dwelling');
     }
 }
