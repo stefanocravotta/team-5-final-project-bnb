@@ -15,6 +15,14 @@ class CreateDwellingsTable extends Migration
     {
         Schema::create('dwellings', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('user_id');
+
+            $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('cascade');
+
             $table->string('name');
             $table->string('slug');
             $table->string('category');
@@ -32,6 +40,8 @@ class CreateDwellingsTable extends Migration
             $table->mediumInteger('price');
             $table->timestamps();
         });
+
+
     }
 
     /**
