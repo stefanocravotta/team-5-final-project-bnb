@@ -22,8 +22,8 @@ class DwellingsController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        $dwelling = Dwelling::where('user_id', $user_id)->first();
-        return view('user.dwellings.index', compact('dwelling'));
+        $dwellings = Dwelling::where('user_id', $user_id)->orderBy('id', 'desc')->get();
+        return view('user.dwellings.index', compact('dwellings'));
     }
 
     /**
@@ -65,7 +65,7 @@ class DwellingsController extends Controller
         $new_dwelling->fill($data);
         $new_dwelling->save();
 
-        return redirect()->route('user.dwellings.show', $new_dwelling);
+        return redirect()->route('user.dwellings.show', $new_dwelling)->with('dwelling_created', "La struttura $new_dwelling->name è stata aggiunta correttamente");
     }
 
     /**
@@ -113,8 +113,9 @@ class DwellingsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Dwelling $dwelling)
     {
-        //
+     $dwelling->delete();
+     return redirect()->route('user.dwellings.index')->with('dwelling_deleted', "La struttura $dwelling->name è stata cancellata correttamente");
     }
 }
