@@ -53,7 +53,7 @@ class DwellingsController extends Controller
 
 
         $httpClient = new \GuzzleHttp\Client();
-        $provider = new \Geocoder\Provider\TomTom\TomTom($httpClient, 'sXZ074rJ8QHr7ocOwfW5NaIHLwTog1tx');
+        $provider = new \Geocoder\Provider\TomTom\TomTom($httpClient, '1ICjwoAETA30YhhNatAlLrdJ6g8V1ZDc');
         $geocoder = new \Geocoder\StatefulGeocoder($provider);
 
         $result = $geocoder->geocodeQuery(GeocodeQuery::create($data['address'], $data['city']));
@@ -99,9 +99,12 @@ class DwellingsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Dwelling $dwelling)
     {
-        //
+        $data = $request->all();
+        $data['slug']=Dwelling::generateSlug($data['name']);
+        $dwelling->update($data);
+        return redirect()->route('user.dwellings.show', $dwelling);
     }
 
     /**
