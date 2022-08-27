@@ -87,7 +87,9 @@ class DwellingsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dwelling =  Dwelling::find($id);
+        $categories = Category::all();
+        return view('user.dwellings.edit', compact('dwelling', 'categories'));
     }
 
     /**

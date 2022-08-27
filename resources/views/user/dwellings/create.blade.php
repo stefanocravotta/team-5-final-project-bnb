@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
+        <h2>Crea un appartamento</h2>
         <form action="{{ route('user.dwellings.store') }}" method="POST">
             @csrf
             <div class="mb-3">
