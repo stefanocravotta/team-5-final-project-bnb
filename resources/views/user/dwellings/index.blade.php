@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    <div>
-        {{$dwelling->name}}
-    </div>
+    @if($dwelling)
+        <div>
+            {{$dwelling->name}}
+        </div>
+    @endif
 @endsection

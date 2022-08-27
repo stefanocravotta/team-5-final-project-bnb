@@ -53,7 +53,7 @@ class DwellingsController extends Controller
 
 
         $httpClient = new \GuzzleHttp\Client();
-        $provider = new \Geocoder\Provider\TomTom\TomTom($httpClient, '0esiNqmzyhdAgeAwGRM5fRuozF0jWJgO');
+        $provider = new \Geocoder\Provider\TomTom\TomTom($httpClient, 'sXZ074rJ8QHr7ocOwfW5NaIHLwTog1tx');
         $geocoder = new \Geocoder\StatefulGeocoder($provider);
 
         $result = $geocoder->geocodeQuery(GeocodeQuery::create($data['address'], $data['city']));
