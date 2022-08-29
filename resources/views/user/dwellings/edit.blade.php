@@ -2,15 +2,20 @@
 @section('content')
 <div class="container">
     <h2>Modifica il tuo appartamento</h2>
-    <form action="{{ route('user.dwellings.store') }}" method="POST">
+    <form action="{{ route('user.dwellings.update',$dwelling) }}" method="POST">
         @csrf
         @method('PUT')
 
         <div class="mb-3">
                 <label for="name">Nome della struttura</label>
                 <input class="form-control" type="text" name="name"
-                value="{{ !$errors->any() ? $dwelling->name : old('name') }}">
-            </div>
+                value="{{ !$errors->any() ? $dwelling->name : old('name') }}"
+                class="form-control @error('name') is-invalid @enderror">
+
+                @error('name')
+                    <p class="error-msg text-danger"> {{ $message }} </p>
+                @enderror
+        </div>
 
             <div class="mb-3">
                 <label for="category">Tipo di struttura</label>
