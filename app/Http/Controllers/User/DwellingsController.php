@@ -102,9 +102,31 @@ class DwellingsController extends Controller
     public function update(Request $request, Dwelling $dwelling)
     {
         $data = $request->all();
-        $data['slug']=Dwelling::generateSlug($data['name']);
+
+        if($data['name'] != $dwelling->name){
+
+            $data['slug']=Dwelling::generateSlug($data['name']);
+
+        };
+
+        if($data['address'] != $dwelling->address || $data['city'] != $dwelling->city){
+
+            $httpClient = new \GuzzleHttp\Client();
+            $provider = new \Geocoder\Provider\TomTom\TomTom($httpClient, '1ICjwoAETA30YhhNatAlLrdJ6g8V1ZDc');
+            $geocoder = new \Geocoder\StatefulGeocoder($provider);
+
+            $result = $geocoder->geocodeQuery(GeocodeQuery::create($data['address'], $data['city']));
+
+            $data['lat'] = $result->get(0)->getCoordinates()->getLatitude();
+            $data['long'] = $result->get(0)->getCoordinates()->getLongitude();
+
+        };
+
+
         $dwelling->update($data);
+
         return redirect()->route('user.dwellings.show', $dwelling);
+
     }
 
     /**
