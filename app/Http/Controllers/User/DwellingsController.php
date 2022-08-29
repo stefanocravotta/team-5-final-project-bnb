@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Category;
 use App\Dwelling;
+use App\Http\Requests\DwellingRequest;
 
 class DwellingsController extends Controller
 {
@@ -22,8 +23,8 @@ class DwellingsController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        $dwelling = Dwelling::where('user_id', $user_id)->first();
-        return view('user.dwellings.index', compact('dwelling'));
+        $dwellings = Dwelling::where('user_id', $user_id)->orderBy('id', 'desc')->get();
+        return view('user.dwellings.index', compact('dwellings'));
     }
 
     /**
@@ -44,7 +45,7 @@ class DwellingsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DwellingRequest $request)
     {
         $data = $request->all();
         $data['user_id'] = Auth::id();
@@ -53,7 +54,7 @@ class DwellingsController extends Controller
 
 
         $httpClient = new \GuzzleHttp\Client();
-        $provider = new \Geocoder\Provider\TomTom\TomTom($httpClient, 'sXZ074rJ8QHr7ocOwfW5NaIHLwTog1tx');
+        $provider = new \Geocoder\Provider\TomTom\TomTom($httpClient, '1ICjwoAETA30YhhNatAlLrdJ6g8V1ZDc');
         $geocoder = new \Geocoder\StatefulGeocoder($provider);
 
         $result = $geocoder->geocodeQuery(GeocodeQuery::create($data['address'], $data['city']));
@@ -65,7 +66,7 @@ class DwellingsController extends Controller
         $new_dwelling->fill($data);
         $new_dwelling->save();
 
-        return redirect()->route('user.dwellings.show', $new_dwelling);
+        return redirect()->route('user.dwellings.show', $new_dwelling)->with('dwelling_created', "La struttura $new_dwelling->name è stata aggiunta correttamente");
     }
 
     /**
@@ -99,9 +100,34 @@ class DwellingsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DwellingRequest $request, Dwelling $dwelling)
     {
-        //
+        $data = $request->all();
+
+        if($data['name'] != $dwelling->name){
+
+            $data['slug']=Dwelling::generateSlug($data['name']);
+
+        };
+
+        if($data['address'] != $dwelling->address || $data['city'] != $dwelling->city){
+
+            $httpClient = new \GuzzleHttp\Client();
+            $provider = new \Geocoder\Provider\TomTom\TomTom($httpClient, '1ICjwoAETA30YhhNatAlLrdJ6g8V1ZDc');
+            $geocoder = new \Geocoder\StatefulGeocoder($provider);
+
+            $result = $geocoder->geocodeQuery(GeocodeQuery::create($data['address'], $data['city']));
+
+            $data['lat'] = $result->get(0)->getCoordinates()->getLatitude();
+            $data['long'] = $result->get(0)->getCoordinates()->getLongitude();
+
+        };
+
+
+        $dwelling->update($data);
+
+        return redirect()->route('user.dwellings.show', $dwelling);
+
     }
 
     /**
@@ -110,8 +136,9 @@ class DwellingsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Dwelling $dwelling)
     {
-        //
+     $dwelling->delete();
+     return redirect()->route('user.dwellings.index')->with('dwelling_deleted', "La struttura $dwelling->name è stata cancellata correttamente");
     }
 }
