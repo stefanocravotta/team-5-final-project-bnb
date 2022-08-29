@@ -9,20 +9,57 @@
                 </div>
             @endif
 
-            @foreach ($dwellings as $dwelling)
+            @if(session('not_allowed'))
+                <div class="alert alert-danger d-flex justify-content-between" role="alert">
+                    <p>{{ session('not_allowed') }}</p>
+                    <a href="{{route('user.dwellings.index')}}" class="btn btn-danger">X</a>
+                </div>
+            @endif
 
-                <p>{{$dwelling->name}}</p>
+            <h2>I tuoi appartamenti</h2>
 
-                <a href="{{route('user.dwellings.edit', $dwelling)}}"  class="btn btn-primary" >Edit</a>
-                <a href="{{route('user.dwellings.show', $dwelling)}}"  class="btn btn-primary" >Show</a>
+        @if (count($dwellings_visible) > 0 )
 
-                <form action="{{ route('user.dwellings.destroy', $dwelling) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                    <input type="submit" value="Delete">
-                </form>
+        @foreach ($dwellings_visible as $dwelling)
+            <p>{{$dwelling->name}}</p>
 
-            @endforeach
-        </div>
+            <a href="{{route('user.dwellings.edit', $dwelling)}}"  class="btn btn-primary" >Edit</a>
+            <a href="{{route('user.dwellings.show', $dwelling)}}"  class="btn btn-primary" >Show</a>
+
+            <form action="{{ route('user.dwellings.destroy', $dwelling) }}" method="POST">
+            @csrf
+            @method('DELETE')
+                <input type="submit" value="Delete">
+            </form>
+        @endforeach
+
+        @else
+
+            <p>Non ci sono appartamenti pubblicati</p>
+
+        @endif
+
+        @if (count($dwellings_pending) > 0)
+
+        <h2>Appartamenti in bozza</h2>
+
+        @foreach ($dwellings_pending as $dwelling)
+            <p>{{$dwelling->name}}</p>
+
+            <a href="{{route('user.dwellings.edit', $dwelling)}}"  class="btn btn-primary" >Edit</a>
+            <a href="{{route('user.dwellings.show', $dwelling)}}"  class="btn btn-primary" >Show</a>
+
+            <form action="{{ route('user.dwellings.destroy', $dwelling) }}" method="POST">
+            @csrf
+            @method('DELETE')
+                <input type="submit" value="Delete">
+            </form>
+        @endforeach
+
+        @endif
+
+
+
+
 
 @endsection

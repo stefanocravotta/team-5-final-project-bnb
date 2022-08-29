@@ -146,7 +146,8 @@
             </div>
 
             <div class="mb-3">
-                <input class="btn btn-primary" type="submit" value="Aggiungi">
+                <button class="btn btn-primary" name="visible" type="submit" value="1">Pubblica</button>
+                <button class="btn btn-primary" name="visible" type="submit" value="0">Salva in bozza</button>
             </div>
 
         </form>

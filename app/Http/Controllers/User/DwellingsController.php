@@ -23,8 +23,10 @@ class DwellingsController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        $dwellings = Dwelling::where('user_id', $user_id)->orderBy('id', 'desc')->get();
-        return view('user.dwellings.index', compact('dwellings'));
+        $dwellings_visible = Dwelling::where('user_id', $user_id)->where('visible', 1)->orderBy('id', 'desc')->get();
+        $dwellings_pending = Dwelling::where('user_id', $user_id)->where('visible', 0)->orderBy('id', 'desc')->get();
+
+        return view('user.dwellings.index', compact('dwellings_visible', 'dwellings_pending'));
     }
 
     /**
@@ -77,7 +79,15 @@ class DwellingsController extends Controller
      */
     public function show(Dwelling $dwelling)
     {
-        return view('user.dwellings.show', compact('dwelling'));
+        if ($dwelling->user_id == Auth::id()) {
+
+            return view('user.dwellings.show', compact('dwelling'));
+        }else{
+            $user_id = Auth::id();
+            $dwellings = Dwelling::where('user_id', $user_id)->orderBy('id', 'desc')->get();
+            return redirect()->route('user.dwellings.index', compact('dwellings'))->with('not_allowed', "E' impossibile visualizzare appartamenti di altri utenti");
+        }
+
     }
 
     /**
