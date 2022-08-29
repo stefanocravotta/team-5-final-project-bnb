@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Category;
 use App\Dwelling;
+use App\Http\Requests\DwellingRequest;
 
 class DwellingsController extends Controller
 {
@@ -44,7 +45,7 @@ class DwellingsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DwellingRequest $request)
     {
         $data = $request->all();
         $data['user_id'] = Auth::id();
@@ -99,7 +100,7 @@ class DwellingsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dwelling $dwelling)
+    public function update(DwellingRequest $request, Dwelling $dwelling)
     {
         $data = $request->all();
 

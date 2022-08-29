@@ -11,6 +11,10 @@
                 @if ($errors->any())
                     value="{{ old('name') }}"
                 @endif>
+
+                @error('name')
+                    <p class="error-msg text-danger"> {{ $message }} </p>
+                @enderror
             </div>
 
             <div class="mb-3">
@@ -26,6 +30,10 @@
 
                     @endforeach
                 </select>
+
+                @error('category')
+                    <p class="error-msg text-danger"> {{ $message }} </p>
+                @enderror
             </div>
 
             <div class="mb-3">
@@ -34,6 +42,10 @@
                 @if ($errors->any())
                     value="{{ old('rooms') }}"
                 @endif>
+
+                @error('rooms')
+                    <p class="error-msg text-danger"> {{ $message }} </p>
+                @enderror
             </div>
 
             <div class="mb-3">
@@ -42,6 +54,10 @@
                 @if ($errors->any())
                     value="{{ old('beds') }}"
                 @endif>
+
+                @error('beds')
+                    <p class="error-msg text-danger"> {{ $message }} </p>
+                @enderror
             </div>
 
             <div class="mb-3">
@@ -50,6 +66,10 @@
                 @if ($errors->any())
                     value="{{ old('bathrooms') }}"
                 @endif>
+
+                @error('bathrooms')
+                    <p class="error-msg text-danger"> {{ $message }} </p>
+                @enderror
             </div>
 
             <div class="mb-3">
@@ -58,6 +78,11 @@
                 @if ($errors->any())
                     value="{{ old('dimentions') }}"
                 @endif>
+
+                @error('dimentions')
+                    <p class="error-msg text-danger"> {{ $message }} </p>
+                @enderror
+
             </div>
 
             <div class="mb-3">
@@ -66,6 +91,10 @@
                 @if ($errors->any())
                     value="{{ old('address') }}"
                 @endif>
+
+                @error('address')
+                    <p class="error-msg text-danger"> {{ $message }} </p>
+                @enderror
             </div>
 
             <div class="mb-3">
@@ -74,6 +103,10 @@
                 @if ($errors->any())
                     value="{{ old('city') }}"
                 @endif>
+
+                @error('city')
+                    <p class="error-msg text-danger"> {{ $message }} </p>
+                @enderror
             </div>
 
             <div class="mb-3">
@@ -82,6 +115,10 @@
                 @if ($errors->any())
                     value="{{ old('description') }}"
                 @endif>
+
+                @error('description')
+                    <p class="error-msg text-danger"> {{ $message }} </p>
+                @enderror
             </div>
 
             <div class="mb-3">
@@ -90,6 +127,10 @@
                 @if ($errors->any())
                     value="{{ old('image') }}"
                 @endif>
+
+                @error('image')
+                    <p class="error-msg text-danger"> {{ $message }} </p>
+                @enderror
             </div>
 
             <div class="mb-3">
@@ -98,6 +139,10 @@
                 @if ($errors->any())
                     value="{{ old('price') }}"
                 @endif>
+
+                @error('price')
+                    <p class="error-msg text-danger"> {{ $message }} </p>
+                @enderror
             </div>
 
             <div class="mb-3">
