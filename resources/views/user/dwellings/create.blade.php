@@ -6,7 +6,7 @@
             @csrf
 
             <div class="mb-3">
-                <label for="name">Nome della struttura</label>
+                <label for="name">Nome della struttura *</label>
                 <input class="form-control" type="text" name="name"
                 @if ($errors->any())
                     value="{{ old('name') }}"
@@ -18,7 +18,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="category">Tipo di struttura</label>
+                <label for="category">Tipo di struttura *</label>
                 <select class="form-control" name="category">
                     @foreach ($categories as $category)
 
@@ -37,7 +37,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="rooms">Numero di stanze</label>
+                <label for="rooms">Numero di stanze *</label>
                 <input class="form-control" type="number" name="rooms"
                 @if ($errors->any())
                     value="{{ old('rooms') }}"
@@ -49,7 +49,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="beds">Numero di letti</label>
+                <label for="beds">Numero di letti *</label>
                 <input class="form-control" type="number" name="beds"
                 @if ($errors->any())
                     value="{{ old('beds') }}"
@@ -61,7 +61,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="bathrooms">Numero di bagni</label>
+                <label for="bathrooms">Numero di bagni *</label>
                 <input class="form-control" type="number" name="bathrooms"
                 @if ($errors->any())
                     value="{{ old('bathrooms') }}"
@@ -73,7 +73,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="dimentions">Metri quadri della struttura</label>
+                <label for="dimentions">Metri quadri della struttura *</label>
                 <input class="form-control" type="number" name="dimentions"
                 @if ($errors->any())
                     value="{{ old('dimentions') }}"
@@ -86,7 +86,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="address">Inserisci la via, con civico se presente</label>
+                <label for="address">Inserisci la via, con civico se presente *</label>
                 <input class="form-control" type="text" name="address"
                 @if ($errors->any())
                     value="{{ old('address') }}"
@@ -98,7 +98,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="city">Città in cui si trova</label>
+                <label for="city">Città in cui si trova *</label>
                 <input class="form-control" type="text" name="city"
                 @if ($errors->any())
                     value="{{ old('city') }}"
@@ -110,7 +110,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="description">Descrizione dell'appartamento</label>
+                <label for="description">Descrizione dell'appartamento *</label>
                 <input class="form-control" type="text" name="description"
                 @if ($errors->any())
                     value="{{ old('description') }}"
@@ -122,7 +122,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="image">Carica un'immagine della struttura</label>
+                <label for="image">Carica un'immagine della struttura *</label>
                 <input class="form-control" type="text" name="image"
                 @if ($errors->any())
                     value="{{ old('image') }}"
@@ -134,7 +134,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="price">Prezzo per notte</label>
+                <label for="price">Prezzo per notte *</label>
                 <input class="form-control" type="number" name="price"
                 @if ($errors->any())
                     value="{{ old('price') }}"
