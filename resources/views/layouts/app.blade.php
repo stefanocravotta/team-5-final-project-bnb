@@ -12,6 +12,9 @@
     <!-- Scripts -->
     <script src="{{ asset('js/backend/backend.js') }}" defer></script>
 
+    {{-- JQUERY --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
