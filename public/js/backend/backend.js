@@ -37350,9 +37350,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/user/Desktop/FILE programmatore/LARAVEL/team-5-final-project-bnb/resources/js/backend.js */"./resources/js/backend.js");
-__webpack_require__(/*! /Users/user/Desktop/FILE programmatore/LARAVEL/team-5-final-project-bnb/resources/sass/backend/style.scss */"./resources/sass/backend/style.scss");
-module.exports = __webpack_require__(/*! /Users/user/Desktop/FILE programmatore/LARAVEL/team-5-final-project-bnb/resources/sass/frontend/style.scss */"./resources/sass/frontend/style.scss");
+__webpack_require__(/*! /Users/stefanocravotta/LARAVEL/final-project/team-5-final-project-bnb/resources/js/backend.js */"./resources/js/backend.js");
+__webpack_require__(/*! /Users/stefanocravotta/LARAVEL/final-project/team-5-final-project-bnb/resources/sass/backend/style.scss */"./resources/sass/backend/style.scss");
+module.exports = __webpack_require__(/*! /Users/stefanocravotta/LARAVEL/final-project/team-5-final-project-bnb/resources/sass/frontend/style.scss */"./resources/sass/frontend/style.scss");
 
 
 /***/ })
