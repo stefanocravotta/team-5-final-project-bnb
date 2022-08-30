@@ -131,7 +131,7 @@
 
             <div class="mb-3">
                 <label for="image">Carica un'immagine della struttura</label>
-                <input class="form-control" type="text" name="image" id="image"
+                <input type="file" class="form-control" id="image" name="image" accept="image/*"
                 @if ($errors->any())
                     value="{{ old('image') }}"
                 @endif>

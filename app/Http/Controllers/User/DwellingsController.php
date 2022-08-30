@@ -52,6 +52,7 @@ class DwellingsController extends Controller
         $data = $request->all();
         $data['user_id'] = Auth::id();
         $data['slug'] = Dwelling::generateSlug($data['name']);
+        $data['image'] = $this->imageUploader($request, $data);
 
 
 
@@ -123,13 +124,17 @@ class DwellingsController extends Controller
 
         };
 
+        $data['image'] = $this->imageUploader($request, $data);
+
         if($data['address'] != $dwelling->address || $data['city'] != $dwelling->city){
 
             $httpClient = new \GuzzleHttp\Client();
             $provider = new \Geocoder\Provider\TomTom\TomTom($httpClient, '1ICjwoAETA30YhhNatAlLrdJ6g8V1ZDc');
             $geocoder = new \Geocoder\StatefulGeocoder($provider);
+            $address = $data['address'];
+            $city = $data['city'];
 
-            $result = $geocoder->geocodeQuery(GeocodeQuery::create($data['address'], $data['city']));
+            $result = $geocoder->geocodeQuery(GeocodeQuery::create("$address, $city"));
 
             $data['lat'] = $result->get(0)->getCoordinates()->getLatitude();
             $data['long'] = $result->get(0)->getCoordinates()->getLongitude();
@@ -153,5 +158,17 @@ class DwellingsController extends Controller
     {
      $dwelling->delete();
      return redirect()->route('user.dwellings.index')->with('dwelling_deleted', "La struttura $dwelling->name è stata cancellata correttamente");
+    }
+
+    public function imageUploader($request, $data){
+        if($request->file('image')){
+
+            $file = $request->file('image');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('images'), $filename);
+            $data['image']= $filename;
+
+            return $data['image'];
+        }
     }
 }
