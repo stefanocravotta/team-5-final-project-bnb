@@ -8,15 +8,20 @@
         @endif
 
         <div class="card">
-            @if($dwelling->image)
 
-                <img src="{{ asset('images/'.$dwelling->image) }}" class="card-img-top" alt="{{ $dwelling->name }}">
+            <div class="d-flex">
+                @if($dwelling->image)
 
-            @else
+                <img class="w-50" src="{{ asset('images/'.$dwelling->image) }}" class="card-img-top" alt="{{ $dwelling->name }}">
 
-                <img src="{{ asset('images/villa-affitto-italia-ada-1624884100.jpg') }}" alt="default">
+                @else
 
-            @endif
+                <img class="w-50" src="{{ asset('images/villa-affitto-italia-ada-1624884100.jpg') }}" alt="default">
+
+                @endif
+
+                <div id='map' class='map w-50'></div>
+            </div>
 
             <div class="card-body">
                 <h3 class="card-title">{{ $dwelling->name }}</h3>
@@ -73,7 +78,113 @@
             </div>
         </div>
 
+        <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.20.0/maps/maps-web.min.js"></script>
 
-    </div>
+        <script>
+            var dwelling = {!! json_encode($dwelling) !!};
+            var dwellingCoordinates = [dwelling.long, dwelling.lat];
+
+            // ------- searchBox --------
+
+            var options = {
+                searchOptions: {
+                    key: '0esiNqmzyhdAgeAwGRM5fRuozF0jWJgO',
+                    language: 'en-GB',
+                    limit: 5
+                },
+                autocompleteOptions: {
+                    key: '0esiNqmzyhdAgeAwGRM5fRuozF0jWJgO',
+                    language: 'en-GB'
+                }
+            };
+            var ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
+            var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+            // document.body.append(searchBoxHTML);
+
+
+            // -------- includere la mappa ------------
+            tt.map({
+                key: '0esiNqmzyhdAgeAwGRM5fRuozF0jWJgO',
+                container: 'map'
+            });
+
+            var map = tt.map({
+                key: '0esiNqmzyhdAgeAwGRM5fRuozF0jWJgO',
+                container: 'map',
+                center: dwellingCoordinates,
+                zoom: 15
+            });
+
+            // --------- marker ----------
+
+            var marker = new tt.Marker().setLngLat(dwellingCoordinates).addTo(map);
+
+            var popupOffsets = {
+              top: [0, 0],
+              bottom: [0, -70],
+              'bottom-right': [0, -70],
+              'bottom-left': [0, -70],
+              left: [25, -35],
+              right: [-25, -35]
+            }
+
+            var popup = new tt.Popup({offset: popupOffsets}).setHTML(`<strong>${dwelling.address}, ${dwelling.city}</strong>`);
+            marker.setPopup(popup).togglePopup();
+
+            // ------- funzioni della mappa ---------
+
+            function handleResultsFound(event) {
+            var results = event.data.results.fuzzySearch.results;
+
+            if (results.length === 0) {
+                searchMarkersManager.clear();
+            }
+            searchMarkersManager.draw(results);
+            fitToViewport(results);
+            }
+
+            function handleResultSelection(event) {
+                var result = event.data.result;
+                if (result.type === 'category' || result.type === 'brand') {
+                    return;
+                }
+                searchMarkersManager.draw([result]);
+                fitToViewport(result);
+            }
+
+            function fitToViewport(markerData) {
+                if (!markerData || markerData instanceof Array && !markerData.length) {
+                    return;
+                }
+                var bounds = new tt.LngLatBounds();
+                if (markerData instanceof Array) {
+                    markerData.forEach(function (marker) {
+                        bounds.extend(getBounds(marker));
+                    });
+                } else {
+                    bounds.extend(getBounds(markerData));
+                }
+                map.fitBounds(bounds, { padding: 100, linear: true });
+            }
+
+            function getBounds(data) {
+                var btmRight;
+                var topLeft;
+                if (data.viewport) {
+                    btmRight = [data.viewport.btmRightPoint.lng, data.viewport.btmRightPoint.lat];
+                    topLeft = [data.viewport.topLeftPoint.lng, data.viewport.topLeftPoint.lat];
+                }
+                return [btmRight, topLeft];
+            }
+
+            function handleResultClearing() {
+                searchMarkersManager.clear();
+            }
+
+
+
+        </script>
+
+</div>
 
 @endsection

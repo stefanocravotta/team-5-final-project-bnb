@@ -12395,7 +12395,7 @@ var app = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/ago/Documents/Boolean/Progetto finale/team-5-final-project-bnb/resources/js/frontend.js */"./resources/js/frontend.js");
+module.exports = __webpack_require__(/*! /Users/user/Desktop/FILE programmatore/LARAVEL/team-5-final-project-bnb/resources/js/frontend.js */"./resources/js/frontend.js");
 
 
 /***/ })
