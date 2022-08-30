@@ -7,7 +7,7 @@
         @method('PUT')
 
         <div class="mb-3">
-                <label for="name">Nome della struttura</label>
+                <label for="name">Nome della struttura*</label>
                 <input class="form-control" type="text" name="name"
                 value="{{ !$errors->any() ? $dwelling->name : old('name') }}"
                 class="form-control @error('name') is-invalid @enderror">
@@ -18,7 +18,7 @@
         </div>
 
             <div class="mb-3">
-                <label for="category">Tipo di struttura</label>
+                <label for="category">Tipo di struttura*</label>
                 <select class="form-control" name="category">
                     @foreach ($categories as $category)
 
@@ -82,7 +82,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="address">Inserisci la via, con civico se presente</label>
+                <label for="address">Inserisci la via, con civico se presente*</label>
                 <input class="form-control" type="text" name="address"
                 value="{{ !$errors->any() ? $dwelling->address : old('address') }}">
 
@@ -93,7 +93,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="city">Città in cui si trova</label>
+                <label for="city">Città in cui si trova*</label>
                 <input class="form-control" type="text" name="city"
                 value="{{ !$errors->any() ? $dwelling->city : old('city') }}">
 
@@ -126,7 +126,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="price">Prezzo per notte</label>
+                <label for="price">Prezzo per notte *</label>
                 <input class="form-control" type="number" name="price"
                 value="{{ !$errors->any() ? $dwelling->price : old('price') }}">
 

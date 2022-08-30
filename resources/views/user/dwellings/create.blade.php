@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <h2>Crea un appartamento</h2>
-        <form action="{{ route('user.dwellings.store') }}" method="POST">
+        <form action="{{ route('user.dwellings.store') }}" enctype="multipart/form-data" method="POST">
             @csrf
 
             <div class="mb-3">
@@ -37,7 +37,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="rooms">Numero di stanze *</label>
+                <label for="rooms">Numero di stanze</label>
                 <input class="form-control" type="number" name="rooms"
                 @if ($errors->any())
                     value="{{ old('rooms') }}"
@@ -49,7 +49,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="beds">Numero di letti *</label>
+                <label for="beds">Numero di letti</label>
                 <input class="form-control" type="number" name="beds"
                 @if ($errors->any())
                     value="{{ old('beds') }}"
@@ -61,7 +61,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="bathrooms">Numero di bagni *</label>
+                <label for="bathrooms">Numero di bagni</label>
                 <input class="form-control" type="number" name="bathrooms"
                 @if ($errors->any())
                     value="{{ old('bathrooms') }}"
@@ -73,7 +73,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="dimentions">Metri quadri della struttura *</label>
+                <label for="dimentions">Metri quadri della struttura</label>
                 <input class="form-control" type="number" name="dimentions"
                 @if ($errors->any())
                     value="{{ old('dimentions') }}"
@@ -110,7 +110,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="description">Descrizione dell'appartamento *</label>
+                <label for="description">Descrizione dell'appartamento</label>
                 <input class="form-control" type="text" name="description"
                 @if ($errors->any())
                     value="{{ old('description') }}"
@@ -122,7 +122,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="image">Carica un'immagine della struttura *</label>
+                <label for="image">Carica un'immagine della struttura</label>
                 <input class="form-control" type="text" name="image"
                 @if ($errors->any())
                     value="{{ old('image') }}"
@@ -146,8 +146,28 @@
             </div>
 
             <div class="mb-3">
-                <button class="btn btn-primary" name="visible" type="submit" value="1">Pubblica</button>
+                <button class="btn btn-primary" name="visible" type="button" value="1"  data-toggle="modal" data-target="#modal-public">Pubblica</button>
                 <button class="btn btn-primary" name="visible" type="submit" value="0">Salva in bozza</button>
+            </div>
+
+            <div class="modal fade" id="modal-public" tabindex="-1" aria-labelledby="modal-public-label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-public-label">Vuoi pubblicare?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Sei sicuro di aver compilato tutte le informazioni corretttamente?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                            <button type="submit" class="btn btn-success">Pubblica</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </form>
