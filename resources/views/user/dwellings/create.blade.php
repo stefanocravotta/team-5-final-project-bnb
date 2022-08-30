@@ -2,12 +2,12 @@
 @section('content')
     <div class="container">
         <h2>Crea un appartamento</h2>
-        <form action="{{ route('user.dwellings.store') }}" enctype="multipart/form-data" method="POST">
+        <form action="{{ route('user.dwellings.store') }}" enctype="multipart/form-data" method="POST" id="form-create">
             @csrf
 
             <div class="mb-3">
                 <label for="name">Nome della struttura *</label>
-                <input class="form-control" type="text" name="name"
+                <input class="form-control" type="text" name="name" id="name"
                 @if ($errors->any())
                     value="{{ old('name') }}"
                 @endif>
@@ -15,6 +15,9 @@
                 @error('name')
                     <p class="error-msg text-danger"> {{ $message }} </p>
                 @enderror
+
+                <p id="error-name" class="text-danger"></p>
+
             </div>
 
             <div class="mb-3">
@@ -38,7 +41,7 @@
 
             <div class="mb-3">
                 <label for="rooms">Numero di stanze</label>
-                <input class="form-control" type="number" name="rooms"
+                <input class="form-control" type="number" name="rooms" id="rooms"
                 @if ($errors->any())
                     value="{{ old('rooms') }}"
                 @endif>
@@ -46,11 +49,14 @@
                 @error('rooms')
                     <p class="error-msg text-danger"> {{ $message }} </p>
                 @enderror
+
+                <p id="error-rooms" class="text-danger"></p>
+
             </div>
 
             <div class="mb-3">
                 <label for="beds">Numero di letti</label>
-                <input class="form-control" type="number" name="beds"
+                <input class="form-control" type="number" name="beds" id="beds"
                 @if ($errors->any())
                     value="{{ old('beds') }}"
                 @endif>
@@ -58,11 +64,14 @@
                 @error('beds')
                     <p class="error-msg text-danger"> {{ $message }} </p>
                 @enderror
+
+                <p id="error-beds" class="text-danger"></p>
+
             </div>
 
             <div class="mb-3">
                 <label for="bathrooms">Numero di bagni</label>
-                <input class="form-control" type="number" name="bathrooms"
+                <input class="form-control" type="number" name="bathrooms" id="bathrooms"
                 @if ($errors->any())
                     value="{{ old('bathrooms') }}"
                 @endif>
@@ -70,11 +79,14 @@
                 @error('bathrooms')
                     <p class="error-msg text-danger"> {{ $message }} </p>
                 @enderror
+
+                <p id="error-bathrooms" class="text-danger"></p>
+
             </div>
 
             <div class="mb-3">
                 <label for="dimentions">Metri quadri della struttura</label>
-                <input class="form-control" type="number" name="dimentions"
+                <input class="form-control" type="number" name="dimentions" id="dimentions"
                 @if ($errors->any())
                     value="{{ old('dimentions') }}"
                 @endif>
@@ -83,11 +95,13 @@
                     <p class="error-msg text-danger"> {{ $message }} </p>
                 @enderror
 
+                <p id="error-dimentions" class="text-danger"></p>
+
             </div>
 
             <div class="mb-3">
                 <label for="address">Inserisci la via, con civico se presente *</label>
-                <input class="form-control" type="text" name="address"
+                <input class="form-control" type="text" name="address" id="address"
                 @if ($errors->any())
                     value="{{ old('address') }}"
                 @endif>
@@ -95,11 +109,14 @@
                 @error('address')
                     <p class="error-msg text-danger"> {{ $message }} </p>
                 @enderror
+
+                <p id="error-address" class="text-danger"></p>
+
             </div>
 
             <div class="mb-3">
                 <label for="city">Città in cui si trova *</label>
-                <input class="form-control" type="text" name="city"
+                <input class="form-control" type="text" name="city" id="city"
                 @if ($errors->any())
                     value="{{ old('city') }}"
                 @endif>
@@ -107,23 +124,14 @@
                 @error('city')
                     <p class="error-msg text-danger"> {{ $message }} </p>
                 @enderror
-            </div>
 
-            <div class="mb-3">
-                <label for="description">Descrizione dell'appartamento</label>
-                <input class="form-control" type="text" name="description"
-                @if ($errors->any())
-                    value="{{ old('description') }}"
-                @endif>
+                <p id="error-city" class="text-danger"></p>
 
-                @error('description')
-                    <p class="error-msg text-danger"> {{ $message }} </p>
-                @enderror
             </div>
 
             <div class="mb-3">
                 <label for="image">Carica un'immagine della struttura</label>
-                <input class="form-control" type="text" name="image"
+                <input class="form-control" type="text" name="image" id="image"
                 @if ($errors->any())
                     value="{{ old('image') }}"
                 @endif>
@@ -131,11 +139,14 @@
                 @error('image')
                     <p class="error-msg text-danger"> {{ $message }} </p>
                 @enderror
+
+                <p id="error-image" class="text-danger"></p>
+
             </div>
 
             <div class="mb-3">
                 <label for="price">Prezzo per notte *</label>
-                <input class="form-control" type="number" name="price"
+                <input class="form-control" type="text" name="price" id="price"
                 @if ($errors->any())
                     value="{{ old('price') }}"
                 @endif>
@@ -143,10 +154,28 @@
                 @error('price')
                     <p class="error-msg text-danger"> {{ $message }} </p>
                 @enderror
+
+                <p id="error-price" class="text-danger"></p>
+
             </div>
 
             <div class="mb-3">
-                <button class="btn btn-primary" name="visible" type="button" value="1"  data-toggle="modal" data-target="#modal-public">Pubblica</button>
+                <label for="description">Descrizione dell'appartamento</label>
+                <textarea class="form-control" type="text" name="description" id="description" cols="30" rows="10"
+                @if ($errors->any())
+                    value="{{ old('description') }}"
+                @endif></textarea>
+
+                @error('description')
+                    <p class="error-msg text-danger"> {{ $message }} </p>
+                @enderror
+
+                <p id="error-description" class="text-danger"></p>
+
+            </div>
+
+            <div class="mb-3">
+                <button class="btn btn-primary" name="visible" type="button" value="1" data-toggle="modal" data-target="#modal-public">Pubblica</button>
                 <button class="btn btn-primary" name="visible" type="submit" value="0">Salva in bozza</button>
             </div>
 
@@ -160,7 +189,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>Sei sicuro di aver compilato tutte le informazioni corretttamente?</p>
+                            <p>Sei sicuro di aver compilato tutte le informazioni correttamente?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>

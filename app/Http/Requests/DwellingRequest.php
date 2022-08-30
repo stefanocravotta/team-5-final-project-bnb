@@ -44,7 +44,7 @@ class DwellingRequest extends FormRequest
             'name.min' => 'Il campo nome deve avere almeno :min caratteri',
             'name.max' => 'Il campo nome può avere massimo :max caratteri',
 
-            'rooms.numeric' => 'Il campo numero deve essere un numero',
+            'rooms.numeric' => 'Il campo numero di stanze deve essere un numero',
             'rooms.max' => 'Non puoi registrare un appartamento con più di :max stanze',
 
             'beds.numeric' => 'Il numero di letti deve essere un numero',
