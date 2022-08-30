@@ -149,10 +149,7 @@
 
             <div class="mb-3">
                 <label for="description">Descrizione dell'appartamento</label>
-                <textarea class="form-control" type="text" name="description" id="description" cols="30" rows="10"
-                @if ($errors->any())
-                    value="{{ old('description') }}"
-                @endif></textarea>
+                <textarea class="form-control" type="text" name="description" id="description" cols="30" rows="10">@if($errors->any()){{ old('description') }}@else{{$dwelling->description}}@endif</textarea>
 
                 @error('description')
                     <p class="error-msg text-danger"> {{ $message }} </p>
