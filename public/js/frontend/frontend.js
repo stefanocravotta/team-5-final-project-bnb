@@ -17893,7 +17893,9 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+
 module.exports = __webpack_require__(/*! /Users/stefanocravotta/LARAVEL/final-project/team-5-final-project-bnb/resources/js/frontend.js */"./resources/js/frontend.js");
+
 
 
 /***/ })

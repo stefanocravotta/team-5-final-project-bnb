@@ -59,7 +59,10 @@ class DwellingsController extends Controller
         $provider = new \Geocoder\Provider\TomTom\TomTom($httpClient, '1ICjwoAETA30YhhNatAlLrdJ6g8V1ZDc');
         $geocoder = new \Geocoder\StatefulGeocoder($provider);
 
-        $result = $geocoder->geocodeQuery(GeocodeQuery::create($data['address'], $data['city']));
+        $address = $data['address'];
+        $city = $data['city'];
+
+        $result = $geocoder->geocodeQuery(GeocodeQuery::create("$address, $city"));
 
         $data['lat'] = $result->get(0)->getCoordinates()->getLatitude();
         $data['long'] = $result->get(0)->getCoordinates()->getLongitude();
