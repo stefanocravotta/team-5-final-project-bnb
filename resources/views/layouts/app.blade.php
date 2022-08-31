@@ -47,12 +47,6 @@
                 <a class="navbar-brand" href="{{ route('home') }}">
                     Sito pubblico
                 </a>
-                <a class="navbar-brand" href="{{ route('user.dwellings.index') }}">
-                    Appartamenti
-                </a>
-                <a class="navbar-brand" href="{{ route('user.dwellings.create') }}">
-                    Aggiungi appartamenti
-                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -83,6 +77,8 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('user.dashboard') }}">Il tuo profilo</a>
+                                    <a class="dropdown-item"  href="{{ route('user.messages') }}">I tuoi messaggi</a>
+                                    <a class="dropdown-item" href="{{ route('user.dwellings.index') }}">I tuoi appartamenti</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
