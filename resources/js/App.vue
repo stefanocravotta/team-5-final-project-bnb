@@ -11,7 +11,7 @@ import HomeComp from './components/HomeComp.vue';
 
 export default {
     name: "App",
-    components: { HomeComp }
+    components: { HomeComp},
 }
 </script>
 
