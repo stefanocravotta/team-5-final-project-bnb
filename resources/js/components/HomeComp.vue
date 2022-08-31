@@ -8,8 +8,6 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+        name: 'HomeComp'
     }
 </script>

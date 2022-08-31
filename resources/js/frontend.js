@@ -4,6 +4,7 @@ window.Vue = require('vue');
 window.axios = require('axios');
 
 
+import Vue from 'vue';
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
@@ -14,9 +15,11 @@ window.axios = require('axios');
 import App from './App.vue';
 import router from './routes';
 
-
 const app = new Vue({
     el: '#app',
     router,
-    render: h=> h(App)
+    render: h=> h(App),
+
 });
+
+

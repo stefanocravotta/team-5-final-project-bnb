@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1>Titolo pubblico</h1>
         <main>
             <router-view></router-view>
         </main>

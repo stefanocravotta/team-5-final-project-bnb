@@ -8,13 +8,18 @@
 		import HomeComp from './components/HomeComp.vue';
 		//creo il router
 		const router = new VueRouter({
-		    mode: 'history',
+		    // mode: 'history',
             routes: [
                 {
                     path: '/',
                     name: 'home',
                     component: HomeComp
-                }
+                },
+                {
+                    // questa rotta deve stare in coda alle altre
+                    path: '*',
+                    // component: Error404
+                },
             ]
 		});
 		// lo eporto per poterlo importare dentro front.js che inizializza vue

@@ -14,21 +14,26 @@
         <script src="{{ asset('js/frontend/frontend.js') }}" defer></script>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ route('user.dashboard') }}">Il tuo profilo</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+        <header class="container d-flex justify-content-between">
+            <div>
+                logo
+            </div>
+            <div class="flex-center position-ref full-height">
+                @if (Route::has('login'))
+                    <div class="top-right links">
+                        @auth
+                            <a href="{{ route('user.dashboard') }}">Il tuo profilo</a>
+                        @else
+                            <a href="{{ route('login') }}">Login</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-        </div>
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}">Register</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
+            </div>
+        </header>
         <div id="app"></div>
     </body>
 </html>
