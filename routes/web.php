@@ -25,6 +25,7 @@ Route::middleware('auth')
     ->prefix('user')
     ->group(function() {
         Route::get('/', 'UserController@index')->name('dashboard');
+        Route::get('/messages', 'MessagesController@index')->name('messages');
         Route::resource('dwellings', 'DwellingsController');
     });
 

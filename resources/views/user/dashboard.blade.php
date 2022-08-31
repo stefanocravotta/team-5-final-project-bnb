@@ -13,8 +13,10 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     Bentornato {{ Auth::user()->name }}
+                </div>
+                <div class="card-body">
+                    <a href="{{ route('user.messages') }}">Accedi a i tuoi messaggi</a>
                 </div>
             </div>
         </div>
