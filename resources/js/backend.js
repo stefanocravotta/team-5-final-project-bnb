@@ -72,7 +72,7 @@
                     $('#beds').removeClass('is-invalid')
                 }
             //
-            // Campo beds
+            // Campo bathrooms
                 if(isNaN($('#bathrooms').val())){
                     $('#error-bathrooms').show('slow').text('Il numero dei bagni deve essere un numero').fadeOut(10000);
                     $('#bathrooms').addClass('is-invalid');
@@ -92,7 +92,7 @@
                     $('#dimentions').addClass('is-invalid');
                     errors = true;
                 }
-                else if($('#dimentions').val() > 25){
+                else if($('#dimentions').val() < 10){
                     $('#error-dimentions').show('slow').text('Non puoi registrare un appartamento con meno di 10 mq').fadeOut(10000);
                     $('#dimentions').addClass('is-invalid');
                     errors = true;
