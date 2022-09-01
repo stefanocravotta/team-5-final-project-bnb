@@ -88,13 +88,17 @@ class DwellingsController extends Controller
     public function show(Dwelling $dwelling)
     {
         $perks = Perk::all();
-        if ($dwelling->user_id == Auth::id()) {
+        if($dwelling->id){
+            if ($dwelling->user_id == Auth::id()) {
 
-            return view('user.dwellings.show', compact('dwelling', 'perks'));
+                return view('user.dwellings.show', compact('dwelling', 'perks'));
+            }else{
+                $user_id = Auth::id();
+                $dwellings = Dwelling::where('user_id', $user_id)->orderBy('id', 'desc')->get();
+                return redirect()->route('user.dwellings.index', compact('dwellings'))->with('not_allowed', "E' impossibile visualizzare appartamenti di altri utenti");
+            }
         }else{
-            $user_id = Auth::id();
-            $dwellings = Dwelling::where('user_id', $user_id)->orderBy('id', 'desc')->get();
-            return redirect()->route('user.dwellings.index', compact('dwellings'))->with('not_allowed', "E' impossibile visualizzare appartamenti di altri utenti");
+            return view('guest.home');
         }
 
     }
@@ -110,15 +114,18 @@ class DwellingsController extends Controller
         $dwelling =  Dwelling::find($id);
         $categories = Category::all();
         $perks = Perk::all();
-        if ($dwelling->user_id == Auth::id()) {
+        if($dwelling){
+            if ($dwelling->user_id == Auth::id()) {
 
-            return view('user.dwellings.edit', compact('dwelling','categories', 'perks'));
+                return view('user.dwellings.edit', compact('dwelling','categories', 'perks'));
+            }else{
+                $user_id = Auth::id();
+                $dwellings = Dwelling::where('user_id', $user_id)->orderBy('id', 'desc')->get();
+                return redirect()->route('user.dwellings.index', compact('dwellings'))->with('not_allowed', "E' impossibile visualizzare appartamenti di altri utenti");
+            }
         }else{
-            $user_id = Auth::id();
-            $dwellings = Dwelling::where('user_id', $user_id)->orderBy('id', 'desc')->get();
-            return redirect()->route('user.dwellings.index', compact('dwellings'))->with('not_allowed', "E' impossibile visualizzare appartamenti di altri utenti");
+            return view('guest.home');
         }
-        return view('user.dwellings.edit', compact('dwelling', 'categories', 'perks'));
     }
 
     /**
