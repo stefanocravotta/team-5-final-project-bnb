@@ -7,7 +7,7 @@
 		Vue.use(VueRouter);
 		// importo i componenti delle rotte
 		import HomeComp from './components/HomeComp.vue';
-        // import ShowApartment from './components/pages/ShowApartment.vue';
+        import ShowApartment from './components/pages/ShowApartment.vue';
 
 		//creo il router
 		const router = new VueRouter({
