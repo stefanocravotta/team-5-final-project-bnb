@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
     <div class="container">
-        <h2>Crea un appartamento</h2>
+        <div class="col-8 offset-2">
+            <h2>Crea un appartamento</h2>
         <form action="{{ route('user.dwellings.store') }}" enctype="multipart/form-data" method="POST" id="form-create">
             @csrf
 
@@ -20,143 +21,175 @@
 
             </div>
 
-            <div class="mb-3">
-                <label for="category">Tipo di struttura *</label>
-                <select class="form-control" name="category">
-                    @foreach ($categories as $category)
+            <div class="d-flex justify-content-between">
+                <div class="mb-3 pr-1 w-50">
+                    <label for="category">Tipo di struttura *</label>
+                    <select class="form-control" name="category">
+                        @foreach ($categories as $category)
 
-                        <option value="{{$category->id}}"
-                        @if ($errors->any() && $category->id == old('category_id'))
-                            selected
-                        @endif>
-                        {{ $category->name }}</option>
+                            <option value="{{$category->id}}"
+                            @if ($errors->any() && $category->id == old('category_id'))
+                                selected
+                            @endif>
+                            {{ $category->name }}</option>
 
-                    @endforeach
-                </select>
+                        @endforeach
+                    </select>
 
-                @error('category')
-                    <p class="error-msg text-danger"> {{ $message }} </p>
-                @enderror
+                    @error('category')
+                        <p class="error-msg text-danger"> {{ $message }} </p>
+                    @enderror
+
+
+                </div>
+
+                <div class="mb-3 pl-1 w-50">
+                    <label for="rooms">Numero di stanze</label>
+                    <select class="form-control" name="rooms" id="rooms">
+                        @for ($i = 1; $i < 26; $i++)
+                            <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
+                    </select>
+
+
+                    @error('rooms')
+                        <p class="error-msg text-danger"> {{ $message }} </p>
+                    @enderror
+
+                    <p id="error-rooms" class="text-danger"></p>
+
+                </div>
             </div>
 
-            <div class="mb-3">
-                <label for="rooms">Numero di stanze</label>
-                <input class="form-control" type="number" name="rooms" id="rooms"
-                @if ($errors->any())
-                    value="{{ old('rooms') }}"
-                @endif>
+            <div class="d-flex justify-content-between">
 
-                @error('rooms')
-                    <p class="error-msg text-danger"> {{ $message }} </p>
-                @enderror
+                <div class="mb-3 w-30">
+                    <label for="beds">Numero di letti</label>
+                    <select class="form-control" name="beds" id="beds">
+                        @for ($i = 1; $i < 26; $i++)
+                            <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
+                    </select>
 
-                <p id="error-rooms" class="text-danger"></p>
+                    @error('beds')
+                        <p class="error-msg text-danger"> {{ $message }} </p>
+                    @enderror
 
+                    <p id="error-beds" class="text-danger"></p>
+
+                </div>
+
+                <div class="mb-3 w-30">
+                    <label for="bathrooms">Numero di bagni</label>
+                    <select class="form-control" name="bathrooms" id="bathrooms">
+                        @for ($i = 1; $i < 26; $i++)
+                            <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
+                    </select>
+
+                    @error('bathrooms')
+                        <p class="error-msg text-danger"> {{ $message }} </p>
+                    @enderror
+
+                    <p id="error-bathrooms" class="text-danger"></p>
+
+                </div>
+
+                <div class="mb-3 w-30">
+                    <label for="dimentions">Metri quadri della struttura</label>
+                    <input class="form-control" min="0" type="number" placeholder="0" name="dimentions" id="dimentions"
+                    @if ($errors->any())
+                        value="{{ old('dimentions') }}"
+                    @endif>
+
+                    @error('dimentions')
+                        <p class="error-msg text-danger"> {{ $message }} </p>
+                    @enderror
+
+                    <p id="error-dimentions" class="text-danger"></p>
+
+                </div>
             </div>
 
-            <div class="mb-3">
-                <label for="beds">Numero di letti</label>
-                <input class="form-control" type="number" name="beds" id="beds"
-                @if ($errors->any())
-                    value="{{ old('beds') }}"
-                @endif>
+            <div class="d-flex justify-content-between">
+                <div class="mb-3 pr-1 w-50">
+                    <label for="address">Inserisci la via, con civico se presente *</label>
+                    <input class="form-control" type="text" name="address" id="address"
+                    @if ($errors->any())
+                        value="{{ old('address') }}"
+                    @endif>
 
-                @error('beds')
-                    <p class="error-msg text-danger"> {{ $message }} </p>
-                @enderror
+                    @error('address')
+                        <p class="error-msg text-danger"> {{ $message }} </p>
+                    @enderror
 
-                <p id="error-beds" class="text-danger"></p>
+                    <p id="error-address" class="text-danger"></p>
 
+                </div>
+
+                <div class="mb-3 pl-1 w-50">
+                    <label for="city">Città in cui si trova *</label>
+                    <input class="form-control" type="text" name="city" id="city"
+                    @if ($errors->any())
+                        value="{{ old('city') }}"
+                    @endif>
+
+                    @error('city')
+                        <p class="error-msg text-danger"> {{ $message }} </p>
+                    @enderror
+
+                    <p id="error-city" class="text-danger"></p>
+
+                </div>
             </div>
 
-            <div class="mb-3">
-                <label for="bathrooms">Numero di bagni</label>
-                <input class="form-control" type="number" name="bathrooms" id="bathrooms"
-                @if ($errors->any())
-                    value="{{ old('bathrooms') }}"
-                @endif>
+            <div class="d-flex justify-content-between">
+                <div class="mb-3 w-50 pr-1">
+                    <label for="image">Carica un'immagine della struttura</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*"
+                    @if ($errors->any())
+                        value="{{ old('image') }}"
+                    @endif>
 
-                @error('bathrooms')
-                    <p class="error-msg text-danger"> {{ $message }} </p>
-                @enderror
+                    @error('image')
+                        <p class="error-msg text-danger"> {{ $message }} </p>
+                    @enderror
 
-                <p id="error-bathrooms" class="text-danger"></p>
+                    <p id="error-image" class="text-danger"></p>
 
+                </div>
+
+                <div class="mb-3 w-50 pl-1">
+                    <label for="price">Prezzo per notte *</label>
+                    <input class="form-control" type="text" name="price" id="price"
+                    @if ($errors->any())
+                        value="{{ old('price') }}"
+                    @endif>
+
+                    @error('price')
+                        <p class="error-msg text-danger"> {{ $message }} </p>
+                    @enderror
+
+                    <p id="error-price" class="text-danger"></p>
+
+                </div>
             </div>
 
+            <label for="">Seleziona almeno un servizio</label>
             <div class="mb-3">
-                <label for="dimentions">Metri quadri della struttura</label>
-                <input class="form-control" type="number" name="dimentions" id="dimentions"
-                @if ($errors->any())
-                    value="{{ old('dimentions') }}"
-                @endif>
+                @foreach ($perks as $perk)
+                    <input
+                        type="checkbox"
+                        name="perks[]"
+                        id="perk{{ $loop->iteration }}"
+                        value="{{ $perk->id }}"
+                        @if(in_array($perk->id, old('perks',[]) ) ) checked @endif
+                    >
 
-                @error('dimentions')
-                    <p class="error-msg text-danger"> {{ $message }} </p>
-                @enderror
+                    <label for="perk{{ $loop->iteration }}" class="mr-3">{{ $perk->name }}</label>
+                @endforeach
 
-                <p id="error-dimentions" class="text-danger"></p>
-
-            </div>
-
-            <div class="mb-3">
-                <label for="address">Inserisci la via, con civico se presente *</label>
-                <input class="form-control" type="text" name="address" id="address"
-                @if ($errors->any())
-                    value="{{ old('address') }}"
-                @endif>
-
-                @error('address')
-                    <p class="error-msg text-danger"> {{ $message }} </p>
-                @enderror
-
-                <p id="error-address" class="text-danger"></p>
-
-            </div>
-
-            <div class="mb-3">
-                <label for="city">Città in cui si trova *</label>
-                <input class="form-control" type="text" name="city" id="city"
-                @if ($errors->any())
-                    value="{{ old('city') }}"
-                @endif>
-
-                @error('city')
-                    <p class="error-msg text-danger"> {{ $message }} </p>
-                @enderror
-
-                <p id="error-city" class="text-danger"></p>
-
-            </div>
-
-            <div class="mb-3">
-                <label for="image">Carica un'immagine della struttura</label>
-                <input type="file" class="form-control" id="image" name="image" accept="image/*"
-                @if ($errors->any())
-                    value="{{ old('image') }}"
-                @endif>
-
-                @error('image')
-                    <p class="error-msg text-danger"> {{ $message }} </p>
-                @enderror
-
-                <p id="error-image" class="text-danger"></p>
-
-            </div>
-
-            <div class="mb-3">
-                <label for="price">Prezzo per notte *</label>
-                <input class="form-control" type="text" name="price" id="price"
-                @if ($errors->any())
-                    value="{{ old('price') }}"
-                @endif>
-
-                @error('price')
-                    <p class="error-msg text-danger"> {{ $message }} </p>
-                @enderror
-
-                <p id="error-price" class="text-danger"></p>
-
+                <p id="error-perks" class="text-danger"></p>
             </div>
 
             <div class="mb-3">
@@ -200,5 +233,6 @@
             </div>
 
         </form>
+        </div>
     </div>
 @endsection

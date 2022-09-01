@@ -24,7 +24,14 @@
             </div>
 
             <div class="card-body">
-                <h3 class="card-title">{{ $dwelling->name }}</h3>
+                <div class="d-flex justify-content-between">
+                    <h3 class="card-title d-inline">{{ $dwelling->name }}</h3>
+                    <div>
+                        @foreach ($dwelling->perks as $perk)
+                    <span class="badge badge-success">{{$perk->name}}</span>
+                    @endforeach
+                    </div>
+                </div>
                 <p class="card-text">{{ $dwelling->address }}, {{ $dwelling->city }}</p>
                 <p class="card-text">{{ $dwelling->description }}</p>
             </div>

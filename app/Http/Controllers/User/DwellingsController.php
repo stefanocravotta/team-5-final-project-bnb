@@ -12,6 +12,7 @@ use App\User;
 use App\Category;
 use App\Dwelling;
 use App\Http\Requests\DwellingRequest;
+use App\Perk;
 
 class DwellingsController extends Controller
 {
@@ -37,8 +38,9 @@ class DwellingsController extends Controller
     public function create()
     {
         $user_id = Auth::id();
+        $perks = Perk::all();
         $categories = Category::all();
-        return view('user.dwellings.create', compact('user_id','categories'));
+        return view('user.dwellings.create', compact('user_id','categories', 'perks'));
     }
 
     /**
@@ -72,6 +74,8 @@ class DwellingsController extends Controller
         $new_dwelling->fill($data);
         $new_dwelling->save();
 
+        $new_dwelling->perks()->attach($data['perks']);
+
         return redirect()->route('user.dwellings.show', $new_dwelling)->with('dwelling_created', "La struttura $new_dwelling->name è stata aggiunta correttamente");
     }
 
@@ -83,9 +87,10 @@ class DwellingsController extends Controller
      */
     public function show(Dwelling $dwelling)
     {
+        $perks = Perk::all();
         if ($dwelling->user_id == Auth::id()) {
 
-            return view('user.dwellings.show', compact('dwelling'));
+            return view('user.dwellings.show', compact('dwelling', 'perks'));
         }else{
             $user_id = Auth::id();
             $dwellings = Dwelling::where('user_id', $user_id)->orderBy('id', 'desc')->get();
@@ -104,7 +109,16 @@ class DwellingsController extends Controller
     {
         $dwelling =  Dwelling::find($id);
         $categories = Category::all();
-        return view('user.dwellings.edit', compact('dwelling', 'categories'));
+        $perks = Perk::all();
+        if ($dwelling->user_id == Auth::id()) {
+
+            return view('user.dwellings.edit', compact('dwelling','categories', 'perks'));
+        }else{
+            $user_id = Auth::id();
+            $dwellings = Dwelling::where('user_id', $user_id)->orderBy('id', 'desc')->get();
+            return redirect()->route('user.dwellings.index', compact('dwellings'))->with('not_allowed', "E' impossibile visualizzare appartamenti di altri utenti");
+        }
+        return view('user.dwellings.edit', compact('dwelling', 'categories', 'perks'));
     }
 
     /**
@@ -143,6 +157,8 @@ class DwellingsController extends Controller
 
 
         $dwelling->update($data);
+
+        $dwelling->perks()->sync($data['perks']);
 
         return redirect()->route('user.dwellings.show', $dwelling);
 

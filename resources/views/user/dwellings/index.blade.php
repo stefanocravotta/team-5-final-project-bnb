@@ -4,8 +4,9 @@
         <div class="container">
 
             @if(session('dwelling_deleted'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('dwelling_deleted') }}
+                <div class="alert alert-danger d-flex justify-content-between" role="alert">
+                    <p>{{ session('dwelling_deleted') }}</p>
+                    <a href="{{route('user.dwellings.index')}}" class="btn btn-danger">X</a>
                 </div>
             @endif
 
@@ -18,9 +19,14 @@
 
             <h2>I tuoi appartamenti</h2>
 
+            <a class="navbar-brand" href="{{ route('user.dwellings.create') }}">
+                Aggiungi appartamenti
+            </a>
+
         @if (count($dwellings_visible) > 0 )
 
         <div class="d-flex flex-wrap">
+
 
             @foreach ($dwellings_visible as $dwelling)
 

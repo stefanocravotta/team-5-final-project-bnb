@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+    <div class="col-8 offset-2">
     <h2>Modifica il tuo appartamento</h2>
     <form action="{{ route('user.dwellings.update',$dwelling) }}" method="POST" id="form-edit">
         @csrf
@@ -20,7 +21,8 @@
 
         </div>
 
-            <div class="mb-3">
+        <div class="d-flex justify-content-between">
+            <div class="mb-3 pr-1 w-50">
                 <label for="category">Tipo di struttura*</label>
                 <select class="form-control" name="category">
                     @foreach ($categories as $category)
@@ -39,12 +41,16 @@
                     <p class="error-msg text-danger"> {{ $message }} </p>
                 @enderror
 
+
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 pl-1 w-50">
                 <label for="rooms">Numero di stanze</label>
-                <input class="form-control" type="number" name="rooms" id="rooms"
-                value="{{ !$errors->any() ? $dwelling->rooms : old('rooms') }}">
+                <select class="form-control" name="rooms" id="rooms" value="{{ !$errors->any() ? $dwelling->rooms : old('rooms') }}">
+                        @for ($i = 1; $i < 26; $i++)
+                            <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
+                    </select>
 
                 @error('rooms')
                     <p class="error-msg text-danger"> {{ $message }} </p>
@@ -54,11 +60,17 @@
 
 
             </div>
+        </div>
 
-            <div class="mb-3">
+        <div class="d-flex justify-content-between">
+
+            <div class="mb-3 w-30">
                 <label for="beds">Numero di letti</label>
-                <input class="form-control" type="number" name="beds" id="beds"
-                value="{{ !$errors->any() ? $dwelling->beds : old('beds') }}">
+                <select class="form-control" name="beds" id="beds" value="{{ !$errors->any() ? $dwelling->beds : old('beds') }}">
+                    @for ($i = 1; $i < 26; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
 
                 @error('beds')
                     <p class="error-msg text-danger"> {{ $message }} </p>
@@ -68,10 +80,13 @@
 
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 w-30">
                 <label for="bathrooms">Numero di bagni</label>
-                <input class="form-control" type="number" name="bathrooms" id="bathrooms"
-                value="{{ !$errors->any() ? $dwelling->bathrooms : old('bathrooms') }}">
+                <select class="form-control" name="bathrooms" id="bathrooms" value="{{ !$errors->any() ? $dwelling->bathrooms : old('bathrooms') }}">
+                    @for ($i = 1; $i < 26; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
 
                 @error('bathrooms')
                     <p class="error-msg text-danger"> {{ $message }} </p>
@@ -82,9 +97,9 @@
 
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 w-30">
                 <label for="dimentions">Metri quadri della struttura</label>
-                <input class="form-control" type="number" placeholder="mq" name="dimentions" id="dimentions"
+                <input class="form-control" type="number" min="0" placeholder="0" name="dimentions" id="dimentions"
                 value="{{ !$errors->any() ? $dwelling->dimentions : old('dimentions') }}">
 
                 @error('dimentions')
@@ -94,8 +109,9 @@
                 <p id="error-dimentions" class="text-danger"></p>
 
             </div>
-
-            <div class="mb-3">
+        </div>
+        <div class="d-flex justify-content-between">
+            <div class="mb-3 pr-1 w-50">
                 <label for="address">Inserisci la via, con civico se presente*</label>
                 <input class="form-control" type="text" name="address" id="address"
                 value="{{ !$errors->any() ? $dwelling->address : old('address') }}">
@@ -108,7 +124,7 @@
 
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 pl-1 w-50">
                 <label for="city">Città in cui si trova*</label>
                 <input class="form-control" type="text" name="city" id="city"
                 value="{{ !$errors->any() ? $dwelling->city : old('city') }}">
@@ -120,8 +136,10 @@
                 <p id="error-city" class="text-danger"></p>
 
             </div>
+        </div>
 
-            <div class="mb-3">
+        <div class="d-flex justify-content-between">
+            <div class="mb-3 w-50 pr-1">
                 <label for="image">Carica un'immagine della struttura</label>
                 <input class="form-control" type="text" name="image" id="image"
                 value="{{ !$errors->any() ? $dwelling->image : old('image') }}">
@@ -134,7 +152,7 @@
 
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 w-50 pl-1">
                 <label for="price">Prezzo per notte *</label>
                 <input class="form-control" type="text" name="price" id="price"
                 value="{{ !$errors->any() ? $dwelling->price : old('price') }}">
@@ -145,6 +163,24 @@
 
                 <p id="error-price" class="text-danger"></p>
 
+            </div>
+        </div>
+
+        <label for="">Seleziona almeno un servizio</label>
+            <div class="mb-3">
+                @foreach ($perks as $perk)
+                    <input
+                        type="checkbox"
+                        name="perks[]"
+                        id="perk{{ $loop->iteration }}"
+                        value="{{ $perk->id }}"
+                        @if(in_array($perk->id, old('perks',[]) ) ) checked @endif
+                    >
+
+                    <label for="perk{{ $loop->iteration }}" class="mr-3">{{ $perk->name }}</label>
+                @endforeach
+
+                <p id="error-perks" class="text-danger"></p>
             </div>
 
             <div class="mb-3">
@@ -183,6 +219,7 @@
                 </div>
             </div>
 
-    </form>
+        </form>
+    </div>
 </div>
 @endsection

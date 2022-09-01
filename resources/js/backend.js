@@ -135,11 +135,7 @@
                 }
             //
             // Campo description
-                if($('#description').val().length < 20){
-                    $('#error-description').show('slow').text('Il campo descrizione deve avere minimo 20 caratteri').fadeOut(10000);
-                    $('#description').addClass('is-invalid');
-                    errors = true;
-                }else if($('#description').val().length > 255){
+                if($('#description').val().length > 255){
                     $('#error-description').show('slow').text('Il campo descrizione può avere massimo 2000 caratteri').fadeOut(10000);
                     $('#description').addClass('is-invalid');
                     errors = true;
@@ -164,6 +160,14 @@
                 errors = true;
             }else{
                 $('#price').removeClass('is-invalid')
+            }
+        //
+        // checkbox Perks
+            checked = $("input[type=checkbox]:checked").length;
+
+            if(!checked) {
+                $('#error-perks').show('slow').text('Almeno un servizio deve essere selezionato').fadeOut(10000);
+                errors = true;
             }
         //
             if(errors === true){
