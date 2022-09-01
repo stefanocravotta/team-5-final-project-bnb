@@ -135,7 +135,7 @@
                 }
             //
             // Campo description
-                if($('#description').val().length > 255){
+                if($('#description').val().length > 2000){
                     $('#error-description').show('slow').text('Il campo descrizione può avere massimo 2000 caratteri').fadeOut(10000);
                     $('#description').addClass('is-invalid');
                     errors = true;

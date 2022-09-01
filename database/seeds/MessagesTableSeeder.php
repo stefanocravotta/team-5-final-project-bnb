@@ -10,9 +10,9 @@ class MessagesTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+        public function run()
     {
-        for ($i=8; $i < 12; $i++) {
+        for ($i=18; $i < 21; $i++) {
             $new_message = New Message();
             $new_message->dwelling_id = $i;
             $new_message->sender_email = 'bruttamail@yahoo.it';

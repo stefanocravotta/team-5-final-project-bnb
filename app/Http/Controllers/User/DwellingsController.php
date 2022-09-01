@@ -12,6 +12,7 @@ use App\User;
 use App\Category;
 use App\Dwelling;
 use App\Http\Requests\DwellingRequest;
+use App\Message;
 use App\Perk;
 
 class DwellingsController extends Controller
@@ -88,10 +89,12 @@ class DwellingsController extends Controller
     public function show(Dwelling $dwelling)
     {
         $perks = Perk::all();
+        $messages = Message::where('dwelling_id', $dwelling->id)->get();
+
         if($dwelling->id){
             if ($dwelling->user_id == Auth::id()) {
 
-                return view('user.dwellings.show', compact('dwelling', 'perks'));
+                return view('user.dwellings.show', compact('dwelling', 'perks', 'messages'));
             }else{
                 $user_id = Auth::id();
                 $dwellings = Dwelling::where('user_id', $user_id)->orderBy('id', 'desc')->get();

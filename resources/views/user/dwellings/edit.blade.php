@@ -3,7 +3,7 @@
 <div class="container">
     <div class="col-8 offset-2">
     <h2>Modifica il tuo appartamento</h2>
-    <form action="{{ route('user.dwellings.update',$dwelling) }}" method="POST" id="form-edit">
+    <form action="{{ route('user.dwellings.update',$dwelling) }}" method="POST" id="form-edit" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -141,7 +141,7 @@
         <div class="d-flex justify-content-between">
             <div class="mb-3 w-50 pr-1">
                 <label for="image">Carica un'immagine della struttura</label>
-                <input class="form-control" type="text" name="image" id="image"
+                <input class="form-control" type="file" accept="image/*" name="image" id="image"
                 value="{{ !$errors->any() ? $dwelling->image : old('image') }}">
 
                 @error('image')
