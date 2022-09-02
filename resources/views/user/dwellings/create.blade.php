@@ -23,7 +23,7 @@
 
             <div class="d-flex justify-content-between">
                 <div class="mb-3 pr-1 w-50">
-                    <label for="category">Tipo di struttura *</label>
+                    <label for="category">Tipo di struttura</label>
                     <select class="form-control" name="category">
                         @foreach ($categories as $category)
 
@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="mb-3 w-30">
-                    <label for="dimentions">Metri quadri della struttura</label>
+                    <label for="dimentions">Metri quadri della struttura *</label>
                     <input class="form-control" min="0" type="number" placeholder="10" name="dimentions" id="dimentions"
                     @if ($errors->any())
                         value="{{ old('dimentions') }}"
@@ -163,7 +163,7 @@
                 </div>
             </div>
 
-            <label for="">Seleziona almeno un servizio</label>
+            <label for="">Seleziona almeno un servizio *</label>
             <div class="mb-3">
                 @foreach ($perks as $perk)
                     <input
