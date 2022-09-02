@@ -250,6 +250,7 @@
 
             var inputSearchBox = document.querySelector('.tt-search-box-input');
             inputSearchBox.setAttribute('name', 'address');
+            inputSearchBox.setAttribute('id', 'address');
             inputSearchBox.setAttribute('autocomplete', 'off');
             inputSearchBox.setAttribute('type', 'text');
 
