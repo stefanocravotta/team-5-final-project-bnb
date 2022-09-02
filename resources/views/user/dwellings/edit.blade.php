@@ -174,7 +174,11 @@
                         name="perks[]"
                         id="perk{{ $loop->iteration }}"
                         value="{{ $perk->id }}"
-                        @if(in_array($perk->id, old('perks',[]) ) ) checked @endif
+                        @if(!$errors->any() && $dwelling->perks->contains($perk->id))
+                        checked
+                        @elseif(in_array($perk->id, old('perks',[]) ) )
+                        checked
+                        @endif
                     >
 
                     <label for="perk{{ $loop->iteration }}" class="mr-3">{{ $perk->name }}</label>
