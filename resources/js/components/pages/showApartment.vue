@@ -153,6 +153,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+*{
+    background-color: rgb(217, 217, 217);
+}
+
 // sezione immagini
 .mb-imgSection{
         img:hover{
