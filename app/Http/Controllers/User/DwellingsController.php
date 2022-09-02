@@ -63,9 +63,8 @@ class DwellingsController extends Controller
         $geocoder = new \Geocoder\StatefulGeocoder($provider);
 
         $address = $data['address'];
-        $city = $data['city'];
 
-        $result = $geocoder->geocodeQuery(GeocodeQuery::create("$address, $city"));
+        $result = $geocoder->geocodeQuery(GeocodeQuery::create("$address"));
 
         $data['lat'] = $result->get(0)->getCoordinates()->getLatitude();
         $data['long'] = $result->get(0)->getCoordinates()->getLongitude();
@@ -140,15 +139,14 @@ class DwellingsController extends Controller
 
         $data['image'] = $this->imageUploader($request, $data);
 
-        if($data['address'] != $dwelling->address || $data['city'] != $dwelling->city){
+        if($data['address'] != $dwelling->address){
 
             $httpClient = new \GuzzleHttp\Client();
             $provider = new \Geocoder\Provider\TomTom\TomTom($httpClient, '1ICjwoAETA30YhhNatAlLrdJ6g8V1ZDc');
             $geocoder = new \Geocoder\StatefulGeocoder($provider);
             $address = $data['address'];
-            $city = $data['city'];
 
-            $result = $geocoder->geocodeQuery(GeocodeQuery::create("$address, $city"));
+            $result = $geocoder->geocodeQuery(GeocodeQuery::create("$address"));
 
             $data['lat'] = $result->get(0)->getCoordinates()->getLatitude();
             $data['long'] = $result->get(0)->getCoordinates()->getLongitude();

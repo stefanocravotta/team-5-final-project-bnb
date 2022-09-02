@@ -97,7 +97,7 @@
 
                 <div class="mb-3 w-30">
                     <label for="dimentions">Metri quadri della struttura</label>
-                    <input class="form-control" min="0" type="number" placeholder="0" name="dimentions" id="dimentions"
+                    <input class="form-control" min="0" type="number" placeholder="10" name="dimentions" id="dimentions"
                     @if ($errors->any())
                         value="{{ old('dimentions') }}"
                     @endif>
@@ -112,12 +112,14 @@
             </div>
 
             <div class="d-flex justify-content-between">
-                <div class="mb-3 pr-1 w-50">
+                <div class="mb-3 pr-1 w-100">
                     <label for="address">Inserisci la via, con civico se presente *</label>
-                    <input class="form-control" type="text" name="address" id="address"
-                    @if ($errors->any())
-                        value="{{ old('address') }}"
-                    @endif>
+
+                    <div id="searchBox-container">
+                    <input id="main-input" type="hidden" name="address">
+
+
+                    </div>
 
                     @error('address')
                         <p class="error-msg text-danger"> {{ $message }} </p>
@@ -127,20 +129,6 @@
 
                 </div>
 
-                <div class="mb-3 pl-1 w-50">
-                    <label for="city">Città in cui si trova *</label>
-                    <input class="form-control" type="text" name="city" id="city"
-                    @if ($errors->any())
-                        value="{{ old('city') }}"
-                    @endif>
-
-                    @error('city')
-                        <p class="error-msg text-danger"> {{ $message }} </p>
-                    @enderror
-
-                    <p id="error-city" class="text-danger"></p>
-
-                </div>
             </div>
 
             <div class="d-flex justify-content-between">
@@ -208,8 +196,8 @@
             </div>
 
             <div class="mb-3">
-                <button class="btn btn-primary" name="visible" type="button" value="1" data-toggle="modal" data-target="#modal-public">Pubblica</button>
-                <button class="btn btn-primary" name="visible" type="submit" value="0">Salva in bozza</button>
+                <button id="pubblica" class="btn btn-primary" name="visible" type="button" value="1" data-toggle="modal" data-target="#modal-public">Pubblica</button>
+                <button id="bozza" class="btn btn-primary" name="visible" type="submit" value="0">Salva in bozza</button>
             </div>
 
             <div class="modal fade" id="modal-public" tabindex="-1" aria-labelledby="modal-public-label" aria-hidden="true">
@@ -234,5 +222,42 @@
 
         </form>
         </div>
+
+        <script type="text/javascript">
+
+            var options = {
+            searchOptions: {
+                key: '0esiNqmzyhdAgeAwGRM5fRuozF0jWJgO',
+                language: 'en-GB',
+                limit: 5
+            },
+            autocompleteOptions: {
+                key: '0esiNqmzyhdAgeAwGRM5fRuozF0jWJgO',
+                language: 'en-GB'
+            }
+            };
+
+            var ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
+            var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+            var container = document.getElementById('searchBox-container');
+            container.append(searchBoxHTML);
+            document.querySelector('.tt-search-box-input-container').classList.add('form-control');
+
+
+            var errors = @json($errors->toArray());
+            var errorsKeys = Object.keys(errors);
+            var oldAddress = @json(old('address'));
+
+            var inputSearchBox = document.querySelector('.tt-search-box-input');
+            inputSearchBox.setAttribute('name', 'address');
+            inputSearchBox.setAttribute('autocomplete', 'off');
+            inputSearchBox.setAttribute('type', 'text');
+
+            if (errorsKeys.length > 0) {
+                inputSearchBox.setAttribute('value', oldAddress);
+            }
+
+        </script>
+
     </div>
 @endsection
