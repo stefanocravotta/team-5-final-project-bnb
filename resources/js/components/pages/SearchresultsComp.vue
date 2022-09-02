@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Risultati della ricerca</h1>
-        <p>{{$route.params.apartment}}</p>
+        <p>{{$route.params.city}}</p>
     </div>
 </template>
 
@@ -10,7 +10,7 @@ export default {
     name: 'SearchresultsComp',
     data(){
         return{
-            apartmentSearch: this.$route.params.apartment,
+            apartmentSearch: this.$route.params.city,
             apiUrl: '/api/dwellings',
             apartments: null
         }
@@ -18,7 +18,8 @@ export default {
 
     methods:{
         searchDwelling(){
-            axios.get(this.apiUrl + '/search-dwelling/' + this.apartmentSearch)
+            console.log(this.$route);
+            axios.get(this.apiUrl + this.apartmentSearch)
             .then(r =>{
                 this.apartments = r.data
                 console.log(r.data);

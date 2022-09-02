@@ -24,7 +24,7 @@
                     component: ShowApartment
                 },
                 {
-                    path: '/search-results/:apartment',
+                    path: '/search-results/:city',
                     name: 'search-results',
                     component: SearchresultsComp
                 },

@@ -22,6 +22,6 @@ use Illuminate\Support\Facades\Route;
 Route::namespace('Api')
     ->prefix('dwellings')
     ->group(function(){
-        // Route::get('/', 'SearchDwellingController@index');
-        Route::get('/search-dwelling/{apartment}', 'SearchDwellingController@SearchDwelling');
+
+        Route::get('/{city}', 'SearchDwellingController@SearchDwelling');
     });
