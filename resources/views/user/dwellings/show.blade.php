@@ -105,13 +105,9 @@
                                 <p class="drpdwn-p faq-text">{{ $message->text }}</p>
                                 <p>{{ date_format($message->created_at, "d/m/Y")}}</p>
                             </div>
-                            {{-- <h3>{{$message->sender_email}}</h3>
-                            <div class="p-3">
-                                <h4>{{$message->text}}</h4>
-                                <p>{{ date_format($message->created_at, "d/m/Y")}}</p>
-                            </div> --}}
                         </div>
                     @endforeach
+
                 </div>
             </div>
 

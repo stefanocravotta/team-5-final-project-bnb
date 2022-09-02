@@ -1,13 +1,18 @@
 <template>
     <div>
-        <input type="text" class="searchbar">
-        <a href="#" class="search-button">Cerca</a>
+        <input type="text" class="searchbar" v-model="apartment">
+        <router-link :to="{name:'search-results', params:{ apartment: apartment }}" class="search-button">Cerca</router-link>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'SearchbarComp'
+    name: 'SearchbarComp',
+    data(){
+        return{
+            apartment: ''
+        }
+    }
 }
 </script>
 
@@ -17,6 +22,8 @@ export default {
     width: 45%;
 }
 .search-button{
+    width: 60px;
+    height: 45px;
     padding: 13px;
     background-color: rgb(71, 71, 233);
     color: white;

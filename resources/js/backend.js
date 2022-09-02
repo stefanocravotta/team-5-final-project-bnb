@@ -177,3 +177,15 @@
         })
     }
  })
+
+
+//  .faq-line:hover .faq-text {
+//     display: inline-block;
+//     margin: 10px 40px 10px 0;
+//     width: 70%;
+//   }
+
+//   .faq-line:hover .fa-chevron-down{
+//     transform: rotate(180deg);
+//   }
+
