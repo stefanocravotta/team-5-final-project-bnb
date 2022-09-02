@@ -23,5 +23,5 @@ Route::namespace('Api')
     ->prefix('dwellings')
     ->group(function(){
 
-        Route::get('/{city}', 'SearchDwellingController@SearchDwelling');
+        Route::get('/search-dwelling/{city}', 'SearchDwellingController@SearchDwelling');
     });

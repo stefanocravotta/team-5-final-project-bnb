@@ -19,7 +19,7 @@ export default {
     methods:{
         searchDwelling(){
             console.log(this.$route);
-            axios.get(this.apiUrl + this.apartmentSearch)
+            axios.get(this.apiUrl + '/search-dwelling/' + this.apartmentSearch)
             .then(r =>{
                 this.apartments = r.data
                 console.log(r.data);

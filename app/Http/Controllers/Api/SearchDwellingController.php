@@ -26,7 +26,7 @@ class SearchDwellingController extends Controller
         // dd($lat, $long);
         // $dwellings = Dwelling::whereBetween('lat', [$lat, ($lat + 1)])->get();
 
-        $dwellings = Dwelling::where('slug', 'like', '%'.'casa'.'%');
+        $dwellings = Dwelling::all();
         return response()->json(compact('dwellings'));
     }
 }
