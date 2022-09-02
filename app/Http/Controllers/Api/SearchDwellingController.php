@@ -12,21 +12,23 @@ class SearchDwellingController extends Controller
 {
     public function SearchDwelling($city){
 
-        // // dd($city);
-        // $httpClient = new \GuzzleHttp\Client();
-        // $provider = new \Geocoder\Provider\TomTom\TomTom($httpClient, '1ICjwoAETA30YhhNatAlLrdJ6g8V1ZDc');
-        // $geocoder = new \Geocoder\StatefulGeocoder($provider);
-        // $address = $city;
+        $httpClient = new \GuzzleHttp\Client();
+        $provider = new \Geocoder\Provider\TomTom\TomTom($httpClient, '1ICjwoAETA30YhhNatAlLrdJ6g8V1ZDc');
+        $geocoder = new \Geocoder\StatefulGeocoder($provider);
+        $address = $city;
 
-        // $result = $geocoder->geocodeQuery(GeocodeQuery::create("$address"));
+        $result = $geocoder->geocodeQuery(GeocodeQuery::create("$address"));
 
-        // $lat = $result->get(0)->getCoordinates()->getLatitude();
-        // $long = $result->get(0)->getCoordinates()->getLongitude();
+// lat 0,00900901
 
-        // dd($lat, $long);
-        // $dwellings = Dwelling::whereBetween('lat', [$lat, ($lat + 1)])->get();
+        $lat = $result->get(0)->getCoordinates()->getLatitude();
+        $long = $result->get(0)->getCoordinates()->getLongitude();
 
-        $dwellings = Dwelling::all();
-        return response()->json(compact('dwellings'));
+        $distance = $lat + 0.3;
+
+        $dwellings = Dwelling::whereBetween('lat', [$lat, $distance])->get();
+
+        return response()->json(compact('dwellings', 'lat', 'long'));
     }
+
 }

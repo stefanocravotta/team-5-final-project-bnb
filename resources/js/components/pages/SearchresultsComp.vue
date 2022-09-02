@@ -2,6 +2,8 @@
     <div>
         <h1>Risultati della ricerca</h1>
         <p>{{$route.params.city}}</p>
+
+        <p v-for="apartment in apartments" :key="apartment.id">{{ apartment.name}}</p>
     </div>
 </template>
 
@@ -18,10 +20,10 @@ export default {
 
     methods:{
         searchDwelling(){
-            console.log(this.$route);
+
             axios.get(this.apiUrl + '/search-dwelling/' + this.apartmentSearch)
             .then(r =>{
-                this.apartments = r.data
+                this.apartments = r.data.dwellings
                 console.log(r.data);
             })
         }
