@@ -117,23 +117,6 @@
                     $('#address').removeClass('is-invalid')
                 }
             //
-            // Campo city
-                if($('#city').val().length === 0){
-                    $('#error-city').show('slow').text('Il campo città è obbligatorio').fadeOut(10000);
-                    $('#city').addClass('is-invalid');
-                    errors = true;
-                }else if($('#city').val().length < 3){
-                    $('#error-city').show('slow').text('Il campo città deve avere minimo 3 caratteri').fadeOut(10000);
-                    $('#city').addClass('is-invalid');
-                    errors = true;
-                }else if($('#city').val().length > 255){
-                    $('#error-city').show('slow').text('Il campo città può avere massimo 255 caratteri').fadeOut(10000);
-                    $('#city').addClass('is-invalid');
-                    errors = true;
-                }else{
-                    $('#city').removeClass('is-invalid')
-                }
-            //
             // Campo description
                 if($('#description').val().length > 2000){
                     $('#error-description').show('slow').text('Il campo descrizione può avere massimo 2000 caratteri').fadeOut(10000);
