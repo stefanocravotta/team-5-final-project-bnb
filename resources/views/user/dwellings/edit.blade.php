@@ -110,11 +110,16 @@
 
             </div>
         </div>
+
         <div class="d-flex justify-content-between">
-            <div class="mb-3 pr-1 w-50">
-                <label for="address">Inserisci la via, con civico se presente*</label>
-                <input class="form-control" type="text" name="address" id="address"
-                value="{{ !$errors->any() ? $dwelling->address : old('address') }}">
+            <div class="mb-3 pr-1 w-100">
+                <label for="address">Inserisci la via, con civico se presente *</label>
+
+                <div id="searchBox-container">
+                <input id="main-input" type="hidden" name="address">
+
+
+                </div>
 
                 @error('address')
                     <p class="error-msg text-danger"> {{ $message }} </p>
@@ -124,18 +129,6 @@
 
             </div>
 
-            <div class="mb-3 pl-1 w-50">
-                <label for="city">Città in cui si trova*</label>
-                <input class="form-control" type="text" name="city" id="city"
-                value="{{ !$errors->any() ? $dwelling->city : old('city') }}">
-
-                @error('city')
-                    <p class="error-msg text-danger"> {{ $message }} </p>
-                @enderror
-
-                <p id="error-city" class="text-danger"></p>
-
-            </div>
         </div>
 
         <div class="d-flex justify-content-between">
@@ -225,5 +218,44 @@
 
         </form>
     </div>
+
+    <script type="text/javascript">
+
+        var options = {
+        searchOptions: {
+            key: '0esiNqmzyhdAgeAwGRM5fRuozF0jWJgO',
+            language: 'en-GB',
+            limit: 5
+        },
+        autocompleteOptions: {
+            key: '0esiNqmzyhdAgeAwGRM5fRuozF0jWJgO',
+            language: 'en-GB'
+        }
+        };
+
+        var ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
+        var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+        var container = document.getElementById('searchBox-container');
+        container.append(searchBoxHTML);
+        document.querySelector('.tt-search-box-input-container').classList.add('form-control');
+
+
+        var errors = @json($errors->toArray());
+        var errorsKeys = Object.keys(errors);
+        var oldAddress = @json(old('address'));
+        var dwellingAddress = @json($dwelling->address);
+
+        var inputSearchBox = document.querySelector('.tt-search-box-input');
+        inputSearchBox.setAttribute('name', 'address');
+        inputSearchBox.setAttribute('autocomplete', 'off');
+        inputSearchBox.setAttribute('type', 'text');
+
+        if (errorsKeys.length > 0) {
+            inputSearchBox.setAttribute('value', oldAddress);
+        } else {
+            inputSearchBox.setAttribute('value', dwellingAddress);
+        }
+
+    </script>
 </div>
 @endsection
