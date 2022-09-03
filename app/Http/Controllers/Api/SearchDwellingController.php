@@ -17,7 +17,7 @@ class SearchDwellingController extends Controller
         $geocoder = new \Geocoder\StatefulGeocoder($provider);
         $address = $city;
 
-        $result = $geocoder->geocodeQuery(GeocodeQuery::create("$address"));
+        $result = $geocoder->geocodeQuery(GeocodeQuery::create($address));
 
 // lat 0,00900901
 
@@ -28,7 +28,7 @@ class SearchDwellingController extends Controller
 
         $dwellings = Dwelling::whereBetween('lat', [$lat, $distance])->get();
 
-        return response()->json(compact('dwellings', 'lat', 'long'));
+        return response()->json(compact('dwellings', 'lat', 'long', 'address'));
     }
 
 }

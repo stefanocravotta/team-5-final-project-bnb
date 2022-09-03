@@ -2,28 +2,59 @@
     <div>
         <!-- <label for="address">address</label> -->
         <!-- <input id="address" type="text" class="searchbar" v-model="address"> -->
-        <label for="city">city</label>
-        <input id="city" type="text" class="searchbar" v-model="city">
-        <!-- <div id="searchBox-container">
 
-        </div> -->
-        <router-link :to="{name:'search-results', params:{ city: city }}" class="search-button">Cerca</router-link>
+        <!-- <label for="city">city</label>
+        <input id="city" type="text" class="searchbar" v-model="city" placeholder="Indica in ch citta e paese vuoi andare"> -->
+
+        <div id="searchBox-container">
+
+        </div>
+        <!-- <router-link :to="{name:'search-results', params:{ city: city }}" class="search-button d-inline">Cerca</router-link> -->
     </div>
 </template>
 
 <script>
+import { services } from '@tomtom-international/web-sdk-services';
+import SearchBox from '@tomtom-international/web-sdk-plugin-searchbox';
+
 export default {
     name: 'SearchbarComp',
     data(){
         return{
             address: '',
-            city: ''
+            city: '',
+            options: {
+                idleTimePress: 100,
+                minNumberOfCharacters: 0,
+                searchOptions: {
+                    key: '0esiNqmzyhdAgeAwGRM5fRuozF0jWJgO',
+                    language: 'it-IT'
+                },
+                autocompleteOptions: {
+                    key: '0esiNqmzyhdAgeAwGRM5fRuozF0jWJgO',
+                    language: 'it-IT'
+                },
+                noResultsMessage: 'No results found.'
+            }
         }
+    },
+    methods:{
+        fottutaBarraSearch(){
+            const ttSearchBox = new SearchBox(services, this.options);
+            const searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+
+            //Attach searchboxHTML to your page
+            document.getElementById('searchBox-container').append(searchBoxHTML);
+        }
+    },
+    mounted(){
+        this.fottutaBarraSearch()
     }
 }
 </script>
 
 <style lang="scss" scoped>
+
 .searchbar{
     height: 45px;
     width: 30%;
