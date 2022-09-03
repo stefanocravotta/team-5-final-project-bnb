@@ -1,15 +1,21 @@
 <template>
     <div>
         <!-- <label for="address">address</label> -->
-        <!-- <input id="address" type="text" class="searchbar" v-model="address"> -->
+        <input id="address" type="text" class="searchbar" v-model="address">
 
         <!-- <label for="city">city</label>
         <input id="city" type="text" class="searchbar" v-model="city" placeholder="Indica in ch citta e paese vuoi andare"> -->
 
         <div id="searchBox-container">
 
+
         </div>
-        <!-- <router-link :to="{name:'search-results', params:{ city: city }}" class="search-button d-inline">Cerca</router-link> -->
+
+
+        <!-- <button class="btn" :click="getValue()">cliccami</button> -->
+        <!-- <a href="#" class="btn m-3 btn-primary" @click="getValue()">cliccami</a> -->
+
+        <router-link :to="{name:'search-results', params:{ city: city }}" class="search-button d-inline"><span @click="getValue()">Cerca</span></router-link>
     </div>
 </template>
 
@@ -21,17 +27,17 @@ export default {
     name: 'SearchbarComp',
     data(){
         return{
-            address: '',
             city: '',
+            address: '',
             options: {
                 idleTimePress: 100,
                 minNumberOfCharacters: 0,
                 searchOptions: {
-                    key: '0esiNqmzyhdAgeAwGRM5fRuozF0jWJgO',
+                    key: 'sXZ074rJ8QHr7ocOwfW5NaIHLwTog1tx',
                     language: 'it-IT'
                 },
                 autocompleteOptions: {
-                    key: '0esiNqmzyhdAgeAwGRM5fRuozF0jWJgO',
+                    key: 'sXZ074rJ8QHr7ocOwfW5NaIHLwTog1tx',
                     language: 'it-IT'
                 },
                 noResultsMessage: 'No results found.'
@@ -39,16 +45,22 @@ export default {
         }
     },
     methods:{
-        fottutaBarraSearch(){
+        searchBarCreator(){
             const ttSearchBox = new SearchBox(services, this.options);
             const searchBoxHTML = ttSearchBox.getSearchBoxHTML();
-
             //Attach searchboxHTML to your page
             document.getElementById('searchBox-container').append(searchBoxHTML);
+        },
+
+        // PRENDE IL VALORE AL CLICK DEL PULSANTE
+        getValue(){
+            let inputSearchBox = document.querySelector('.tt-search-box-input');
+            this.city = inputSearchBox.value;
+            console.log(this.city)
         }
     },
     mounted(){
-        this.fottutaBarraSearch()
+        this.searchBarCreator()
     }
 }
 </script>

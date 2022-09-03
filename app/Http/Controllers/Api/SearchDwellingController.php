@@ -19,16 +19,18 @@ class SearchDwellingController extends Controller
 
         $result = $geocoder->geocodeQuery(GeocodeQuery::create($address));
 
-// lat 0,00900901
-
         $lat = $result->get(0)->getCoordinates()->getLatitude();
         $long = $result->get(0)->getCoordinates()->getLongitude();
 
-        $distance = $lat + 0.3;
+        $distance_lat = $lat + 0.05;
+        $dista_lat = $lat - 0.05;
 
-        $dwellings = Dwelling::whereBetween('lat', [$lat, $distance])->get();
+        $distance_long = $long + 0.05;
+        $dista_long = $long - 0.05;
 
-        return response()->json(compact('dwellings', 'lat', 'long', 'address'));
+        $dwellings = Dwelling::whereBetween('lat', [$dista_lat, $distance_lat])->whereBetween('long', [$dista_long, $distance_long])->get();
+
+        return response()->json(compact('dwellings', 'address'));
     }
 
 }
