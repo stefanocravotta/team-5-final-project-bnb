@@ -163,7 +163,7 @@
               right: [-25, -35]
             }
 
-            var popup = new tt.Popup({offset: popupOffsets}).setHTML(`<strong>${dwelling.address}, ${dwelling.city}</strong>`);
+            var popup = new tt.Popup({offset: popupOffsets}).setHTML(`<strong>${dwelling.address}</strong>`);
             marker.setPopup(popup).togglePopup();
 
             // ------- funzioni della mappa ---------

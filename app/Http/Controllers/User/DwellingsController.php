@@ -65,7 +65,7 @@ class DwellingsController extends Controller
 
         $address = $data['address'];
 
-        $result = $geocoder->geocodeQuery(GeocodeQuery::create("$address"));
+        $result = $geocoder->geocodeQuery(GeocodeQuery::create($address));
 
         $data['lat'] = $result->get(0)->getCoordinates()->getLatitude();
         $data['long'] = $result->get(0)->getCoordinates()->getLongitude();
@@ -95,13 +95,11 @@ class DwellingsController extends Controller
 
                 return view('user.dwellings.show', compact('dwelling', 'perks', 'messages'));
             }else{
-                // $user_id = Auth::id();
-                // $dwellings = Dwelling::where('user_id', $user_id)->orderBy('id', 'desc')->get();
-                // return redirect()->route('user.dwellings.index', compact('dwellings'))->with('not_allowed', "E' impossibile visualizzare appartamenti di altri utenti");
+
                 return view('errors.403');
             }
         }else{
-            // return view('guest.home');
+
             return view('errors.404');
         }
 
@@ -123,13 +121,11 @@ class DwellingsController extends Controller
 
                 return view('user.dwellings.edit', compact('dwelling','categories', 'perks'));
             }else{
-                // $user_id = Auth::id();
-                // $dwellings = Dwelling::where('user_id', $user_id)->orderBy('id', 'desc')->get();
-                // return redirect()->route('user.dwellings.index', compact('dwellings'))->with('not_allowed', "E' impossibile visualizzare appartamenti di altri utenti");
+
                 return view('errors.403');
             }
         }else{
-            // return view('guest.home');
+
             return view('errors.404');
         }
     }
@@ -160,7 +156,7 @@ class DwellingsController extends Controller
             $geocoder = new \Geocoder\StatefulGeocoder($provider);
             $address = $data['address'];
 
-            $result = $geocoder->geocodeQuery(GeocodeQuery::create("$address"));
+            $result = $geocoder->geocodeQuery(GeocodeQuery::create($address));
 
             $data['lat'] = $result->get(0)->getCoordinates()->getLatitude();
             $data['long'] = $result->get(0)->getCoordinates()->getLongitude();
