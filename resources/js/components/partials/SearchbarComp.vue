@@ -1,20 +1,9 @@
 <template>
-    <div>
-        <!-- <label for="address">address</label> -->
-        <input id="address" type="text" class="searchbar" v-model="address">
-
-        <!-- <label for="city">city</label>
-        <input id="city" type="text" class="searchbar" v-model="city" placeholder="Indica in ch citta e paese vuoi andare"> -->
-
-        <div id="searchBox-container">
+    <div class="d-flex align-items-center">
+        <div class="w-75" id="searchBox-container">
 
 
         </div>
-
-
-        <!-- <button class="btn" :click="getValue()">cliccami</button> -->
-        <!-- <a href="#" class="btn m-3 btn-primary" @click="getValue()">cliccami</a> -->
-
         <router-link :to="{name:'search-results', params:{ city: city }}" class="search-button d-inline"><span @click="getValue()">Cerca</span></router-link>
     </div>
 </template>
@@ -67,18 +56,12 @@ export default {
 
 <style lang="scss" scoped>
 
-.searchbar{
-    height: 45px;
-    width: 30%;
-    // width: 45%;
-}
 .search-button{
-    width: 60px;
-    height: 45px;
-    padding: 13px;
+    margin: 12px 0 0 10px;
+    padding: 10px 19px;
     background-color: rgb(71, 71, 233);
     color: white;
-    border-radius: 4px;
+    border-radius: 6px;
     text-decoration: none;
     & :hover {
         text-decoration: none;

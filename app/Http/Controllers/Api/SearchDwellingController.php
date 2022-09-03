@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Category;
 use App\Dwelling;
+use App\Perk;
 use App\Http\Controllers\Controller;
 use Geocoder\Query\GeocodeQuery;
 use Illuminate\Http\Request;
@@ -10,8 +12,7 @@ use Illuminate\Http\Request;
 
 class SearchDwellingController extends Controller
 {
-    public function SearchDwelling($city){
-
+    public function getDwellingsByCity($city){
         $httpClient = new \GuzzleHttp\Client();
         $provider = new \Geocoder\Provider\TomTom\TomTom($httpClient, '1ICjwoAETA30YhhNatAlLrdJ6g8V1ZDc');
         $geocoder = new \Geocoder\StatefulGeocoder($provider);
@@ -28,9 +29,35 @@ class SearchDwellingController extends Controller
         $distance_long = $long + 0.05;
         $dista_long = $long - 0.05;
 
-        $dwellings = Dwelling::whereBetween('lat', [$dista_lat, $distance_lat])->whereBetween('long', [$dista_long, $distance_long])->get();
+        $dwellings = Dwelling::whereBetween('lat', [$dista_lat, $distance_lat])->whereBetween('long', [$dista_long, $distance_long])->with('perks')->get();
 
-        return response()->json(compact('dwellings', 'address'));
+        return $dwellings;
+
     }
+
+    public function SearchDwelling($city){
+
+        $dwellings = $this->getDwellingsByCity($city);
+
+        $perks = Perk::all();
+
+        $categories = Category::all();
+
+        return response()->json(compact('dwellings', 'perks', 'categories'));
+    }
+
+    public function searchByCategory($category, $dwelling){
+
+
+        $dwellings_by_city = $this->getDwellingsByCity($dwelling);
+
+        // dd($dwellings_by_city);
+
+        $apartment = Dwelling::where('category', $category)->get();
+
+
+        return response()->json(compact('apartment'));
+    }
+
 
 }
