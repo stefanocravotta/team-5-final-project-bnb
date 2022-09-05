@@ -14,31 +14,47 @@
 
         <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/plugins/SearchBox/3.1.3-public-preview.0/SearchBox.css'/>
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
         <link rel="stylesheet" href="{{ asset('css/frontend/style.css') }}">
 
         <script src="{{ asset('js/frontend/frontend.js') }}" defer></script>
     </head>
     <body>
-        <header class="container d-flex justify-content-between">
-            <div>
-                logo
-            </div>
-            <div class="flex-center position-ref full-height">
-                @if (Route::has('login'))
-                    <div class="top-right links">
-                        @auth
-                            <a href="{{ route('user.dashboard') }}">Il tuo profilo</a>
-                        @else
-                            <a href="{{ route('login') }}">Login</a>
+        <div class="main-wrap">
+            <header class="container d-flex justify-content-between">
+                <div >
+                    <img class="logo" src="{{asset('images/newlogo.png')}}" alt="">
+                </div>
 
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}">Register</a>
-                            @endif
-                        @endauth
+                <div class="d-flex justify-content-between wrap">
+                    <div>
+                        Chi siamo
                     </div>
-                @endif
-            </div>
-        </header>
+                    <div>
+                        Contatti
+                    </div>
+                    <div class="flex-center position-ref full-height">
+                        @if (Route::has('login'))
+                            <div class="top-right links">
+                                @auth
+                                    <a href="{{ route('user.dashboard') }}"><i class="fa-regular fa-user"></i></a>
+                                @else
+                                    <a href="{{ route('login') }}">Login</a>
+
+                                    @if (Route::has('register'))
+                                        <a href="{{ route('register') }}">Register</a>
+                                    @endif
+                                @endauth
+                            </div>
+                        @endif
+                    </div>
+
+
+                </div>
+            </header>
+        </div>
         <div id="app"></div>
     </body>
 </html>
+

@@ -5,9 +5,71 @@
             <SearchbarComp />
             <h1>Homepage</h1>
             <h4>Welcome to the homepage of our website!</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In veniam vel cum sapiente! Doloribus ipsum facilis beatae ad, repudiandae id nam quos animi sequi inventore voluptates illo explicabo quisquam, expedita magnam numquam quod. Laboriosam ad accusantium voluptatem sunt esse incidunt enim. Quasi, deserunt excepturi? Velit ex unde illo nostrum ullam iure minima consequatur? Provident, perferendis dolor. Animi iste, quibusdam ex odit dolorem magni ut nostrum perferendis asperiores rerum sunt delectus tempore, eveniet saepe explicabo voluptatem dolore. Facere dolorum voluptates nulla nobis laborum aut quis in fugit odio obcaecati ut, sint atque officiis expedita repellendus ab doloribus aliquam, ipsum culpa fugiat.</p>
+        </div>
+        <div class="content d-flex">
+            <!-- INIZIO COLONNA SINISTRA -->
+            <!-- <div class="sx-cont">
+                <h3>Filtra la tua ricerca</h3>
+                <hr>
+            </div> -->
+            <!-- FINE COLONNA SINISTRA -->
+
+
+
+            <!-- INIZIO COLONNA DESTRA -->
+            <div class="dx-cont d-flex">
+
+                <h3>Visita tutti gli appartamenti</h3>
+                <div class="img-sec d-flex ">
+                    <div class="box d-flex">
+                        <div>
+                            immagine
+                        </div>
+                        <div>titolo</div>
+                        <div>prezzo</div>
+                    </div>
+                    <div class="box d-flex">
+                        <div>
+                            immagine
+                        </div>
+                        <div>titolo</div>
+                        <div>prezzo</div>
+                    </div>
+                    <div class="box d-flex">
+                        <div>
+                            immagine
+                        </div>
+                        <div>titolo</div>
+                        <div>prezzo</div>
+                    </div>
+                    <div class="box d-flex">
+                        <div>
+                            immagine
+                        </div>
+                        <div>titolo</div>
+                        <div>prezzo</div>
+                    </div>
+                    <div class="box d-flex">
+                        <div>
+                            immagine
+                        </div>
+                        <div>titolo</div>
+                        <div>prezzo</div>
+                    </div>
+                    <div class="box d-flex">
+                        <div>
+                            immagine
+                        </div>
+                        <div>titolo</div>
+                        <div>prezzo</div>
+                    </div>
+                </div>
+            </div>
+            <!-- FINE COLONNA DESTRA -->
         </div>
     </div>
+
+
 </template>
 
 <script>
@@ -19,3 +81,30 @@ export default {
     components: { JumboComp, SearchbarComp }
 }
 </script>
+<style lang="scss" scoped>
+    .sx-cont{
+        width: 30%;
+        min-height: 100vh;
+        background-color: red;
+    }
+
+
+    .dx-cont{
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        width: 70%;
+        min-height: 100vh;
+        background-color: green;
+    }.img-sec{
+        flex-wrap: wrap;
+    }.box{
+        width: calc(70% / 3);
+        height: 250px;
+        margin: 15px;
+        background-color: red;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+</style>
