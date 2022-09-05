@@ -1,33 +1,66 @@
 <template>
-    <div>
-        <input type="text" class="searchbar" v-model="apartment">
-        <router-link :to="{name:'search-results', params:{ apartment: apartment }}" class="search-button">Cerca</router-link>
+    <div class="d-flex align-items-center">
+        <div class="w-75" id="searchBox-container">
+
+
+        </div>
+        <router-link :to="{name:'search-results', params:{ city: city }}" class="search-button d-inline"><span @click="getValue()">Cerca</span></router-link>
     </div>
 </template>
 
 <script>
+import { services } from '@tomtom-international/web-sdk-services';
+import SearchBox from '@tomtom-international/web-sdk-plugin-searchbox';
+
 export default {
     name: 'SearchbarComp',
     data(){
         return{
-            apartment: ''
+            city: '',
+            address: '',
+            options: {
+                idleTimePress: 100,
+                minNumberOfCharacters: 0,
+                searchOptions: {
+                    key: 'sXZ074rJ8QHr7ocOwfW5NaIHLwTog1tx',
+                    language: 'it-IT'
+                },
+                autocompleteOptions: {
+                    key: 'sXZ074rJ8QHr7ocOwfW5NaIHLwTog1tx',
+                    language: 'it-IT'
+                },
+                noResultsMessage: 'No results found.'
+            }
         }
+    },
+    methods:{
+        searchBarCreator(){
+            const ttSearchBox = new SearchBox(services, this.options);
+            const searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+            //Attach searchboxHTML to your page
+            document.getElementById('searchBox-container').append(searchBoxHTML);
+        },
+
+        // PRENDE IL VALORE AL CLICK DEL PULSANTE
+        getValue(){
+            let inputSearchBox = document.querySelector('.tt-search-box-input');
+            this.city = inputSearchBox.value;
+        }
+    },
+    mounted(){
+        this.searchBarCreator()
     }
 }
 </script>
 
 <style lang="scss" scoped>
-.searchbar{
-    height: 45px;
-    width: 45%;
-}
+
 .search-button{
-    width: 60px;
-    height: 45px;
-    padding: 13px;
+    margin: 12px 0 0 10px;
+    padding: 10px 19px;
     background-color: rgb(71, 71, 233);
     color: white;
-    border-radius: 4px;
+    border-radius: 6px;
     text-decoration: none;
     & :hover {
         text-decoration: none;

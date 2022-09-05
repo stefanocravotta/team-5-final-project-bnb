@@ -11,7 +11,7 @@
         import SearchresultsComp from './components/pages/SearchresultsComp.vue';
 		//creo il router
 		const router = new VueRouter({
-		    // mode: 'history',
+            mode: 'history',
             routes: [
                 {
                     path: '/',
@@ -24,7 +24,7 @@
                     component: ShowApartment
                 },
                 {
-                    path: '/search-results/:apartment',
+                    path: '/search-results/:city',
                     name: 'search-results',
                     component: SearchresultsComp
                 },
