@@ -2,45 +2,57 @@
     <div class="container">
         <h1>Risultati della ricerca</h1>
 
-        <div v-if="!isFiltered">
+        <SearchbarComp @searchDwelling="searchDwelling" />
+        <div v-if="!isLoading">
+            <div v-if="haveResults">
+                <div v-if="!isFiltered">
 
-            <div  v-for="apartment in apartments" :key="apartment.id" class="mb-4">
-                <div>{{ apartment.name}}</div>
-                <div>{{ apartment.address }}</div>
-            </div>
+                <div v-for="apartment in apartments" :key="apartment.id" class="mb-4">
+                    <div>{{ apartment.name}}</div>
+                    <div>{{ apartment.address }}</div>
+                </div>
 
+                </div>
+
+                <div v-else>
+
+                <p v-for="apartment in filtered_apartments" :key="apartment.id">{{ apartment.name}}</p>
+
+                </div>
+                <div>
+                    <div v-for="perk in perks" :key="perk.id" class="d-inline mx-2">
+                        <label :for="perk.name">{{ perk.name }}</label>
+                        <input @click="addPerk(perk.id)" type="checkbox" name="perk-box" :id="perk.name" :value="perk.id">
+                    </div>
+                </div>
+
+                <div>
+                    <button class="btn btn-primary mr-2" v-for="category in categories"
+                    :key="category.id" @click="addCategory(category.id)">{{category.name}}</button>
+                </div>
+
+                <button class="btn btn-secondary mt-3" @click.prevent="applyFilters()">Applica i filtri</button>
+                <button class="btn btn-secondary mt-3" @click.prevent="removeFilters()">Rimuovi tutti i filtri</button>
+
+                <div v-if="filtersError" id="filters-error" class="mt-2">Non ci sono filtri da applicare</div>
+                </div>
+                <div v-else>
+                    <h3>Non ci sono appartamenti con i seguenti parametri di ricerca minchione</h3>
+                </div>
         </div>
-
-        <div v-else>
-
-            <p v-for="apartment in filtered_apartments" :key="apartment.id">{{ apartment.name}}</p>
-
+        <div v-else class="loader">
+            <h4>carico</h4>
         </div>
-
-        <div>
-            <div v-for="perk in perks" :key="perk.id" class="d-inline mx-2">
-                <label :for="perk.name">{{ perk.name }}</label>
-                <input @click="addPerk(perk.id)" type="checkbox" name="perk-box" :id="perk.name" :value="perk.id">
-            </div>
-        </div>
-
-        <div>
-            <button class="btn btn-primary mr-2" v-for="category in categories"
-            :key="category.id" @click="addCategory(category.id)">{{category.name}}</button>
-        </div>
-
-        <button class="btn btn-secondary mt-3" @click.prevent="applyFilters()">Applica i filtri</button>
-        <button class="btn btn-secondary mt-3" @click.prevent="removeFilters()">Rimuovi tutti i filtri</button>
-
-        <div v-if="filtersError" id="filters-error" class="mt-2">Non ci sono filtri da applicare</div>
-
-
     </div>
 </template>
 
 <script>
+import SearchbarComp from '../partials/SearchbarComp.vue';
 export default {
     name: 'SearchresultsComp',
+    components: {
+        SearchbarComp
+    },
     data(){
         return{
             city: this.$route.params.city,
@@ -52,18 +64,29 @@ export default {
             checkedCategories: [],
             categories: null,
             filtered_apartments: [],
-            isFiltered: false
+            isFiltered: false,
+            isLoading : true,
+            haveResults : false
         }
     },
 
     methods:{
-        searchDwelling(){
+        searchDwelling(city){
 
-            axios.get(this.apiUrl + '/search-dwelling/' + this.city)
+            axios.get(this.apiUrl + '/search-dwelling/' + city)
             .then(r =>{
+                this.isLoading = true;
+                this.haveResults = false;
                 this.apartments = r.data.dwellings;
                 this.perks = r.data.perks;
                 this.categories = r.data.categories;
+                this.isLoading = false;
+                if(!(this.apartments == 0)){
+                    this.haveResults = true;
+                }
+            })
+            .catch((error) =>{
+                this.isLoading = false;
             })
         },
 
@@ -163,7 +186,7 @@ export default {
 
     },
     mounted(){
-        this.searchDwelling();
+        this.searchDwelling(this.city);
     }
 }
 </script>

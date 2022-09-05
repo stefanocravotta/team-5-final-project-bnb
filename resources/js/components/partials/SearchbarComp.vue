@@ -4,7 +4,8 @@
 
 
         </div>
-        <router-link :to="{name:'search-results', params:{ city: city }}" class="search-button d-inline"><span @click="getValue()">Cerca</span></router-link>
+        <!-- <router-link :to="{name:'search-results', params:{ city: city }}" class="search-button d-inline"><span @click="getValue()">Cerca</span></router-link> -->
+        <router-link :to="{name:'search-results' , params:{city: city}}" class="search-button d-inline"><span @click="getValue()">Cerca</span></router-link>
     </div>
 </template>
 
@@ -44,7 +45,8 @@ export default {
         // PRENDE IL VALORE AL CLICK DEL PULSANTE
         getValue(){
             let inputSearchBox = document.querySelector('.tt-search-box-input');
-            this.city = inputSearchBox.value;
+            this.city = inputSearchBox.value.replaceAll(' ' , '-').toLowerCase();
+            this.$emit('searchDwelling', this.city);
         }
     },
     mounted(){
