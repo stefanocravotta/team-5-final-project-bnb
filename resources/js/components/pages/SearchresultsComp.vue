@@ -5,11 +5,15 @@
         <SearchbarComp @searchDwelling="searchDwelling" />
         <div v-if="!isLoading">
             <div v-if="haveResults">
-                <div v-if="!isFiltered">
+                <div v-if="!isFiltered" class="d-flex flex-wrap">
 
-                <div v-for="apartment in apartments" :key="apartment.id" class="mb-4">
-                    <div>{{ apartment.name}}</div>
-                    <div>{{ apartment.address }}</div>
+                <div v-for="apartment in apartments" :key="apartment.id" class="my-4 card w-50">
+                    <div>
+                        <img v-if="apartment.image != null" :src="`/images/${apartment.image}`" alt="">
+                        <img v-else :src="`/images/villa-affitto-italia-ada-1624884100.jpg`">
+                        <div>{{ apartment.name}}</div>
+                        <div>{{ apartment.address }}</div>
+                    </div>
                 </div>
 
                 </div>

@@ -25,7 +25,7 @@ class SearchDwellingController extends Controller
 
         $radius = 0.1;
 
-        $dwellings = Dwelling::whereBetween('lat', [$lat - $radius, $lat + $radius])->whereBetween('long', [$long - $radius, $long + $radius])->with('perks')->get();
+        $dwellings = Dwelling::whereBetween('lat', [$lat - $radius, $lat + $radius])->whereBetween('long', [$long - $radius, $long + $radius])->where('visible', 1)->with('perks')->get();
 
         return $dwellings;
 
