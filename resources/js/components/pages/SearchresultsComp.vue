@@ -192,6 +192,12 @@ export default {
             this.filtered_apartments = [];
             this.isFiltered = false;
             this.filtersError = false;
+            let checkboxes = document.getElementsByName('perk-box');
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    checkbox.checked = false;
+                }
+            });
         }
 
     },
