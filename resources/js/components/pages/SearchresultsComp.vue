@@ -43,6 +43,7 @@
         <div v-else class="loader">
             <h4>carico</h4>
         </div>
+        <button class="btn btn-primary m-5" @click="getUser()">user</button>
     </div>
 </template>
 
@@ -71,7 +72,18 @@ export default {
     },
 
     methods:{
+
+        getUser(){
+            axios.get(this.apiUrl + '/auth-user')
+            .then(r =>{
+                console.log(r);
+            })
+        },
         searchDwelling(city){
+
+            this.city = city;
+
+            console.log(this.city);
 
             axios.get(this.apiUrl + '/search-dwelling/' + city)
             .then(r =>{
