@@ -23,13 +23,9 @@ class SearchDwellingController extends Controller
         $lat = $result->get(0)->getCoordinates()->getLatitude();
         $long = $result->get(0)->getCoordinates()->getLongitude();
 
-        $distance_lat = $lat + 0.05;
-        $dista_lat = $lat - 0.05;
+        $radius = 0.1;
 
-        $distance_long = $long + 0.05;
-        $dista_long = $long - 0.05;
-
-        $dwellings = Dwelling::whereBetween('lat', [$dista_lat, $distance_lat])->whereBetween('long', [$dista_long, $distance_long])->with('perks')->get();
+        $dwellings = Dwelling::whereBetween('lat', [$lat - $radius, $lat + $radius])->whereBetween('long', [$long - $radius, $long + $radius])->with('perks')->get();
 
         return $dwellings;
 
