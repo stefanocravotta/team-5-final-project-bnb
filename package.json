@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@tomtom-international/web-sdk-plugin-searchbox": "^3.2.0",
         "vue-router": "^2.8.1"
     }
 }
