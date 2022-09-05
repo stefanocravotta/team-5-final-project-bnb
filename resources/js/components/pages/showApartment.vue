@@ -13,9 +13,6 @@
                     <img
                     class="mb-sideImg"
                     :src="'/images/8824717.jpg'" alt="">
-                    <!-- <div class="h-3">
-                        <button>Visualizza tutte le foto</button>
-                    </div> -->
                     <div class="button button-2">Mostra più immagini</div>
                 </div>
             </div>
@@ -149,8 +146,8 @@
             </div>
 
             <!-- contact ins -->
-            <div class="mb-contactPng">
-                <div class="container-fluid">
+            <div class="mb-containerContact">
+                <div class="container-fluid mb-contactPng">
                     <div class="row row-col row-cols-lg-2 mb-contactPng">
                         <div class="d-flex align-items-center justify-content-center">
                             <div class="link">
@@ -207,10 +204,11 @@ template{
 // sezione immagini
 .mb-imgPg{
     background-color: rgb(187, 187, 187);
+    padding-top: 40px;
     // height: 80%;
-    position: sticky;
-    top: 0;
-    z-index: -1;
+    // position: sticky;
+    // top: 0;
+    // z-index: -1;
     .mb-imgSection{
         overflow: scroll;
             img:hover{
@@ -231,7 +229,7 @@ template{
 
                 // button show more
                 .button {
-                    width: 100%;
+                    width: 77%;
                     padding-top: 30px;
                     padding-bottom: 30px;
                     text-align: center;
@@ -333,7 +331,7 @@ template{
     .mb-positionInfo{
         background-color: rgb(187, 187, 187);
         width: 100%;
-        border-bottom:  2px solid rgb(255, 103, 43);
+        border-bottom:  2px solid #403829;
         padding-top: 30px;
         .mb-mappa{
             background-color: rgb(173, 171, 145);
@@ -381,9 +379,12 @@ template{
         }
     }
     // Msgs for the insertionist
+    .mb-containerContact{
+        padding: 20px 0 0;
+        background-color:rgb(187, 187, 187);
+    }
     .mb-contactPng{
         background: black;
-        padding-top: 30px;
         // Arrow and Text
         .link {
             display: inline-flex;
