@@ -73,10 +73,12 @@ export default {
     methods:{
         searchDwelling(city){
 
-            axios.get(this.apiUrl + '/search-dwelling/' + city)
-            .then(r =>{
                 this.isLoading = true;
                 this.haveResults = false;
+
+            axios.get(this.apiUrl + '/search-dwelling/' + city)
+            .then(r =>{
+
                 this.apartments = r.data.dwellings;
                 this.perks = r.data.perks;
                 this.categories = r.data.categories;
@@ -84,6 +86,7 @@ export default {
                 if(!(this.apartments == 0)){
                     this.haveResults = true;
                 }
+                this.applyFilters();
             })
             .catch((error) =>{
                 this.isLoading = false;

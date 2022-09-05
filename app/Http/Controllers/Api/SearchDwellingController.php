@@ -39,6 +39,7 @@ class SearchDwellingController extends Controller
 
         $categories = Category::all();
 
+
         return response()->json(compact('dwellings', 'perks', 'categories'));
     }
 
