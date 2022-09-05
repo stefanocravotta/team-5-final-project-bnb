@@ -45,7 +45,6 @@ export default {
         getValue(){
             let inputSearchBox = document.querySelector('.tt-search-box-input');
             this.city = inputSearchBox.value;
-            console.log(this.city)
         }
     },
     mounted(){
