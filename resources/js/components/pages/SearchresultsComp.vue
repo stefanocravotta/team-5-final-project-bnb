@@ -2,8 +2,8 @@
     <div class="container">
         <h1>Risultati della ricerca</h1>
 
-        <SearchbarComp @searchDwelling="searchDwelling" />
-        <div v-if="!isLoading">
+        <SearchbarComp @searchDwelling="searchDwelling"/>
+        <div>
             <div v-if="haveResults">
                 <div v-if="!isFiltered">
 
@@ -27,22 +27,20 @@
                 </div>
 
                 <div>
-                    <button class="btn btn-primary mr-2" v-for="category in categories"
-                    :key="category.id" @click="addCategory(category.id)">{{category.name}}</button>
+                    <button :id="`category${category.id}`" class="btn btn-primary mr-2" v-for="category in categories"
+                    :key="category.id" @click="addCategory(`category${category.id}`)">{{category.name}}</button>
                 </div>
 
-                <button class="btn btn-secondary mt-3" @click.prevent="applyFilters()">Applica i filtri</button>
+                <button class="btn btn-secondary mt-3" @click.prevent="applyFilters(), filtersErrorMethod()">Applica i filtri</button>
                 <button class="btn btn-secondary mt-3" @click.prevent="removeFilters()">Rimuovi tutti i filtri</button>
 
                 <div v-if="filtersError" id="filters-error" class="mt-2">Non ci sono filtri da applicare</div>
-                </div>
-                <div v-else>
-                    <h3>Non ci sono appartamenti con i seguenti parametri di ricerca minchione</h3>
-                </div>
+            </div>
+            <div v-else>
+                <h3>Non ci sono appartamenti con i seguenti parametri di ricerca</h3>
+            </div>
         </div>
-        <div v-else class="loader">
-            <h4>carico</h4>
-        </div>
+
         <button class="btn btn-primary m-5" @click="getUser()">user</button>
     </div>
 </template>
@@ -66,8 +64,7 @@ export default {
             categories: null,
             filtered_apartments: [],
             isFiltered: false,
-            isLoading : true,
-            haveResults : false
+            haveResults: true
         }
     },
 
@@ -81,23 +78,23 @@ export default {
         },
         searchDwelling(city){
 
-                this.isLoading = true;
-                this.haveResults = false;
-
             axios.get(this.apiUrl + '/search-dwelling/' + city)
             .then(r =>{
                 this.apartments = r.data.dwellings;
-                this.perks = r.data.perks;
-                this.categories = r.data.categories;
-                this.isLoading = false;
-                if(!(this.apartments == 0)){
-                    this.haveResults = true;
+
+                if (this.perks == null && this.categories == null) {
+                    this.perks = r.data.perks;
+                    this.categories = r.data.categories;
+                }
+
+                if(this.apartments.length == 0){
+                    this.haveResults = false;
                 }
                 this.applyFilters();
             })
             .catch((error) =>{
                 this.isLoading = false;
-            })
+            });
         },
 
         addPerk(perkId) {
@@ -109,16 +106,20 @@ export default {
         },
 
         addCategory(categoryId) {
+            let button = document.getElementById(categoryId);
+
             if (!this.checkedCategories.includes(categoryId)) {
                 this.checkedCategories.push(categoryId);
+                button.classList.toggle('selected');
             } else {
                 this.checkedCategories = this.arrayFilter(this.checkedCategories, categoryId);
+                button.classList.toggle('selected');
             }
         },
 
         arrayFilter(array, value) {
-
             return array.filter( el =>
+
                 el != value
             );
         },
@@ -136,7 +137,7 @@ export default {
 
                     this.apartments.forEach(apartment => {
                         // controllo se la categoria dell'appartamento si trova tra le categorie selezionate
-                        if (this.checkedCategories.includes(Number(apartment.category))) {
+                        if (this.checkedCategories.includes(`category${apartment.category}`)) {
 
                             apartments_categories_filtered.push(apartment);
                         }
@@ -177,11 +178,30 @@ export default {
                 }
                 else if (apartments_perks_filtered.length > apartments_categories_filtered.length) {
                     this.filtered_apartments = apartments_categories_filtered.filter( el => apartments_perks_filtered.includes(el))
-                }
+                };
+
+                let checkboxes = document.getElementsByName('perk-box');
+                checkboxes.forEach(element => {
+                    if (this.checkedPerks.includes(element._value)) {
+                        element.checked = true;
+                    };
+                });
+
+                let categoriesButtons = document.querySelectorAll('button.selected');
+                categoriesButtons.forEach(button => {
+                    if (this.checkedCategories.includes(button.id)) {
+                        button.classList.add('selected');
+                    }
+                });
 
                 this.isFiltered = true;
             } else {
                 this.isFiltered = false;
+            }
+        },
+
+        filtersErrorMethod() {
+            if (this.checkedPerks == [] && this.checkedCategories == []) {
                 this.filtersError = true;
             }
         },
@@ -198,15 +218,21 @@ export default {
                     checkbox.checked = false;
                 }
             });
-        }
-
+            let categoriesButtons = document.querySelectorAll('button.selected');
+            categoriesButtons.forEach(button => {
+                button.classList.remove('selected');
+            });
+        },
     },
-    mounted(){
+    mounted() {
         this.searchDwelling(this.city);
     }
 }
 </script>
 
 <style lang="scss" scoped>
-
+    button.selected {
+        color: rgb(172, 23, 23);
+        border: 2px solid rgb(172, 23, 23);
+    }
 </style>
