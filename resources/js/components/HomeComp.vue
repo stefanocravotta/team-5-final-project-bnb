@@ -225,16 +225,23 @@ export default {
     }.box-col{
         // background-color: #FAFAFA;
         height: 300px;
-        border: 1px solid black;
-        // width: calc(90% / 3);
+        transition: 1s;
         flex-direction: column;
         align-items: center;
         justify-content: end;
-    }.image{
+    }.box-col:hover{
+        transform: scale(1.05);
+    }
+    .image{
         position: absolute;
         height: 100%;
         width: 95%;
-    }.description{
+        transition: 1s;
+    }.image:hover{
+        filter:grayscale(60%);
+        cursor: pointer;
+    }
+    .description{
         position: relative;
         text-align: center;
         align-items: center;
@@ -253,7 +260,13 @@ export default {
         background-color: #FAFAFA;
         margin: 5px;
         padding: 10px;
-    }.xs-box{
+        transition: 0.5s;
+        cursor: pointer;
+    }
+    .sm-box:hover{
+        background-color: skyblue;
+    }
+    .xs-box{
         display: flex;
         justify-content: center;
         align-items: center;
@@ -262,6 +275,12 @@ export default {
         background-color: #FAFAFA;
         margin: 5px;
         padding: 10px;
+        transition: 0.5s;
+        cursor: pointer;
+    }
+    .xs-box:hover{
+        border-radius: 20px;
+        color: orange;
     }
     .out{
         margin: 0 auto;
