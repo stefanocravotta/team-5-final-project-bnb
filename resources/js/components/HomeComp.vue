@@ -7,19 +7,12 @@
             <h4>Welcome to the homepage of our website!</h4>
         </div>
         <div class="content d-flex">
-            <!-- INIZIO COLONNA SINISTRA -->
-            <!-- <div class="sx-cont">
-                <h3>Filtra la tua ricerca</h3>
-                <hr>
-            </div> -->
-            <!-- FINE COLONNA SINISTRA -->
 
-
-
-            <!-- INIZIO COLONNA DESTRA -->
+            <!-- INIZIO COLONNA  -->
             <div class="dx-cont d-flex">
 
-                <h3>Visita tutti gli appartamenti</h3>
+                <h3>Appartamenti consigliati</h3>
+                <!-- SEZIONE IMG PRIMO PIANO -->
                 <div class="img-sec d-flex ">
                     <div class="box d-flex">
                         <div>
@@ -63,9 +56,126 @@
                         <div>titolo</div>
                         <div>prezzo</div>
                     </div>
+                    <div class="box d-flex">
+                        <div>
+                            immagine
+                        </div>
+                        <div>titolo</div>
+                        <div>prezzo</div>
+                    </div>
+                    <div class="box d-flex">
+                        <div>
+                            immagine
+                        </div>
+                        <div>titolo</div>
+                        <div>prezzo</div>
+                    </div>
                 </div>
+                <!-- FINE SEZIONE IMG PRIMO PIANO -->
+                <h3>Nuove offerte</h3>
+                <div class="img-sec d-flex">
+
+                    <div class="box d-flex">
+                        <div>immagine</div><div>titolo</div><div>testo</div>
+                    </div>
+                    <div class="box d-flex">
+                        <div>immagine</div><div>titolo</div><div>testo</div>
+                    </div>
+                    <div class="box d-flex">
+                        <div>immagine</div><div>titolo</div><div>testo</div>
+                    </div>
+                    <div class="box d-flex">
+                        <div>immagine</div><div>titolo</div><div>testo</div>
+                    </div>
+                    <div class="box d-flex">
+                        <div>immagine</div><div>titolo</div><div>testo</div>
+                    </div>
+                    <div class="box d-flex">
+                        <div>immagine</div><div>titolo</div><div>testo</div>
+                    </div>
+
+                </div>
+
             </div>
-            <!-- FINE COLONNA DESTRA -->
+            <!-- FINE COLONNA  -->
+            <div class="section d-flex">
+
+                <h3>Viaggia di più e spendi di meno con...</h3>
+                <div class="d-flex">
+                    <div class="sm-box ">
+                        <p>Genius</p>
+                        <p>Approfitta degli sconti, viaggia ora</p>
+                    </div>
+                     <div class="sm-box ">
+                        <p>Sconti del 10%</p>
+                        <p>Approfitta degli sconti, viaggia ora</p>
+                    </div>
+                     <div class="sm-box ">
+                        <p>Sconti del 15%</p>
+                        <p>Approfitta degli sconti, viaggia ora</p>
+                    </div>
+                     <div class="sm-box ">
+                        <p>Sconti de 30%</p>
+                        <p>Approfitta degli sconti, viaggia ora</p>
+                    </div>
+                </div>
+                </div>
+
+                <div class="section">
+                    <h3>Le mete preferite dagli utenti</h3>
+                    <div class="d-flex">
+                        <div class="xs-box">Sicilia</div>
+                        <div class="xs-box">Val di Fassa</div>
+                        <div class="xs-box">Cinque Terre</div>
+                        <div class="xs-box">Liguria</div>
+                        <div class="xs-box">Lago di Como</div>
+                        <!-- prima riga -->
+                    </div>
+                    <div class="d-flex">
+                        <div class="xs-box">Isola d'Elba</div>
+                        <div class="xs-box">Toscana</div>
+                        <div class="xs-box">Isola del Giglio</div>
+                        <div class="xs-box">Lago di Garda</div>
+                        <div class="xs-box">Argentario</div>
+                        <!-- seconda riga -->
+                    </div>
+                    <div class="d-flex">
+                        <div class="xs-box">Ibiza</div>
+                        <div class="xs-box">Costiera Amalfitana</div>
+                        <div class="xs-box">Puglia</div>
+                        <div class="xs-box">Isole Tremiti</div>
+                        <div class="xs-box">Sardegna</div>
+                        <!-- terza riga -->
+                    </div>
+                    <div class="d-flex">
+                        <div class="xs-box">Salento</div>
+                        <div class="xs-box">Isole di Ischia</div>
+                        <div class="xs-box">Isole di Lipari</div>
+                        <div class="xs-box">Valle d'Aosta</div>
+                        <div class="xs-box">Isola di Capri</div>
+                        <!-- quarta riga -->
+                    </div>
+                </div>
+                <div class="section">
+                    <h3>Trova ispirazione per i tuoi prossimi viaggi!</h3>
+                    <div class="row">
+                        <div class="col-md-4 col-xs-6 box-col d-flex">
+                            <h6>Città americane da visitare</h6>
+                            <p>Saluta l'estate senza rimpianti in una di queste città</p>
+                        </div>
+                        <div class="col-md-4 col-xs-6 box-col d-flex">
+                            <h6>6 mete ideali per un periodo sabbatico in Spagna</h6>
+                            <p>Dimentica il lavoro per un po' e goditi un soggiorno lungo in terra spagnola</p>
+                        </div>
+                        <div class="col-md-4 col-xs-6 box-col d-flex">
+                            <h6>Cosa fare in 48 ore a Las Vegas</h6>
+                            <p>Un itinerario di due giorni con poco gioco d'azzardo e tanto divertimento</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            </div>
         </div>
     </div>
 
@@ -82,29 +192,53 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-    .sx-cont{
-        width: 30%;
-        min-height: 100vh;
-        background-color: red;
-    }
-
-
+.content{
+    flex-direction: column;
+}
     .dx-cont{
         flex-direction: column;
         align-items: center;
         margin: 0 auto;
-        width: 70%;
+        width: 90%;
         min-height: 100vh;
         background-color: green;
+        margin-bottom: 50px;
     }.img-sec{
         flex-wrap: wrap;
+        width: 100%;
+        // align-items: center;
+        justify-content: center;
     }.box{
-        width: calc(70% / 3);
+        width: calc(90% / 3);
         height: 250px;
         margin: 15px;
         background-color: red;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+    }.box-col{
+        background-color: green;
+        height: 300px;
+        flex-direction: column;
+        justify-content: end;
+    }
+    .section{
+        flex-direction: column;
+        margin-bottom: 50px;
+    }.sm-box{
+        // height: 90px;
+        width: calc(100%/4);
+        background-color: red;
+        margin: 5px;
+        padding: 10px;
+    }.xs-box{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        width: calc(100%/5);
+        background-color: red;
+        margin: 5px;
+        padding: 10px;
     }
 </style>
