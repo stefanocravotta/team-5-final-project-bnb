@@ -1,9 +1,13 @@
 main{
-    background-color: $mb-primary-color;
+    background-color: $primary-color;
 
 }
 .mb-containerMsg{
-    background-color: #fdfffc;
+    background-color: $primary-color;
+    h2{
+        color: $secondary-color;
+    }
+    min-width: 375px;
 }
 
 .mb-textCut{
@@ -14,34 +18,60 @@ main{
     white-space: nowrap;
 }
 .mb-rowOfText{
-    background-color: $detail-color;
+    background-color: #4d565f;
+    // background-color: $secondary-color;
+    border-radius: 0;
+    border: 3px solid $detail-color;
     .mb-infoTxt{
-        background-color: #fdfffc;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        border: 1px solid black;
+        background-color: #f0e9d6;
+        border: 3px solid $detail-color;
         margin: 15px 10px;
-        h4{
-            color: #235789;
-            font-size: x-small;
-            text-align: end;
+        width: 100%;
+        li{
+            width: 100%;
+            align-items: center;
+            line-height: 15px;
+            p{
+                margin: 0;
+                color: $primary-color;
+                margin: 0 15px;
+                font-size: 16px;
+            }
+            button{
+                color: #f0e9d6;
+                border-radius: 0;
+                background-color: $detail-color;
+                border: none;
+            }
 
         }
-        h3{
-            color: #393e41;
-        }
-        button{
-            border-radius: 0;
-            background-color: $detail-color;
-        }
+
+    }
+}
+@media screen and (max-width: 576px) {
+    .mb-date{
+        display: none;
+    }
+}
+@media screen and (max-width: 450px) {
+    .mb-textCut{
+        display: none;
+    }
+    .mb-sender{
+        margin: 0;
+    }
+    ul{
+        padding: 0;
+    }
+    button{
+        width: 110px !important;
     }
 }
 
-.first, .second{
-    width: 100px;
-    height: 100px;
-}
+// .first, .second{
+//     width: 100px;
+//     height: 100px;
+// }
 // .first{
 //     background-color: #596D28;
 // }

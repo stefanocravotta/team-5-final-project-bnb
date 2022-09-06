@@ -1,24 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mb-containerMsg">
+<div class="container-fluid mb-containerMsg">
     <h2>I tuoi messaggi:</h2>
     @foreach ($dwellings as $dwelling)
     @if (count($dwelling->messages) > 0)
-    <h2>{{$dwelling->name}}</h2>
-    <div class="container-fluid">
-        <div class="card my-3 row-cols-4 flex-row flex-wrap mb-rowOfText">
-        @foreach ($dwelling->messages as $message)
-        <div>
-                <div class="mb-infoTxt">
+    <h2>{{$dwelling->name}}:</h2>
 
-                        <h4>{{$message->created_at}}</h4>
-                        <h3>{{$message->sender_email}}</h3>
-                        <h3 class="mb-textCut">{{$message->text}}</h3>
+    <div class="container-fluid">
+        <div class="card my-3 flex-column flex-wrap mb-rowOfText">
+        @foreach ($dwelling->messages as $message)
+        <div class=" w-100">
+                <ul class="mb-infoTxt d-flex justify-content-between">
+                    <li class="d-flex justify-content-between">
+                        <p class="mb-date">{{$message->created_at}}</p>
+                        <p class="mb-sender">{{$message->sender_email}}</ class="mb-text">
+                        <p class="mb-textCut">{{$message->text}}</p>
 
 
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{{$message->id}}">
+                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal{{$message->id}}">
                             mostra tutto il messaggio
                         </button>
 
@@ -27,8 +28,8 @@
                             <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="btn btn-dark" data-dismiss="modal" aria-label="Close">X</button>
+                                <h5 class="modal-title" id="exampleModalLabel{{$message->id}}">{{$message->sender_email}}</h5>
+                                <button type="button" class="btn btn-secondarty" data-dismiss="modal" aria-label="Close">X</button>
                                 </div>
                                 <div class="modal-body">
                                 {{$message->text}}
@@ -39,11 +40,9 @@
                             </div>
                             </div>
                         </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
-
-
-
                 @endforeach
             </div>
 
