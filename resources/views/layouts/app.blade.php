@@ -45,19 +45,18 @@
 
 <body>
     <div class="main-wrap">
-        <header class="container d-flex justify-content-between">
+        <header class="container-fluid d-flex justify-content-between w-75">
+            <div>
+                <a href="{{route('home')}}">Home</a>
+            </div>
             <div >
-                <a href="{{route('home')}}"><img class="logo" src="{{asset('images/newlogo.png')}}" alt=""></a>
+                <a href="{{route('home')}}">
+                    <img class="logo" src="{{asset('images/newlogo.png')}}" alt="">
+                </a>
             </div>
 
-            <div class="d-flex justify-content-between wrap">
-                <div>
-                    Chi siamo
-                </div>
-                <div>
-                    Contatti
-                </div>
-                <div class="flex-center position-ref full-height">
+            <div class="d-flex">
+                <div class="">
                     @if (Route::has('login'))
                         <div class="top-right links">
                             @auth
