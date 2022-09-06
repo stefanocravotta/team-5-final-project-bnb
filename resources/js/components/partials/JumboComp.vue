@@ -52,6 +52,8 @@ export default {
         top: 0;
         left: 0;
         bottom: 0;
+
+        overflow-y: hidden;
         right: 0;
         position: absolute;
         z-index: 2;
@@ -62,7 +64,9 @@ export default {
         width: 25%;
         height: 60%;
         padding: 30px;
-        background-color: rgb(207, 203, 203);
+        // background-color: rgb(207, 203, 203);
+        // background-color: #95A3B3;
+        background-color: #FAFAFA;
         margin-top: 80px;
         margin-left: 80px;
         position: relative;

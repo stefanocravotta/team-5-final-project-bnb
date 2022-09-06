@@ -156,20 +156,29 @@
                         <!-- quarta riga -->
                     </div>
                 </div>
-                <div class="section">
+                <div class="section out">
                     <h3>Trova ispirazione per i tuoi prossimi viaggi!</h3>
                     <div class="row">
-                        <div class="col-md-4 col-xs-6 box-col d-flex">
-                            <h6>Città americane da visitare</h6>
-                            <p>Saluta l'estate senza rimpianti in una di queste città</p>
+                        <div class="col-md-4 col-xs-6 box-col d-flex ">
+                            <img class="image" src="images/america.jpeg" alt="">
+                            <div class="description">
+                                <h6>Città americane da visitare</h6>
+                                <p>Saluta l'estate senza rimpianti in una di queste città</p>
+                            </div>
                         </div>
                         <div class="col-md-4 col-xs-6 box-col d-flex">
-                            <h6>6 mete ideali per un periodo sabbatico in Spagna</h6>
-                            <p>Dimentica il lavoro per un po' e goditi un soggiorno lungo in terra spagnola</p>
+                            <img class="image" src="images/spagna.jpg" >
+                            <div class="description ">
+                                <h6>6 mete ideali per un periodo sabbatico in Spagna</h6>
+                                <p>Dimentica il lavoro per un po' e goditi un soggiorno lungo in terra spagnola</p>
+                            </div>
                         </div>
                         <div class="col-md-4 col-xs-6 box-col d-flex">
-                            <h6>Cosa fare in 48 ore a Las Vegas</h6>
-                            <p>Un itinerario di due giorni con poco gioco d'azzardo e tanto divertimento</p>
+                            <img class="image" src="images/lasvegas.jpg" alt="">
+                            <div class="description">
+                                <h6>Cosa fare in 48 ore a Las Vegas</h6>
+                                <p>Un itinerario di due giorni con <br> poco gioco d'azzardo e tanto divertimento</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -201,7 +210,7 @@ export default {
         margin: 0 auto;
         width: 90%;
         min-height: 100vh;
-        background-color: green;
+        // background-color: #b3b3b3;
         margin-bottom: 50px;
     }.img-sec{
         flex-wrap: wrap;
@@ -212,23 +221,39 @@ export default {
         width: calc(90% / 3);
         height: 250px;
         margin: 15px;
-        background-color: red;
+        background-color: #FAFAFA;
         justify-content: center;
         align-items: center;
         flex-direction: column;
     }.box-col{
-        background-color: green;
+        // background-color: #FAFAFA;
         height: 300px;
+        border: 1px solid black;
+        // width: calc(90% / 3);
         flex-direction: column;
+        align-items: center;
         justify-content: end;
+    }.image{
+        position: absolute;
+        height: 100%;
+        width: 95%;
+    }.description{
+        position: relative;
+        text-align: center;
+        align-items: center;
+        color: black;
+        padding: 7px;
+        border-radius: 20px;
+        background-color: rgba(245, 242, 244, 0.8);
+        opacity: 0.8;
     }
     .section{
         flex-direction: column;
         margin-bottom: 50px;
     }.sm-box{
         // height: 90px;
-        width: calc(100%/4);
-        background-color: red;
+        width: calc(90%/4);
+        background-color: #FAFAFA;
         margin: 5px;
         padding: 10px;
     }.xs-box{
@@ -236,9 +261,13 @@ export default {
         justify-content: center;
         align-items: center;
         height: 50px;
-        width: calc(100%/5);
-        background-color: red;
+        width: calc(90%/5);
+        background-color: #FAFAFA;
         margin: 5px;
         padding: 10px;
+    }
+    .out{
+        margin: 0 auto;
+        max-width: 95vw;
     }
 </style>
