@@ -20,7 +20,14 @@
 
                 <div v-else>
 
-                <p v-for="apartment in filtered_apartments" :key="apartment.id">{{ apartment.name}}</p>
+                <div class="my-4 card w-50" v-for="apartment in filtered_apartments" :key="apartment.id">
+                    <div>
+                        <img v-if="apartment.image != null" :src="`/images/${apartment.image}`" alt="">
+                        <img v-else :src="`/images/villa-affitto-italia-ada-1624884100.jpg`">
+                        <div>{{ apartment.name}}</div>
+                        <div>{{ apartment.address }}</div>
+                    </div>
+                </div>
 
                 </div>
                 <div>
