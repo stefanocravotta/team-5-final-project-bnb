@@ -7,26 +7,24 @@
             <div v-if="haveResults">
                 <div v-if="!isFiltered" class="d-flex flex-wrap">
 
-                <div v-for="apartment in apartments" :key="apartment.id" class="my-4 card w-50">
-                    <div>
-                        <img v-if="apartment.image != null" :src="`/images/${apartment.image}`" alt="">
-                        <img v-else :src="`/images/villa-affitto-italia-ada-1624884100.jpg`">
-                        <div>{{ apartment.name}}</div>
-                        <div>{{ apartment.address }}</div>
-                    </div>
+                <div v-for="apartment in apartments" :key="apartment.id" class="my-4 mx-2 card w-45 dwellingCard">
+
+                    <router-link :to="{name: 'show-apartment', params:{ slug: apartment.slug}}" class="card-link">
+                        <DwellingcardComp :apartment="apartment"/>
+                    </router-link>
+
                 </div>
 
                 </div>
 
                 <div v-else>
 
-                <div class="my-4 card w-50" v-for="apartment in filtered_apartments" :key="apartment.id">
-                    <div>
-                        <img v-if="apartment.image != null" :src="`/images/${apartment.image}`" alt="">
-                        <img v-else :src="`/images/villa-affitto-italia-ada-1624884100.jpg`">
-                        <div>{{ apartment.name}}</div>
-                        <div>{{ apartment.address }}</div>
-                    </div>
+                <div class="my-4 mx-2 card w-45 dwellingCard" v-for="apartment in filtered_apartments" :key="apartment.id">
+
+                    <router-link :to="{name: 'show-apartment', params:{apartment}}" class="card-link">
+                        <DwellingcardComp :apartment="apartment"/>
+                    </router-link>
+
                 </div>
 
                 </div>
@@ -60,11 +58,11 @@
 
 <script>
 import SearchbarComp from '../partials/SearchbarComp.vue';
+import DwellingcardComp from '../partials/DwellingcardComp.vue';
+
 export default {
     name: 'SearchresultsComp',
-    components: {
-        SearchbarComp
-    },
+    components: { SearchbarComp, DwellingcardComp },
     data(){
         return{
             city: this.$route.params.city,
@@ -84,12 +82,6 @@ export default {
 
     methods:{
 
-        getUser(){
-            axios.get(this.apiUrl + '/auth-user')
-            .then(r =>{
-                console.log(r);
-            })
-        },
         searchDwelling(city){
 
                 this.isLoading = true;
@@ -219,5 +211,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.dwellingCard{
+    border: 1px solid black;
+    border-radius: 5px;
 
+    .card-link{
+        text-decoration: none;
+        color: black;
+
+        &:hover {
+            color: blue;
+        }
+    }
+}
 </style>

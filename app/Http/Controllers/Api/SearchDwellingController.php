@@ -45,16 +45,22 @@ class SearchDwellingController extends Controller
 
     public function searchByCategory($category, $dwelling){
 
-
         $dwellings_by_city = $this->getDwellingsByCity($dwelling);
 
-        // dd($dwellings_by_city);
-
         $apartment = Dwelling::where('category', $category)->get();
-
 
         return response()->json(compact('apartment'));
     }
 
+    public function showDwelling($slug){
+
+        $dwelling = Dwelling::where('slug', $slug)->with('perks')->first();
+        // dd($dwelling);
+
+        $categories = Category::all();
+        // dd($categories);
+
+        return response()->json(compact('dwelling', 'categories'));
+    }
 
 }

@@ -23,6 +23,9 @@
             <div>
                 logo
             </div>
+            <div>
+                <p id="userName">{{Auth::user()->name}}</p>
+            </div>
             <div class="flex-center position-ref full-height">
                 @if (Route::has('login'))
                     <div class="top-right links">
@@ -40,5 +43,9 @@
             </div>
         </header>
         <div id="app"></div>
+        <script>
+            window.User = {!! Auth::User() !!};
+            window.Checked = {!! Auth::check() !!};
+        </script>
     </body>
 </html>

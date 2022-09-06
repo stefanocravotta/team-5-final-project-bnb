@@ -3,9 +3,10 @@
         <!-- imgages -->
         <div class="container-fluid mb-imgPg">
             <div class="row mb-imgSection">
-                <img
+                <img v-if="apartment.image"
                 class="mb-principalImg col-8"
-                :src="'/images/8824717.jpg'" alt="">
+                :src="`/images/${apartment.image}`" :alt="apartment.name">
+                <img class="mb-principalImg col-8" v-else :src="`/images/villa-affitto-italia-ada-1624884100.jpg`">
                 <div class="mb-containerSide col-4">
                     <img
                     class="mb-sideImg"
@@ -22,10 +23,8 @@
         <div class="mb-frontCont">
             <!-- propriety description -->
             <div class="container-fluid mb-proprietyDesc">
-                <h1>Nome casa abbastanza lungo tipo tanto così</h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos necessitatibus cum quam a, doloribus culpa. Distinctio quibusdam rem aliquam nobis obcaecati ea exercitationem quasi neque libero, deleniti at magni adipisci laborum. Optio hic fugiat saepe repudiandae nemo dicta ut sequi quisquam neque qui et expedita, eos provident ad quas mollitia eum consequatur reiciendis, explicabo in sint earum? Tempore et quae enim est! Nostrum ullam quidem alias temporibus, voluptate incidunt recusandae quos fuga perspiciatis, ipsam non quod asperiores repudiandae, nihil iure hic soluta. Vero veritatis, vel alias commodi unde, voluptates architecto ad facilis enim perferendis est deserunt sunt dolore ratione, quisquam molestias illo. Necessitatibus mollitia sunt voluptatem ducimus asperiores culpa expedita aspernatur quaerat illum nostrum! Nulla id adipisci sit dolore repellendus, eius quisquam voluptates, placeat error debitis perspiciatis explicabo sunt optio dignissimos consectetur maiores iusto alias repellat impedit quam fugiat laudantium! Sapiente eius aperiam quis eligendi eum vitae consequatur voluptate nobis pariatur soluta unde debitis autem eos iste hic beatae, asperiores veritatis distinctio? Fuga, deleniti? Magnam laborum est facere, vero saepe quisquam placeat aliquam quis, nulla et consequatur maxime iure fugit exercitationem cumque temporibus consequuntur unde voluptatem, repellendus officia debitis voluptas! Unde, eligendi delectus placeat quod optio error quisquam eum iste.
-                </p>
+                <h1>{{apartment.name}}</h1>
+                <p v-if="apartment.decription">{{apartment.description}}</p>
             </div>
 
             <!-- home info -->
@@ -33,29 +32,29 @@
                 <div class="row row-col row-cols-lg-5 d-flex mb-containerInfo">
                     <div class="mb-infoHome d-flex">
                         <h2>Categoria:</h2>
-                        <h3>Nome categoria</h3>
+                        <h3>{{apartment.category}}</h3>
                     </div>
                     <div class=" mb-infoHome d-flex">
                         <h2>Numero di stanze:</h2>
-                        <h3>stanze</h3>
+                        <h3>{{apartment.rooms}}</h3>
                     </div>
                     <div class=" mb-infoHome d-flex">
                         <h2>Numero letti:</h2>
-                        <h3>letti</h3>
+                        <h3>{{apartment.beds}}</h3>
                     </div>
                     <div class=" mb-infoHome d-flex">
                         <h2>Numero bagni:</h2>
-                        <h3>bagni</h3>
+                        <h3>{{apartment.bathrooms}}</h3>
                     </div>
                     <div class=" mb-infoHome d-flex">
                         <h2>Dimensioni della proprietà:</h2>
-                        <h3>dimensioni</h3>
+                        <h3>{{apartment.dimentions}} mtq</h3>
                     </div>
                 </div>
                     <div class="mb-positionInfo">
                         <div class="container-fluid">
                             <h2>Posizione</h2>
-                            <h3>via caciocavallonico, ovuvueweoniquri OSAS</h3>
+                            <h3>{{apartment.address}}</h3>
                         </div>
                         <div class="mb-mappa">
                             <p>Qui ci sarà la mappa giganterrima</p>
@@ -69,76 +68,12 @@
                 <div class="mb-perks">
                     <div class="container">
                         <div class="row">
-                            <div class="col-3 mb-rowPerks">
-                                <i>FA</i>
-                                <p>Servizi</p>
+
+                            <div v-for="perk in apartmentPerks" :key="perk.id" class="col-4 mb-rowPerks">
+                                <i>{{perk.icon}}</i>
+                                <p>{{perk.name}}</p>
                             </div>
-                    <!-- ||| delete for the cyle now just for test ||| -->
-                            <div class="col-3 mb-rowPerks">
-                                <i>FA</i>
-                                <p>Servizi</p>
-                            </div>
-                            <div class="col-3 mb-rowPerks">
-                                <i>FA</i>
-                                <p>Servizi</p>
-                            </div>
-                            <div class="col-3 mb-rowPerks">
-                                <i>FA</i>
-                                <p>Servizi</p>
-                            </div>
-                            <div class="col-3 mb-rowPerks">
-                                <i>FA</i>
-                                <p>Servizi</p>
-                            </div>
-                            <div class="col-3 mb-rowPerks">
-                                <i>FA</i>
-                                <p>Servizi</p>
-                            </div>
-                            <div class="col-3 mb-rowPerks">
-                                <i>FA</i>
-                                <p>Servizi</p>
-                            </div>
-                            <div class="col-3 mb-rowPerks">
-                                <i>FA</i>
-                                <p>Servizi</p>
-                            </div>
-                            <div class="col-3 mb-rowPerks">
-                                <i>FA</i>
-                                <p>Servizi</p>
-                            </div>
-                            <div class="col-3 mb-rowPerks">
-                                <i>FA</i>
-                                <p>Servizi</p>
-                            </div>
-                            <div class="col-3 mb-rowPerks">
-                                <i>FA</i>
-                                <p>Servizi</p>
-                            </div>
-                            <div class="col-3 mb-rowPerks">
-                                <i>FA</i>
-                                <p>Servizi</p>
-                            </div>
-                            <div class="col-3 mb-rowPerks">
-                                <i>FA</i>
-                                <p>Servizi</p>
-                            </div>
-                            <div class="col-3 mb-rowPerks">
-                                <i>FA</i>
-                                <p>Servizi</p>
-                            </div>
-                            <div class="col-3 mb-rowPerks">
-                                <i>FA</i>
-                                <p>Servizi</p>
-                            </div>
-                            <div class="col-3 mb-rowPerks">
-                                <i>FA</i>
-                                <p>Servizi</p>
-                            </div>
-                            <div class="col-3 mb-rowPerks">
-                                <i>FA</i>
-                                <p>Servizi</p>
-                            </div>
-                    <!-- ||| delete for the cyle now just for test ||| -->
+
                         </div>
                     </div>
 
@@ -157,22 +92,26 @@
                                 </span>
                                 <span class="link__line"></span>
                                 <div class="wrapper d-flex align-items-center justify-content-center">
-                                    <span class="link__text">contatta l'inserzionista</span>
-                                    <span class="text_hover">contatta l'inserzionista</span>
+                                    <span class=" link__text">contatta l'inserzionista</span>
+                                    <span class=" text_hover">contatta l'inserzionista</span>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-contactForm">
-                            <form action="">
+                            <form>
 
-                                <div class="mb-emailContact d-flex flex-column">
+                                <div v-if="isAuthenticated" class="mb-emailContact d-flex flex-column mt-3">
                                     <label for="email">Inserisci la tua email: </label>
                                     <input type="email" id="email" placeholder="Inserisci la tua mail">
                                 </div>
 
-                                <div class="mb-msgContact d-flex flex-column">
+                                <div class="mb-msgContact d-flex flex-column mt-3">
                                     <label for="content">Scrivi il tuo messaggio all'inserzionista: </label>
                                     <textarea type="text" name="email_content" id="content" placeholder="Scrivi il tuo messaggio"></textarea>
+                                </div>
+
+                                <div class="d-flex flex-column mt-3">
+                                    <button class="btn btn-success">{{sending ? 'Invio in corso...' : 'Invia'}}</button>
                                 </div>
 
                             </form>
@@ -190,17 +129,75 @@
 // import showApartment from '../showApartment.vue'
 export default {
     name: 'ShowApartment',
+    data(){
+        return{
+            apiUrl: '/api/dwellings',
+            apartment: '',
+            apartmentPerks:[],
+            categories: [],
+            category: '',
+            sending: false,
+            isAuthenticated: false,
+            user: []
+
+        }
+    },
+    methods:{
+
+        sendMessage(){
+
+        },
+
+        getUser(){
+            console.log('utente', window.User);
+            this.user = window.User;
+            console.log('checked', window.Checked);
+            if(window.Checked){
+                this.isAuthenticated = true;
+            }
+
+        },
+
+        getDwelling(){
+
+            axios.get(this.apiUrl + '/show-dwelling/' + this.$route.params.slug)
+            .then(r =>{
+                // console.log(r.data)
+                this.apartment = r.data.dwelling;
+                this.categories = r.data.categories;
+                this.apartmentPerks = r.data.dwelling.perks;
+                // console.log(this.apartmentPerks);
+            })
+            .catch((er) =>{
+                console.log(er)
+            })
+            console.log(this.window);
+
+            this.findCategory()
+        },
+
+        findCategory(){
+            this.categories.forEach(el => {
+                console.log(el)
+            });
+        }
+
+    },
+    mounted(){
+        this.getDwelling()
+        this.getUser()
+    }
 }
 </script>
 
 <style scoped lang="scss">
-template{
-    }
-.frontCont{
-    // position: absolute;
-    // z-index: 2;
-    // top: 100%;
-}
+// template{
+//     }
+// .frontCont{
+//     // position: absolute;
+//     // z-index: 2;
+//     // top: 100%;
+// }
 // sezione immagini
 .mb-imgPg{
     background-color: rgb(187, 187, 187);
@@ -214,9 +211,9 @@ template{
             img:hover{
                 filter: brightness(80%);
             }
-            .mb-principalImg{
-                // width: 68.2%;
-            }
+            // .mb-principalImg{
+            //     // width: 68.2%;
+            // }
             .mb-containerSide{
                 // width: 31.8%;
                 // margin-left: 2.7%;
@@ -259,6 +256,8 @@ template{
 // descrizione con titolo dell'abitazione + descrizione di 200parole
     .mb-proprietyDesc{
         background-color: rgb(187, 187, 187);
+        margin-bottom: 10px;
+        padding-bottom: 10px;
         h1{
             padding-top: 50px;
             font-size: 90px;
