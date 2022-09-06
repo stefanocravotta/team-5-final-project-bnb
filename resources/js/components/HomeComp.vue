@@ -119,9 +119,9 @@
                         <p>Approfitta degli sconti, viaggia ora</p>
                     </div>
                 </div>
-                </div>
+            </div>
 
-                <div class="section">
+            <div class="section">
                     <h3>Le mete preferite dagli utenti</h3>
                     <div class="d-flex">
                         <div class="xs-box">Sicilia</div>
@@ -155,8 +155,8 @@
                         <div class="xs-box">Isola di Capri</div>
                         <!-- quarta riga -->
                     </div>
-                </div>
-                <div class="section out">
+            </div>
+            <div class="section out">
                     <h3>Trova ispirazione per i tuoi prossimi viaggi!</h3>
                     <div class="row">
                         <div class="col-md-4 col-xs-6 box-col d-flex ">
@@ -181,13 +181,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+            </div>
 
-            </div>
-            </div>
         </div>
     </div>
-
 
 </template>
 
