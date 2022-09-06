@@ -27,4 +27,12 @@ class MessagesController extends Controller
 
         return view('user.messages', compact('dwellings'));
     }
+
+    public function store(Request $request){
+
+        $data = $request->all();
+        dd($data);
+        $new_message = new Message();
+        // $new_message->dwelling_id = $request->
+    }
 }

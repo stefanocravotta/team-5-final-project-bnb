@@ -98,22 +98,24 @@
                             </div>
                         </div>
                         <div class="mb-contactForm">
-                            <form>
 
-                                <div v-if="isAuthenticated" class="mb-emailContact d-flex flex-column mt-3">
+                            <form @submit.prevent="sendMessage">
+
+                                <div v-if="!isAuthenticated" class="mb-emailContact d-flex flex-column mt-3">
                                     <label for="email">Inserisci la tua email: </label>
-                                    <input type="email" id="email" placeholder="Inserisci la tua mail">
+                                    <input v-model="email" type="email" id="email" placeholder="Inserisci la tua mail">
                                 </div>
 
                                 <div class="mb-msgContact d-flex flex-column mt-3">
                                     <label for="content">Scrivi il tuo messaggio all'inserzionista: </label>
-                                    <textarea type="text" name="email_content" id="content" placeholder="Scrivi il tuo messaggio"></textarea>
+                                    <textarea v-model="text" type="text" name="email_content" id="content" placeholder="Scrivi il tuo messaggio"></textarea>
                                 </div>
 
                                 <div class="d-flex flex-column mt-3">
-                                    <button class="btn btn-success">{{sending ? 'Invio in corso...' : 'Invia'}}</button>
+                                    <button type="submit" class="btn btn-success">
+                                        {{ sending ? 'Invio in corso...' : 'Invia' }}
+                                    </button>
                                 </div>
-
                             </form>
                         </div>
 
@@ -138,20 +140,31 @@ export default {
             category: '',
             sending: false,
             isAuthenticated: false,
-            user: []
-
+            user: [],
+            email: '',
+            text:'',
+            dwelling_id: ''
         }
     },
+
     methods:{
 
         sendMessage(){
-
+            axios.post('api/save-message', {
+                'email': this.email,
+                'text': this.text,
+                // 'dwelling_id': this.dwelling_id,
+            })
+            .then(r =>{
+                console.log(r)
+            })
         },
 
         getUser(){
-            console.log('utente', window.User);
+            this.isAuthenticated = false;
+
             this.user = window.User;
-            console.log('checked', window.Checked);
+
             if(window.Checked){
                 this.isAuthenticated = true;
             }

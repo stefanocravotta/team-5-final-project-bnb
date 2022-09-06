@@ -29,3 +29,4 @@ Route::namespace('Api')
         Route::get('/search-filtered/{category}/{dwelling}', 'SearchDwellingController@searchByCategory');
     });
 
+Route::post('save-message/', 'User\MessagesController@store');
