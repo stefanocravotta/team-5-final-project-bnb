@@ -1,0 +1,65 @@
+h2,label{
+    color: $secondary-color;
+}
+
+.styled-input,select,textarea,.tt-search-box-input-container{
+    border-radius: 0px !important;
+    border: 3px solid $detail-color !important;
+}
+.styled-perks{
+    display: inline-block;
+    border: 0px !important;
+}
+
+.btn-pubblica{
+    background-color: $secondary-color;
+    border: 1px solid $secondary-color;
+    padding: 7px 15px;
+    color: $primary-color;
+}
+.btn-pubblica:hover{
+    border: 1px solid #888375;
+    background-color: #9b9585;
+}
+
+.btn-bozza{
+    color: $secondary-color;
+    background-color: transparent;
+    border: 0;
+}
+.btn-bozza:hover{
+    color: #9b9585;;
+    text-decoration:underline;
+}
+
+.mb-modalCont{
+    background-color: $secondary-color !important;
+    border-radius: 0;
+    border-bottom: 1px solid #9b9585;
+    color: $primary-color;
+}
+.mb-modalFoot{
+    color: $primary-color;
+    border-top: 1px solid #9b9585;
+}
+
+.btn-inserisci{
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
+    padding: 7px 15px;
+    color: $secondary-color;
+}
+.btn-inserisci:hover{
+    border: 1px solid #191d21;
+    background-color: #1d2227;
+}
+
+.btn-chiudi{
+    color: $primary-color;
+    background-color: transparent;
+    border: 0;
+}
+.btn-chiudi:hover{
+    color: #1d2227;;
+    text-decoration:underline;
+}
