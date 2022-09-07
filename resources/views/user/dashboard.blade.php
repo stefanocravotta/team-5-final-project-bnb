@@ -36,20 +36,20 @@
             <h3 style="color: black">Le tue statistiche:</h3>
             <div class="d-flex justify-content-around mb-5">
                 <div class="small-box">
-                    <h6>Sessioni totali:</h4>
+                    <h6>Sessioni totali:</h6>
                     <div class="d-flex justify-content-between">
-                        <h5>450</h3> <div><i class="fa-solid fa-chart-simple"></i></div>
+                        <h5>450</h5> <div><i class="fa-solid fa-chart-simple"></i></div>
                     </div>
-                    <hr>
+                    <div class="c-row"></div>
                     <span style="font-size: 12px">Nessun visitatore al momento</span>
                 </div>
 
                 <div class="small-box">
-                    <h6>Vendite totali:</h4>
+                    <h6>Vendite totali:</h6>
                     <div class="d-flex ">
                         Ancora nessuna vendita
                     </div>
-                    <hr>
+                    <div class="c-row"></div>
                     <span style="font-size: 12px">Ancora nessun ordine</span>
                 </div>
 
@@ -57,24 +57,30 @@
             <div class="d-flex justify-content-around">
 
                 <div class="small-box">
-                    <h6>L'hardware per il pagamento integrato è ora disponibile!</h4>
+                    <div class="head">
+                        <img class="sm-img" src="images/pos.avif" alt="">
+                        <h6>L'hardware per il pagamento integrato è ora disponibile!</h6>
+                    </div>
                     <div class="d-flex justify-content-between">
                         <span style="font-size: 11px">
                             Accetta i pagamenti "tap and chip" con un lettore di schede completamente integrato e ottieni tariffe basse e costanti
                         </span>
                     </div>
-                    <hr>
+                    <div class="c-row"></div>
                     <span class="btn btn-secondary">Visualizza dettagli</span>
                 </div>
 
                 <div class="small-box">
-                    <h6>Vendi di più con il canale di vendita Messenger! <span class="badge badge-secondary">New</span></h6></h4>
+                    <div class="head">
+                        <img src="images/mes.jfif" class="sm-img" id="ms-img" alt="">
+                        <h6>Vendi di più con il canale di vendita Messenger! <span class="badge badge-secondary">New</span></h6>
+                    </div>
                     <div class="d-flex justify-content-between">
                         <span style="font-size: 11px">
                             Aggiungi il canale Messenger per Facebook e Instagram per avviare chat, condividere prodotti e concludere vendite rapidamente da un solo posto.
                         </span>
                     </div>
-                    <hr>
+                    <div class="c-row"></div>
                     <span class="btn btn-secondary">Visualizza dettagli</span>
                 </div>
             </div>
