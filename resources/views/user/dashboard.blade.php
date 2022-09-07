@@ -27,7 +27,7 @@
 {{-- box destra --}}
         <div class="right-box">
            <div class="dx-wrap">
-            <h3>Le tue statistiche:</h3>
+            <h3 style="color: black">Le tue statistiche:</h3>
             <div class="d-flex justify-content-around mb-5">
                 <div class="small-box">
                     <h6>Sessioni totali:</h4>
