@@ -19,7 +19,7 @@
                     component: HomeComp
                 },
                 {
-                    path: '/show-apartment',
+                    path: '/show-apartment/:slug',
                     name: 'show-apartment',
                     component: ShowApartment
                 },

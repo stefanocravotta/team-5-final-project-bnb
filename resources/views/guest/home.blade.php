@@ -40,5 +40,11 @@
             </div>
         </header>
         <div id="app"></div>
+        @if(Auth::check())
+            <script>
+                window.User = {!! Auth::User() !!}
+                window.Checked = {!! Auth::check() !!}
+            </script>
+        @endif
     </body>
 </html>

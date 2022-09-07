@@ -5,18 +5,27 @@
         <SearchbarComp @searchDwelling="searchDwelling"/>
         <div>
             <div v-if="haveResults">
-                <div v-if="!isFiltered">
+                <div v-if="!isFiltered" class="d-flex flex-wrap">
 
-                <div v-for="apartment in apartments" :key="apartment.id" class="mb-4">
-                    <div>{{ apartment.name}}</div>
-                    <div>{{ apartment.address }}</div>
+                <div v-for="apartment in apartments" :key="apartment.id" class="my-4 mx-2 card w-45 dwellingCard">
+
+                    <router-link :to="{name: 'show-apartment', params:{ slug: apartment.slug}}" class="card-link">
+                        <DwellingcardComp :apartment="apartment"/>
+                    </router-link>
+
                 </div>
 
                 </div>
 
                 <div v-else>
 
-                <p v-for="apartment in filtered_apartments" :key="apartment.id">{{ apartment.name}}</p>
+                <div class="my-4 mx-2 card w-45 dwellingCard" v-for="apartment in filtered_apartments" :key="apartment.id">
+
+                    <router-link :to="{name: 'show-apartment', params:{apartment}}" class="card-link">
+                        <DwellingcardComp :apartment="apartment"/>
+                    </router-link>
+
+                </div>
 
                 </div>
                 <div>
@@ -47,11 +56,11 @@
 
 <script>
 import SearchbarComp from '../partials/SearchbarComp.vue';
+import DwellingcardComp from '../partials/DwellingcardComp.vue';
+
 export default {
     name: 'SearchresultsComp',
-    components: {
-        SearchbarComp
-    },
+    components: { SearchbarComp, DwellingcardComp },
     data(){
         return{
             city: this.$route.params.city,
@@ -70,12 +79,6 @@ export default {
 
     methods:{
 
-        getUser(){
-            axios.get(this.apiUrl + '/auth-user')
-            .then(r =>{
-                console.log(r);
-            })
-        },
         searchDwelling(city){
 
             axios.get(this.apiUrl + '/search-dwelling/' + city)
@@ -231,8 +234,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
     button.selected {
         color: rgb(172, 23, 23);
         border: 2px solid rgb(172, 23, 23);
     }
+    
+.dwellingCard{
+    border: 1px solid black;
+    border-radius: 5px;
+
+    .card-link{
+        text-decoration: none;
+        color: black;
+
+        &:hover {
+            color: blue;
+        }
+    }
+}
+
 </style>
