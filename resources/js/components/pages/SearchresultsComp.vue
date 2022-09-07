@@ -34,7 +34,7 @@
                         <label :for="perk.name" v-html="perk.icon"></label>
                         <label :for="perk.name">{{ perk.name }}</label>
                         <input type="checkbox" @click="addPerk(perk.id,perk.name)" name="perk-box" :id="perk.name"
-                        :value="perk.id" style="width: 100%; height: 100%; opacity: 0;" class="perk-link m-0">
+                        :value="perk.id" style="width: 100%; height: 100%; opacity: 0; cursor: pointer;" class="perk-link m-0">
                     </button>
                 </div>
 

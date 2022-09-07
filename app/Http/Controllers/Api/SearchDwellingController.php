@@ -39,7 +39,7 @@ class SearchDwellingController extends Controller
 
         $categories = Category::all();
 
-        return response()->json(compact('dwellings', 'perks', 'categories', 'countPerks'));
+        return response()->json(compact('dwellings', 'perks', 'categories'));
     }
 
     public function searchByCategory($category, $dwelling){
@@ -67,7 +67,7 @@ class SearchDwellingController extends Controller
 
         $countDwellings = count(Dwelling::all());
 
-        $i = $countDwellings - 4;
+        $i = $countDwellings - 1;
 
         $random_dwellings = Dwelling::all()->random($i);
 
