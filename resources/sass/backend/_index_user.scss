@@ -1,0 +1,72 @@
+h2{
+    font-size: 3.5rem;
+}
+
+h3{
+    font-size: 2rem;
+}
+
+.padding-x{
+    padding: 0 10%;
+}
+
+.create_link{
+    font-size: 2rem;
+    color: $secondary-color;
+}
+
+.card-custom{
+    overflow: hidden;
+    cursor: pointer;
+    .card-head{
+        position: relative;
+        &:hover{
+            img{
+                scale: 110%;
+            }
+            .layer{
+                position: absolute;
+                opacity: 1;
+                background-color: rgba($color: $secondary-color, $alpha: 0.5);
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+            }
+        }
+    }
+    .card-image{
+        overflow: hidden;
+        position: relative;
+        img{
+            transition: all .5s;
+        }
+        .layer{
+            position: absolute;
+            background-color: transparent;
+            color: white;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            opacity: 0;
+            transition: all .5s;
+            .fa-arrow-right{
+                font-size: 2rem;
+            }
+        }
+    }
+    .show-link{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+    .line{
+        display: inline-block;
+        height: 2px;
+        background-color: $secondary-color;
+        width: 100%;
+    }
+}

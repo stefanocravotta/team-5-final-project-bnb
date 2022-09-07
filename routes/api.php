@@ -17,12 +17,16 @@ use Illuminate\Support\Facades\Route;
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
-// });d
+// });
 
 Route::namespace('Api')
     ->prefix('dwellings')
     ->group(function(){
 
+        Route::get('/auth-user','UserAuthController@authUser');
         Route::get('/search-dwelling/{city}', 'SearchDwellingController@SearchDwelling');
+        Route::get('/show-dwelling/{slug}', 'SearchDwellingController@showDwelling');
         Route::get('/search-filtered/{category}/{dwelling}', 'SearchDwellingController@searchByCategory');
     });
+
+Route::post('save-message/', 'Api\StoreMessageController@store');

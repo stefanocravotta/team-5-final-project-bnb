@@ -1,0 +1,30 @@
+.w-45{
+    width: 45%;
+}
+
+.w-30{
+    width: 30%;
+}
+
+main{
+    min-height: calc(100vh);
+    padding-top: 80px;
+    padding-bottom: 30px;
+    background-color: $primary-color;
+    color: $secondary-color;
+}
+
+.container-custom{
+    width: 80%;
+    margin: 0 auto;
+}
+h1,h2,h3{
+    color: $secondary-color;
+}
+
+a{
+    color: $secondary-color;
+}
+.fa-user{
+    font-size: 1.5rem;
+}

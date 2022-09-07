@@ -16,8 +16,5 @@ export default {
 </script>
 
 <style>
-main{
-    min-height: calc(100vh - 110px);
 
-}
 </style>

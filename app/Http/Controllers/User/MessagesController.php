@@ -27,4 +27,6 @@ class MessagesController extends Controller
 
         return view('user.messages', compact('dwellings'));
     }
+
+
 }
