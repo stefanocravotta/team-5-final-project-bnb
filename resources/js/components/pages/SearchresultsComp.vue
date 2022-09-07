@@ -28,11 +28,14 @@
                 </div>
 
                 </div>
-                <div>
-                    <div v-for="perk in perks" :key="perk.id" class="d-inline mx-2">
+                <div class="d-flex">
+                    <button v-for="perk in perks" :key="perk.id" name="perk-button" :id="`button${perk.name}`"
+                    role="radio" aria-checked="false" type="toggle" class="d-flex flex-column perk-button mx-2">
+                        <label :for="perk.name" v-html="perk.icon"></label>
                         <label :for="perk.name">{{ perk.name }}</label>
-                        <input @click="addPerk(perk.id)" type="checkbox" name="perk-box" :id="perk.name" :value="perk.id">
-                    </div>
+                        <input type="checkbox" @click="addPerk(perk.id,perk.name)" name="perk-box" :id="perk.name"
+                        :value="perk.id" style="width: 100%; height: 100%; opacity: 0; cursor: pointer;" class="perk-link m-0">
+                    </button>
                 </div>
 
                 <div>
@@ -100,9 +103,12 @@ export default {
             });
         },
 
-        addPerk(perkId) {
+        addPerk(perkId,perkName) {
+
+            let button = document.getElementById(`button${perkName}`);
             if (!this.checkedPerks.includes(perkId)) {
                 this.checkedPerks.push((perkId));
+                button.classList.toggle('active');
             } else {
                 this.checkedPerks = this.arrayFilter(this.checkedPerks, perkId);
             }
@@ -215,6 +221,10 @@ export default {
             this.filtered_apartments = [];
             this.isFiltered = false;
             this.filtersError = false;
+            let buttons = document.getElementsByName('perk-button');
+            buttons.forEach(button =>{
+                button.classList.remove('active');
+            })
             let checkboxes = document.getElementsByName('perk-box');
             checkboxes.forEach(checkbox => {
                 if (checkbox.checked) {
@@ -239,7 +249,7 @@ export default {
         color: rgb(172, 23, 23);
         border: 2px solid rgb(172, 23, 23);
     }
-    
+
 .dwellingCard{
     border: 1px solid black;
     border-radius: 5px;

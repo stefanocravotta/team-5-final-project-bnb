@@ -39,7 +39,6 @@ class SearchDwellingController extends Controller
 
         $categories = Category::all();
 
-
         return response()->json(compact('dwellings', 'perks', 'categories'));
     }
 
@@ -63,4 +62,15 @@ class SearchDwellingController extends Controller
         return response()->json(compact('dwelling', 'categories'));
     }
 
+
+    public function getSponsoredDwellings(){
+
+        $countDwellings = count(Dwelling::all());
+
+        $i = $countDwellings - 1;
+
+        $random_dwellings = Dwelling::all()->random($i);
+
+        return response()->json(compact('random_dwellings'));
+    }
 }

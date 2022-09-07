@@ -78,7 +78,7 @@
                         <div class="row">
 
                             <div v-for="perk in apartmentPerks" :key="perk.id" class="col-4 mb-rowPerks">
-                                <i>{{perk.icon}}</i>
+                                <i v-html="perk.icon"></i>
                                 <p>{{perk.name}}</p>
                             </div>
 
