@@ -99,16 +99,19 @@
                         </div>
                         <div class="mb-contactForm">
 
+                            <h2 v-if="success" class="success">Email inviata correttamente</h2>
                             <form @submit.prevent="sendMessage">
 
                                 <div v-if="!isAuthenticated" class="mb-emailContact d-flex flex-column mt-3">
                                     <label for="email">Inserisci la tua email: </label>
                                     <input v-model="email" type="email" id="email" placeholder="Inserisci la tua mail">
+                                    <p v-if="errors.email" class="mt-2 error">{{ errors.email[0] }}</p>
                                 </div>
 
                                 <div class="mb-msgContact d-flex flex-column mt-3">
                                     <label for="content">Scrivi il tuo messaggio all'inserzionista: </label>
                                     <textarea v-model="text" type="text" name="email_content" id="content" placeholder="Scrivi il tuo messaggio"></textarea>
+                                    <p v-if="errors.text" class="mt-2 error">{{ errors.text[0] }}</p>
                                 </div>
 
                                 <div class="d-flex flex-column mt-3">
@@ -134,6 +137,7 @@ export default {
     data(){
         return{
             apiUrl: '/api/dwellings',
+            messageUrl: '/api/save-message',
             apartment: '',
             apartmentPerks:[],
             categories: [],
@@ -143,20 +147,40 @@ export default {
             user: [],
             email: '',
             text:'',
-            dwelling_id: ''
+            dwelling_id: '',
+            errors:{
+                text: null,
+                email: null
+            },
+            success: false
         }
     },
 
     methods:{
 
         sendMessage(){
-            axios.post('api/save-message', {
+            console.log('Invio form...');
+            this.success = false;
+
+            axios.post(this.messageUrl, {
                 'email': this.email,
                 'text': this.text,
-                // 'dwelling_id': this.dwelling_id,
+                'dwelling_id': this.dwelling_id,
             })
             .then(r =>{
-                console.log(r)
+
+                if(!r.data.success){
+                    this.errors = r.data.errors;
+                    console.log(this.errors)
+                }else{
+                    this.success = true;
+                    this.errors = {},
+                    this.email = '',
+                    this.text = ''
+                }
+            })
+            .catch((err) => {
+                console.log('Oh oh, qualcosa é andato storto', err);
             })
         },
 
@@ -167,6 +191,7 @@ export default {
 
             if(window.Checked){
                 this.isAuthenticated = true;
+                this.email = this.user.email;
             }
 
         },
@@ -175,16 +200,16 @@ export default {
 
             axios.get(this.apiUrl + '/show-dwelling/' + this.$route.params.slug)
             .then(r =>{
-                // console.log(r.data)
+
                 this.apartment = r.data.dwelling;
                 this.categories = r.data.categories;
                 this.apartmentPerks = r.data.dwelling.perks;
-                // console.log(this.apartmentPerks);
+                this.dwelling_id = r.data.dwelling.id;
             })
             .catch((er) =>{
                 console.log(er)
             })
-            console.log(this.window);
+
 
             this.findCategory()
         },
@@ -553,5 +578,13 @@ export default {
         }
     }
 
+.error{
+    color: red;
+    font-size: 14px;
+}
+
+.success{
+    color: rgb(6, 148, 6);
+}
 
 </style>
