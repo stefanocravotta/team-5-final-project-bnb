@@ -1,3 +1,7 @@
+//
+*{
+    color:black;
+}
 .wrapper{
     display: flex;
     min-height: 100vh;
@@ -10,15 +14,18 @@
     border-radius: 50px;
 }
 .small-box{
-    height: 150px;
+    min-height: 150px;
+    padding: 30px;
     width: 350px;
     background-color: silver;
     border-radius: 40px;
+
 }
 .left-box{
     // min-height: 100vh;
     height: 100vh;
     overflow-y: auto;
+    border-right: 2px solid white;
     width: 30%;
     padding: 10px;
     background-color: #F1F2F3;
