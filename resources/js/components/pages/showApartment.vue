@@ -7,7 +7,7 @@
                 class="mb-principalImg col-8"
                 :src="`/images/${apartment.image}`" :alt="apartment.name">
                 <img class="mb-principalImg col-8" v-else :src="`/images/villa-affitto-italia-ada-1624884100.jpg`">
-                <div class="mb-containerSide col-4">
+                <div class="mb-containerSide col">
                     <img
                     class="mb-sideImg"
                     :src="'/images/8824717.jpg'" alt="">
@@ -265,8 +265,6 @@ export default {
                 img:hover{
                     filter: brightness(80%);
                 }
-            .mb-containerSide{
-
                 // button show more
                 .button {
                     width: 77%;
@@ -294,11 +292,10 @@ export default {
                 }
             }
         }
-    }
 }
 // descrizione con titolo dell'abitazione + descrizione di 200parole
     .mb-proprietyDesc{
-        background-color: rgb(187, 187, 187);
+        // background-color: rgb(187, 187, 187);
         margin-bottom: 10px;
         padding-bottom: 10px;
         h1{
@@ -326,7 +323,7 @@ export default {
 
 // container delle info
     .mb-containerInfo{
-        background-color: rgb(187, 187, 187);
+        // background-color: rgb(187, 187, 187);
         margin: 0;
         .mb-infoHome{
             border: 1px solid #403829;
@@ -371,7 +368,7 @@ export default {
 
     // container della mappa
     .mb-positionInfo{
-        background-color: rgb(187, 187, 187);
+        // background-color: rgb(187, 187, 187);
         width: 100%;
         border-bottom:  2px solid #403829;
         padding-top: 30px;
@@ -416,7 +413,7 @@ export default {
                 }
             }
 
-        background-color: rgb(187, 187, 187);
+        // background-color: rgb(187, 187, 187);
         padding: 80px 0;
         border-bottom:  2px solid #403829;
         h3{
@@ -451,10 +448,10 @@ export default {
     // Msgs for the insertionist
     .mb-containerContact{
         padding: 20px 0 0;
-        background-color:rgb(187, 187, 187);
+        // background-color:rgb(187, 187, 187);
     }
     .mb-contactPng{
-        background: black;
+        // background: black;
         // Arrow and Text
         .link {
             display: inline-flex;
