@@ -294,8 +294,8 @@ export default {
                 }
             }
         }
+    }
 }
-
 // descrizione con titolo dell'abitazione + descrizione di 200parole
     .mb-proprietyDesc{
         background-color: rgb(187, 187, 187);
