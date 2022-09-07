@@ -239,7 +239,7 @@ export default {
         color: rgb(172, 23, 23);
         border: 2px solid rgb(172, 23, 23);
     }
-    
+
 .dwellingCard{
     border: 1px solid black;
     border-radius: 5px;
