@@ -1,0 +1,11 @@
+main{
+    min-height: calc(100vh);
+    background-color: $primary-color;
+    padding-top: 80px;
+    padding-bottom: 30px;
+    color: $secondary-color;
+}
+
+.fa-user{
+    font-size: 1.5rem;
+}

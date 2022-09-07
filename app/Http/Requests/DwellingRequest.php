@@ -29,8 +29,7 @@ class DwellingRequest extends FormRequest
             'beds'=>'nullable|numeric|max:25',
             'bathrooms'=>'nullable|numeric|max:25',
             'dimentions'=>'nullable|numeric|min:10',
-            'address'=>'required|min:5|max:255',
-            'city'=>'required|min:3|max:255',
+            'address'=>'required|min:2|max:255',
             'description'=>'nullable|min:20|max:2000',
             'image'=>'max:32000',
             'price'=>'required|numeric|max:1000000'
@@ -59,10 +58,6 @@ class DwellingRequest extends FormRequest
             'address.required' => 'Il campo indirizzo è obbligatorio',
             'address.min' => 'Il campo indirizzo deve avere almeno :min caratteri',
             'address.max' => 'Il campo indirizzo può avere massimo :max caratteri',
-
-            'city.required' => 'Il campo città è obbligatorio',
-            'city.min' => 'Il campo città deve avere almeno :min caratteri',
-            'city.max' => 'Il campo città può avere massimo :max caratteri',
 
             'description.min' => 'Il campo descrizione deve avere almeno :min caratteri',
             'description.max' => 'Il campo descrizione può avere massimo :max caratteri',

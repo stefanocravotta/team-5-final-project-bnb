@@ -7,75 +7,110 @@
             </div>
         @endif
 
-        <div class="card">
+        <div class="card dwelling-card">
 
-            <div class="d-flex">
-                @if($dwelling->image)
+            <div class="h-50">
+                <div class="d-flex img-map-box">
+                    <div class="w-60">
+                        @if($dwelling->image)
 
-                <img class="w-50" src="{{ asset('images/'.$dwelling->image) }}" class="card-img-top" alt="{{ $dwelling->name }}">
+                        <img class="dwelling-img" src="{{ asset('images/'.$dwelling->image) }}" class="card-img-top" alt="{{ $dwelling->name }}">
 
-                @else
+                        @else
 
-                <img class="w-50" src="{{ asset('images/villa-affitto-italia-ada-1624884100.jpg') }}" alt="default">
+                        <img class="dwelling-img" src="{{ asset('images/villa-affitto-italia-ada-1624884100.jpg') }}" alt="default">
 
-                @endif
+                        @endif
+                    </div>
 
-                <div id='map' class='map w-50'></div>
-            </div>
+                    <div id='map' class='map h-100 w-50'></div>
+                </div>
 
-            <div class="card-body">
-                <h3 class="card-title">{{ $dwelling->name }}</h3>
-                <p class="card-text">{{ $dwelling->address }}, {{ $dwelling->city }}</p>
-                <p class="card-text">{{ $dwelling->description }}</p>
-            </div>
-
-            <ul class="list-group list-group-flush">
-
-                <li class="list-group-item">Metri quadrati: {{ $dwelling->dimentions ? $dwelling->dimentions : "---" }}</li>
-
-                <li class="list-group-item">Numero di stanze: {{ $dwelling->rooms ? $dwelling->rooms : "---" }}</li>
-
-                <li class="list-group-item">Numero di bagni: {{ $dwelling->bathrooms ? $dwelling->bathrooms : "---" }}</li>
-
-                <li class="list-group-item">Posti letto: {{ $dwelling->beds ? $dwelling->beds : "---" }}</li>
-
-                <li class="list-group-item">Prezzo: {{ $dwelling->price }}&euro; /notte</li>
-
-            </ul>
-
-            <div class="card-body">
-                <a href="{{ route('user.dwellings.index')}}" class="btn btn-dark">&lt;&lt; Torna ai tuoi appartamenti</a>
-
-                <a href="{{ route('user.dwellings.edit', $dwelling)}}" class="btn btn-primary">Edit</a>
-
-                <form class="d-inline" action="{{ route('user.dwellings.destroy', $dwelling) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-draft">
-                        Elimina
-                    </button>
-
-                    <div class="modal fade" id="modal-draft" tabindex="-1" aria-labelledby="modal-draft-label" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modal-draft-label">Elimina appartamento</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Sei sicuro di voler eliminare l'appartamento {{ $dwelling->name }}?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </div>
-                            </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h3 class="card-title d-inline">{{ $dwelling->name }}</h3>
+                        <div>
+                            @foreach ($dwelling->perks as $perk)
+                        <span class="badge badge-success">{{$perk->name}}</span>
+                        @endforeach
                         </div>
                     </div>
-                </form>
+                    <p class="card-text">{{ $dwelling->address }}, {{ $dwelling->city }}</p>
+                    <p class="card-text">{{ $dwelling->description }}</p>
+                </div>
             </div>
+
+            <div class="d-flex dwelling-data">
+                <div class="w-50 pr-2">
+                    {{-- APARTMENTS PARAMS --}}
+                    <ul class="list-group list-group-flush">
+
+                        <li class="list-group-item">Metri quadrati: {{ $dwelling->dimentions ? $dwelling->dimentions : "---" }}</li>
+
+                        <li class="list-group-item">Numero di stanze: {{ $dwelling->rooms ? $dwelling->rooms : "---" }}</li>
+
+                        <li class="list-group-item">Numero di bagni: {{ $dwelling->bathrooms ? $dwelling->bathrooms : "---" }}</li>
+
+                        <li class="list-group-item">Posti letto: {{ $dwelling->beds ? $dwelling->beds : "---" }}</li>
+
+                        <li class="list-group-item">Prezzo: {{ $dwelling->price }}&euro; /notte</li>
+
+                    </ul>
+                    {{-- /APARTMENTS PARAMS --}}
+
+
+                    {{-- BOTTONI CARD --}}
+                    <div class="card-body">
+                        <a href="{{ route('user.dwellings.index')}}" class="btn btn-dark">&lt;&lt; Torna ai tuoi appartamenti</a>
+
+                        <a href="{{ route('user.dwellings.edit', $dwelling)}}" class="btn btn-primary">Edit</a>
+
+                        <form class="d-inline" action="{{ route('user.dwellings.destroy', $dwelling) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-draft">
+                                Elimina
+                            </button>
+
+                            <div class="modal fade" id="modal-draft" tabindex="-1" aria-labelledby="modal-draft-label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modal-draft-label">Elimina appartamento</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Sei sicuro di voler eliminare l'appartamento {{ $dwelling->name }}?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    {{-- /BOTTONI CARD --}}
+                </div>
+                <div class="w-50 dwelling-msg pl-2">
+
+                    @foreach ($messages as $message)
+                        <div class="card p-3">
+                            <div class="faq-line clearfix">
+                                <span>{{ $message->sender_email }}</span>
+                                <span><i class="fa-solid fa-chevron-down"></i></span>
+                                <p class="drpdwn-p faq-text">{{ $message->text }}</p>
+                                <p>{{ date_format($message->created_at, "d/m/Y")}}</p>
+                            </div>
+                        </div>
+                    @endforeach
+
+                </div>
+            </div>
+
         </div>
 
         <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.20.0/maps/maps-web.min.js"></script>
@@ -128,7 +163,7 @@
               right: [-25, -35]
             }
 
-            var popup = new tt.Popup({offset: popupOffsets}).setHTML(`<strong>${dwelling.address}, ${dwelling.city}</strong>`);
+            var popup = new tt.Popup({offset: popupOffsets}).setHTML(`<strong>${dwelling.address}</strong>`);
             marker.setPopup(popup).togglePopup();
 
             // ------- funzioni della mappa ---------

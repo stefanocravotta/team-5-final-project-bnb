@@ -12,6 +12,8 @@ use App\User;
 use App\Category;
 use App\Dwelling;
 use App\Http\Requests\DwellingRequest;
+use App\Message;
+use App\Perk;
 
 class DwellingsController extends Controller
 {
@@ -37,8 +39,9 @@ class DwellingsController extends Controller
     public function create()
     {
         $user_id = Auth::id();
+        $perks = Perk::all();
         $categories = Category::all();
-        return view('user.dwellings.create', compact('user_id','categories'));
+        return view('user.dwellings.create', compact('user_id','categories', 'perks'));
     }
 
     /**
@@ -52,6 +55,7 @@ class DwellingsController extends Controller
         $data = $request->all();
         $data['user_id'] = Auth::id();
         $data['slug'] = Dwelling::generateSlug($data['name']);
+        $data['image'] = $this->imageUploader($request, $data);
 
 
 
@@ -60,9 +64,8 @@ class DwellingsController extends Controller
         $geocoder = new \Geocoder\StatefulGeocoder($provider);
 
         $address = $data['address'];
-        $city = $data['city'];
 
-        $result = $geocoder->geocodeQuery(GeocodeQuery::create("$address, $city"));
+        $result = $geocoder->geocodeQuery(GeocodeQuery::create($address));
 
         $data['lat'] = $result->get(0)->getCoordinates()->getLatitude();
         $data['long'] = $result->get(0)->getCoordinates()->getLongitude();
@@ -70,6 +73,8 @@ class DwellingsController extends Controller
         $new_dwelling = new Dwelling;
         $new_dwelling->fill($data);
         $new_dwelling->save();
+
+        $new_dwelling->perks()->attach($data['perks']);
 
         return redirect()->route('user.dwellings.show', $new_dwelling)->with('dwelling_created', "La struttura $new_dwelling->name è stata aggiunta correttamente");
     }
@@ -82,13 +87,20 @@ class DwellingsController extends Controller
      */
     public function show(Dwelling $dwelling)
     {
-        if ($dwelling->user_id == Auth::id()) {
+        $perks = Perk::all();
+        $messages = Message::where('dwelling_id', $dwelling->id)->get();
 
-            return view('user.dwellings.show', compact('dwelling'));
+        if($dwelling->id){
+            if ($dwelling->user_id == Auth::id()) {
+
+                return view('user.dwellings.show', compact('dwelling', 'perks', 'messages'));
+            }else{
+
+                return view('errors.403');
+            }
         }else{
-            $user_id = Auth::id();
-            $dwellings = Dwelling::where('user_id', $user_id)->orderBy('id', 'desc')->get();
-            return redirect()->route('user.dwellings.index', compact('dwellings'))->with('not_allowed', "E' impossibile visualizzare appartamenti di altri utenti");
+
+            return view('errors.404');
         }
 
     }
@@ -103,7 +115,19 @@ class DwellingsController extends Controller
     {
         $dwelling =  Dwelling::find($id);
         $categories = Category::all();
-        return view('user.dwellings.edit', compact('dwelling', 'categories'));
+        $perks = Perk::all();
+        if($dwelling){
+            if ($dwelling->user_id == Auth::id()) {
+
+                return view('user.dwellings.edit', compact('dwelling','categories', 'perks'));
+            }else{
+
+                return view('errors.403');
+            }
+        }else{
+
+            return view('errors.404');
+        }
     }
 
     /**
@@ -123,13 +147,16 @@ class DwellingsController extends Controller
 
         };
 
-        if($data['address'] != $dwelling->address || $data['city'] != $dwelling->city){
+        $data['image'] = $this->imageUploader($request, $data);
+
+        if($data['address'] != $dwelling->address){
 
             $httpClient = new \GuzzleHttp\Client();
             $provider = new \Geocoder\Provider\TomTom\TomTom($httpClient, '1ICjwoAETA30YhhNatAlLrdJ6g8V1ZDc');
             $geocoder = new \Geocoder\StatefulGeocoder($provider);
+            $address = $data['address'];
 
-            $result = $geocoder->geocodeQuery(GeocodeQuery::create($data['address'], $data['city']));
+            $result = $geocoder->geocodeQuery(GeocodeQuery::create($address));
 
             $data['lat'] = $result->get(0)->getCoordinates()->getLatitude();
             $data['long'] = $result->get(0)->getCoordinates()->getLongitude();
@@ -138,6 +165,8 @@ class DwellingsController extends Controller
 
 
         $dwelling->update($data);
+
+        $dwelling->perks()->sync($data['perks']);
 
         return redirect()->route('user.dwellings.show', $dwelling);
 
@@ -153,5 +182,17 @@ class DwellingsController extends Controller
     {
      $dwelling->delete();
      return redirect()->route('user.dwellings.index')->with('dwelling_deleted', "La struttura $dwelling->name è stata cancellata correttamente");
+    }
+
+    public function imageUploader($request, $data){
+        if($request->file('image')){
+
+            $file = $request->file('image');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('images'), $filename);
+            $data['image']= $filename;
+
+            return $data['image'];
+        }
     }
 }

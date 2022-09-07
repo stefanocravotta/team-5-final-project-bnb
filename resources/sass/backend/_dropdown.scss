@@ -1,0 +1,40 @@
+/* FAQ */
+.faq {
+    max-width: 1500px;
+    margin: 50px auto;
+  }
+
+  .faq .faq-line {
+    padding: 30px 0;
+    border-bottom: 1px solid #D0D0D3;
+    /* position: relative;  */
+  }
+
+  .faq h3{
+    padding-bottom: 55px;
+    border-bottom: 1px solid #D0D0D3;
+  }
+
+  .faq-line span {
+    font-weight: bold;
+    margin: 0 auto;
+  }
+  .faq-line .fa-chevron-down {
+    float: right;
+  }
+
+  .faq-line .faq-text {
+    display: none;
+  }
+
+  .faq-line:hover .faq-text {
+    display: inline-block;
+    margin: 10px 40px 10px 0;
+    width: 70%;
+  }
+
+  .faq-line:hover .fa-chevron-down{
+    transform: rotate(180deg);
+  }
+
+  /* /FAQ */

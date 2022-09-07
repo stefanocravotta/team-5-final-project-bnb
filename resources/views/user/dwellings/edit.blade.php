@@ -1,8 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+    <div class="col-8 offset-2">
     <h2>Modifica il tuo appartamento</h2>
-    <form action="{{ route('user.dwellings.update',$dwelling) }}" method="POST" id="form-edit">
+    <form action="{{ route('user.dwellings.update',$dwelling) }}" method="POST" id="form-edit" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -20,7 +21,8 @@
 
         </div>
 
-            <div class="mb-3">
+        <div class="d-flex justify-content-between">
+            <div class="mb-3 pr-1 w-50">
                 <label for="category">Tipo di struttura*</label>
                 <select class="form-control" name="category">
                     @foreach ($categories as $category)
@@ -39,12 +41,16 @@
                     <p class="error-msg text-danger"> {{ $message }} </p>
                 @enderror
 
+
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 pl-1 w-50">
                 <label for="rooms">Numero di stanze</label>
-                <input class="form-control" type="number" name="rooms" id="rooms"
-                value="{{ !$errors->any() ? $dwelling->rooms : old('rooms') }}">
+                <select class="form-control" name="rooms" id="rooms" value="{{ !$errors->any() ? $dwelling->rooms : old('rooms') }}">
+                        @for ($i = 1; $i < 26; $i++)
+                            <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
+                    </select>
 
                 @error('rooms')
                     <p class="error-msg text-danger"> {{ $message }} </p>
@@ -54,11 +60,17 @@
 
 
             </div>
+        </div>
 
-            <div class="mb-3">
+        <div class="d-flex justify-content-between">
+
+            <div class="mb-3 w-30">
                 <label for="beds">Numero di letti</label>
-                <input class="form-control" type="number" name="beds" id="beds"
-                value="{{ !$errors->any() ? $dwelling->beds : old('beds') }}">
+                <select class="form-control" name="beds" id="beds" value="{{ !$errors->any() ? $dwelling->beds : old('beds') }}">
+                    @for ($i = 1; $i < 26; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
 
                 @error('beds')
                     <p class="error-msg text-danger"> {{ $message }} </p>
@@ -68,10 +80,13 @@
 
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 w-30">
                 <label for="bathrooms">Numero di bagni</label>
-                <input class="form-control" type="number" name="bathrooms" id="bathrooms"
-                value="{{ !$errors->any() ? $dwelling->bathrooms : old('bathrooms') }}">
+                <select class="form-control" name="bathrooms" id="bathrooms" value="{{ !$errors->any() ? $dwelling->bathrooms : old('bathrooms') }}">
+                    @for ($i = 1; $i < 26; $i++)
+                        <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                </select>
 
                 @error('bathrooms')
                     <p class="error-msg text-danger"> {{ $message }} </p>
@@ -82,9 +97,9 @@
 
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 w-30">
                 <label for="dimentions">Metri quadri della struttura</label>
-                <input class="form-control" type="number" placeholder="mq" name="dimentions" id="dimentions"
+                <input class="form-control" type="number" min="0" placeholder="0" name="dimentions" id="dimentions"
                 value="{{ !$errors->any() ? $dwelling->dimentions : old('dimentions') }}">
 
                 @error('dimentions')
@@ -94,11 +109,17 @@
                 <p id="error-dimentions" class="text-danger"></p>
 
             </div>
+        </div>
 
-            <div class="mb-3">
-                <label for="address">Inserisci la via, con civico se presente*</label>
-                <input class="form-control" type="text" name="address" id="address"
-                value="{{ !$errors->any() ? $dwelling->address : old('address') }}">
+        <div class="d-flex justify-content-between">
+            <div class="mb-3 pr-1 w-100">
+                <label for="address">Inserisci la via, con civico se presente *</label>
+
+                <div id="searchBox-container">
+
+
+
+                </div>
 
                 @error('address')
                     <p class="error-msg text-danger"> {{ $message }} </p>
@@ -108,22 +129,12 @@
 
             </div>
 
-            <div class="mb-3">
-                <label for="city">Città in cui si trova*</label>
-                <input class="form-control" type="text" name="city" id="city"
-                value="{{ !$errors->any() ? $dwelling->city : old('city') }}">
+        </div>
 
-                @error('city')
-                    <p class="error-msg text-danger"> {{ $message }} </p>
-                @enderror
-
-                <p id="error-city" class="text-danger"></p>
-
-            </div>
-
-            <div class="mb-3">
+        <div class="d-flex justify-content-between">
+            <div class="mb-3 w-50 pr-1">
                 <label for="image">Carica un'immagine della struttura</label>
-                <input class="form-control" type="text" name="image" id="image"
+                <input class="form-control" type="file" accept="image/*" name="image" id="image"
                 value="{{ !$errors->any() ? $dwelling->image : old('image') }}">
 
                 @error('image')
@@ -134,7 +145,7 @@
 
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 w-50 pl-1">
                 <label for="price">Prezzo per notte *</label>
                 <input class="form-control" type="text" name="price" id="price"
                 value="{{ !$errors->any() ? $dwelling->price : old('price') }}">
@@ -146,13 +157,32 @@
                 <p id="error-price" class="text-danger"></p>
 
             </div>
+        </div>
+
+        <label for="">Seleziona almeno un servizio</label>
+            <div class="mb-3">
+                @foreach ($perks as $perk)
+                    <input
+                        type="checkbox"
+                        name="perks[]"
+                        id="perk{{ $loop->iteration }}"
+                        value="{{ $perk->id }}"
+                        @if(!$errors->any() && $dwelling->perks->contains($perk->id))
+                        checked
+                        @elseif(in_array($perk->id, old('perks',[]) ) )
+                        checked
+                        @endif
+                    >
+
+                    <label for="perk{{ $loop->iteration }}" class="mr-3">{{ $perk->name }}</label>
+                @endforeach
+
+                <p id="error-perks" class="text-danger"></p>
+            </div>
 
             <div class="mb-3">
                 <label for="description">Descrizione dell'appartamento</label>
-                <textarea class="form-control" type="text" name="description" id="description" cols="30" rows="10"
-                @if ($errors->any())
-                    value="{{ old('description') }}"
-                @endif></textarea>
+                <textarea class="form-control" type="text" name="description" id="description" cols="30" rows="10">@if($errors->any()){{ old('description') }}@else{{$dwelling->description}}@endif</textarea>
 
                 @error('description')
                     <p class="error-msg text-danger"> {{ $message }} </p>
@@ -186,6 +216,47 @@
                 </div>
             </div>
 
-    </form>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+
+        var options = {
+        searchOptions: {
+            key: '0esiNqmzyhdAgeAwGRM5fRuozF0jWJgO',
+            language: 'en-GB',
+            limit: 5
+        },
+        autocompleteOptions: {
+            key: '0esiNqmzyhdAgeAwGRM5fRuozF0jWJgO',
+            language: 'en-GB'
+        }
+        };
+
+        var ttSearchBox = new tt.plugins.SearchBox(tt.services, options);
+        var searchBoxHTML = ttSearchBox.getSearchBoxHTML();
+        var container = document.getElementById('searchBox-container');
+        container.append(searchBoxHTML);
+        document.querySelector('.tt-search-box-input-container').classList.add('form-control');
+
+
+        var errors = @json($errors->toArray());
+        var errorsKeys = Object.keys(errors);
+        var oldAddress = @json(old('address'));
+        var dwellingAddress = @json($dwelling->address);
+
+        var inputSearchBox = document.querySelector('.tt-search-box-input');
+        inputSearchBox.setAttribute('name', 'address');
+        inputSearchBox.setAttribute('id', 'address');
+        inputSearchBox.setAttribute('autocomplete', 'off');
+        inputSearchBox.setAttribute('type', 'text');
+
+        if (errorsKeys.length > 0) {
+            inputSearchBox.setAttribute('value', oldAddress);
+        } else {
+            inputSearchBox.setAttribute('value', dwellingAddress);
+        }
+
+    </script>
 </div>
 @endsection

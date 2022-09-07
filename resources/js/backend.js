@@ -72,7 +72,7 @@
                     $('#beds').removeClass('is-invalid')
                 }
             //
-            // Campo beds
+            // Campo bathrooms
                 if(isNaN($('#bathrooms').val())){
                     $('#error-bathrooms').show('slow').text('Il numero dei bagni deve essere un numero').fadeOut(10000);
                     $('#bathrooms').addClass('is-invalid');
@@ -92,7 +92,7 @@
                     $('#dimentions').addClass('is-invalid');
                     errors = true;
                 }
-                else if($('#dimentions').val() > 25){
+                else if($('#dimentions').val() < 10){
                     $('#error-dimentions').show('slow').text('Non puoi registrare un appartamento con meno di 10 mq').fadeOut(10000);
                     $('#dimentions').addClass('is-invalid');
                     errors = true;
@@ -117,29 +117,8 @@
                     $('#address').removeClass('is-invalid')
                 }
             //
-            // Campo city
-                if($('#city').val().length === 0){
-                    $('#error-city').show('slow').text('Il campo città è obbligatorio').fadeOut(10000);
-                    $('#city').addClass('is-invalid');
-                    errors = true;
-                }else if($('#city').val().length < 3){
-                    $('#error-city').show('slow').text('Il campo città deve avere minimo 3 caratteri').fadeOut(10000);
-                    $('#city').addClass('is-invalid');
-                    errors = true;
-                }else if($('#city').val().length > 255){
-                    $('#error-city').show('slow').text('Il campo città può avere massimo 255 caratteri').fadeOut(10000);
-                    $('#city').addClass('is-invalid');
-                    errors = true;
-                }else{
-                    $('#city').removeClass('is-invalid')
-                }
-            //
             // Campo description
-                if($('#description').val().length < 20){
-                    $('#error-description').show('slow').text('Il campo descrizione deve avere minimo 20 caratteri').fadeOut(10000);
-                    $('#description').addClass('is-invalid');
-                    errors = true;
-                }else if($('#description').val().length > 255){
+                if($('#description').val().length > 2000){
                     $('#error-description').show('slow').text('Il campo descrizione può avere massimo 2000 caratteri').fadeOut(10000);
                     $('#description').addClass('is-invalid');
                     errors = true;
@@ -166,6 +145,14 @@
                 $('#price').removeClass('is-invalid')
             }
         //
+        // checkbox Perks
+            checked = $("input[type=checkbox]:checked").length;
+
+            if(!checked) {
+                $('#error-perks').show('slow').text('Almeno un servizio deve essere selezionato').fadeOut(10000);
+                errors = true;
+            }
+        //
             if(errors === true){
                 $('#modal-public').modal('hide');
                 event.preventDefault();
@@ -173,3 +160,15 @@
         })
     }
  })
+
+
+//  .faq-line:hover .faq-text {
+//     display: inline-block;
+//     margin: 10px 40px 10px 0;
+//     width: 70%;
+//   }
+
+//   .faq-line:hover .fa-chevron-down{
+//     transform: rotate(180deg);
+//   }
+
