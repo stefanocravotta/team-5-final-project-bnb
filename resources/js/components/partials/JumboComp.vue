@@ -62,7 +62,7 @@ export default {
     .box{
 
         width: 25%;
-        height: 60%;
+        min-height: 60%;
         padding: 30px;
         // background-color: rgb(207, 203, 203);
         // background-color: #95A3B3;
