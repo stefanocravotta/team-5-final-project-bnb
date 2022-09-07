@@ -34,6 +34,9 @@ export default {
             }
         }
     },
+    // props: {
+    //     checkboxes: Array,
+    // },
     methods:{
         searchBarCreator(){
             const ttSearchBox = new SearchBox(services, this.options);

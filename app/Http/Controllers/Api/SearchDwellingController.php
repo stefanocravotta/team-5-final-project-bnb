@@ -23,7 +23,7 @@ class SearchDwellingController extends Controller
         $lat = $result->get(0)->getCoordinates()->getLatitude();
         $long = $result->get(0)->getCoordinates()->getLongitude();
 
-        $radius = 0.1;
+        $radius = 0.2;
 
         $dwellings = Dwelling::whereBetween('lat', [$lat - $radius, $lat + $radius])->whereBetween('long', [$long - $radius, $long + $radius])->where('visible', 1)->with('perks')->get();
 
