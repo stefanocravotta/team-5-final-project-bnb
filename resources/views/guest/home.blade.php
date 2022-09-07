@@ -53,6 +53,11 @@
         <div id="app"></div>
     </body>
 </html>
+<style>
+    a{
+        margin-left: 20px;
+    }
+</style>
 <script >
 
 

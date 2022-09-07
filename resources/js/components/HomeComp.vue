@@ -182,8 +182,10 @@
                         </div>
                     </div>
             </div>
-
         </div>
+<div>
+    <FooterComp />
+</div>
     </div>
 
 </template>
@@ -191,15 +193,23 @@
 <script>
 import JumboComp from './partials/JumboComp.vue';
 import SearchbarComp from './partials/SearchbarComp.vue';
+import FooterComp from './partials/FooterComp.vue';
+
 
 export default {
     name: 'HomeComp',
-    components: { JumboComp, SearchbarComp }
+    components: {
+        JumboComp,
+        SearchbarComp,
+        FooterComp,
+     }
 }
 </script>
 <style lang="scss" scoped>
 .content{
     flex-direction: column;
+    margin-bottom: 80px;
+
 }
     .dx-cont{
         flex-direction: column;
