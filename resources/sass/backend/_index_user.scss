@@ -4,12 +4,15 @@ h2{
 
 h3{
     font-size: 2rem;
-    color: black;
+}
+
+.padding-x{
+    padding: 0 10%;
 }
 
 .create_link{
-    color: black;
     font-size: 2rem;
+    color: $secondary-color;
 }
 
 .card-custom{
@@ -24,7 +27,7 @@ h3{
             .layer{
                 position: absolute;
                 opacity: 1;
-                background-color: rgba($color: #cf2e2e, $alpha: 0.5);
+                background-color: rgba($color: $secondary-color, $alpha: 0.5);
                 top: 0;
                 left: 0;
                 bottom: 0;
@@ -63,7 +66,7 @@ h3{
     .line{
         display: inline-block;
         height: 2px;
-        background-color: #cf2e2e;
+        background-color: $secondary-color;
         width: 100%;
     }
 }
