@@ -27,7 +27,7 @@
                     <a href="{{route('home')}}">Home</a>
                 </div>
                 <a href="{{route('home')}}">
-                    <img class="logo" src="{{asset('images/newlogo.png')}}" alt="">
+                    <img class="logo" src="{{asset('images/logononame.png')}}" alt="">
                 </a>
 
                 <div class="d-flex">
