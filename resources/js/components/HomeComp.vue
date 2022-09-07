@@ -14,84 +14,35 @@
                 <h3>Appartamenti consigliati</h3>
                 <!-- SEZIONE IMG PRIMO PIANO -->
                 <div class="img-sec d-flex ">
-                    <div class="box d-flex">
-                        <div>
-                            immagine
+                    <div v-for="dwelling in sponsoredDwellings" :key="`sponsorizzati-${dwelling.id}`" class="box d-flex">
+                        <div class="dwelling_img">
+                            <img class="w-100" v-if="dwelling.image != null" :src="`/images/${dwelling.image}`" :alt="dwelling.name">
+                            <img class="w-100" v-else :src="`/images/villa-affitto-italia-ada-1624884100.jpg`">
                         </div>
-                        <div>titolo</div>
-                        <div>prezzo</div>
-                    </div>
-                    <div class="box d-flex">
                         <div>
-                            immagine
+                            <h4>{{dwelling.name}}</h4>
                         </div>
-                        <div>titolo</div>
-                        <div>prezzo</div>
-                    </div>
-                    <div class="box d-flex">
                         <div>
-                            immagine
+                            <p>{{dwelling.price}}</p>
                         </div>
-                        <div>titolo</div>
-                        <div>prezzo</div>
                     </div>
-                    <div class="box d-flex">
-                        <div>
-                            immagine
-                        </div>
-                        <div>titolo</div>
-                        <div>prezzo</div>
-                    </div>
-                    <div class="box d-flex">
-                        <div>
-                            immagine
-                        </div>
-                        <div>titolo</div>
-                        <div>prezzo</div>
-                    </div>
-                    <div class="box d-flex">
-                        <div>
-                            immagine
-                        </div>
-                        <div>titolo</div>
-                        <div>prezzo</div>
-                    </div>
-                    <div class="box d-flex">
-                        <div>
-                            immagine
-                        </div>
-                        <div>titolo</div>
-                        <div>prezzo</div>
-                    </div>
-                    <div class="box d-flex">
-                        <div>
-                            immagine
-                        </div>
-                        <div>titolo</div>
-                        <div>prezzo</div>
-                    </div>
+
                 </div>
                 <!-- FINE SEZIONE IMG PRIMO PIANO -->
                 <h3>Nuove offerte</h3>
                 <div class="img-sec d-flex">
 
-                    <div class="box d-flex">
-                        <div>immagine</div><div>titolo</div><div>testo</div>
-                    </div>
-                    <div class="box d-flex">
-                        <div>immagine</div><div>titolo</div><div>testo</div>
-                    </div>
-                    <div class="box d-flex">
-                        <div>immagine</div><div>titolo</div><div>testo</div>
-                    </div>
-                    <div class="box d-flex">
-                        <div>immagine</div><div>titolo</div><div>testo</div>
-                    </div>
-                    <div class="box d-flex">
-                        <div>immagine</div><div>titolo</div><div>testo</div>
-                    </div>
-                    <div class="box d-flex">
-                        <div>immagine</div><div>titolo</div><div>testo</div>
+                    <div v-for="dwelling in sponsoredDwellings" :key="`Offerte-${dwelling.id}`" class="box d-flex">
+                        <div class="dwelling_img">
+                            <img class="w-100" v-if="dwelling.image != null" :src="`/images/${dwelling.image}`" :alt="dwelling.name">
+                            <img class="w-100" v-else :src="`/images/villa-affitto-italia-ada-1624884100.jpg`">
+                        </div>
+                        <div>
+                            <h4>{{dwelling.name}}</h4>
+                        </div>
+                        <div>
+                            <p>{{dwelling.price}}</p>
+                        </div>
                     </div>
 
                 </div>
@@ -106,15 +57,15 @@
                         <p>Genius</p>
                         <p>Approfitta degli sconti, viaggia ora</p>
                     </div>
-                     <div class="sm-box ">
+                    <div class="sm-box ">
                         <p>Sconti del 10%</p>
                         <p>Approfitta degli sconti, viaggia ora</p>
                     </div>
-                     <div class="sm-box ">
+                    <div class="sm-box ">
                         <p>Sconti del 15%</p>
                         <p>Approfitta degli sconti, viaggia ora</p>
                     </div>
-                     <div class="sm-box ">
+                    <div class="sm-box ">
                         <p>Sconti de 30%</p>
                         <p>Approfitta degli sconti, viaggia ora</p>
                     </div>
@@ -202,7 +153,30 @@ export default {
         JumboComp,
         SearchbarComp,
         FooterComp,
-     }
+    },
+    data(){
+        return{
+            apiUrl: '/api/dwellings',
+            sponsoredDwellings: [],
+
+        }
+    },
+
+    methods:{
+
+        getSponsoredDwellings(){
+
+            axios.get(this.apiUrl + '/sponsored-dwellings')
+            .then(r =>{
+                this.sponsoredDwellings = r.data.random_dwellings;
+            })
+
+        }
+
+    },
+    created(){
+        this.getSponsoredDwellings();
+    }
 }
 </script>
 <style lang="scss" scoped>
