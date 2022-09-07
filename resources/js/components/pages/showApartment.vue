@@ -32,7 +32,7 @@
                 <div class="row row-col row-cols-lg-5 d-flex mb-containerInfo">
                     <div class="mb-infoHome d-flex">
                         <h2>Categoria:</h2>
-                        <h3>{{apartment.category}}</h3>
+                        <h3>{{category}}</h3>
                     </div>
                     <div class=" mb-infoHome d-flex">
                         <h2>Numero di stanze:</h2>
@@ -148,7 +148,7 @@ export default {
             messageUrl: '/api/save-message',
             apartment: '',
             apartmentPerks:[],
-            categories: [],
+            categories: null,
             category: '',
             sending: false,
             isAuthenticated: false,
@@ -213,18 +213,25 @@ export default {
                 this.categories = r.data.categories;
                 this.apartmentPerks = r.data.dwelling.perks;
                 this.dwelling_id = r.data.dwelling.id;
+                // console.log('risposta', r.data.dwelling);
+                // console.log(this.apartment);
+                this.findCategory()
             })
             .catch((er) =>{
                 console.log(er)
             })
 
 
-            this.findCategory()
+
+
         },
 
         findCategory(){
+            // console.log('funzione', this.categories);
             this.categories.forEach(el => {
-                console.log(el)
+                if(this.apartment.category == el.id){
+                    this.category = el.name;
+                }
             });
         }
 
