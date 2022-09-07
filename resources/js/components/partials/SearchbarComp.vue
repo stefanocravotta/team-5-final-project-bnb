@@ -1,5 +1,6 @@
 <template>
     <div class="d-flex align-items-center">
+
         <div class="w-75" id="searchBox-container">
 
 

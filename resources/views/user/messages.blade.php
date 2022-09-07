@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h2>I tuoi messaggi</h2>
+    <h2>I tuoi messaggi:</h2>
     @foreach ($dwellings as $dwelling)
     @if (count($dwelling->messages) > 0)
     <h2>{{$dwelling->name}}</h2>

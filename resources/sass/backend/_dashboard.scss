@@ -1,0 +1,73 @@
+//
+*{
+    color:black;
+}
+.wrapper{
+    display: flex;
+    min-height: 100vh;
+    border: 1px solid gray;
+}
+.box-test{
+    min-height: 250px;
+    width: 100%;
+    background-color: silver;
+    border-radius: 50px;
+}
+.small-box{
+    min-height: 150px;
+    padding: 30px;
+    width: 350px;
+    background-color: silver;
+    border-radius: 40px;
+
+}
+.left-box{
+    // min-height: 100vh;
+    height: 100vh;
+    overflow-y: auto;
+    border-right: 2px solid white;
+    width: 30%;
+    padding: 10px;
+    background-color: #F1F2F3;
+}
+
+.right-box{
+
+    // min-height: 100vh;
+    height: 100vh;
+    width: 70%;
+    padding: 10px;
+    background-color: #F1F2F3;
+    overflow-y:auto;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #E7ECEF;
+    border-radius: 10px;
+  }
+  /* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+//   ::-webkit-scrollbar-track {
+//     box-shadow: inset 0 0 5px grey;
+//     border-radius: 10px;
+//   }
+
+.dash-card{
+    width: 70%;
+    min-height: 200px;
+    padding: 30px;
+    border-radius: 50px;
+    background-color: silver;
+    margin: 0 auto;
+}
+a{
+
+    color: black;
+}
+a:hover{
+    text-decoration: none;
+}

@@ -64,7 +64,15 @@
 
             <!-- PERKS -->
             <div class="mb-services d-flex justify-content-between">
-                <h3>Lista servizi</h3>
+                <div class="mb-containerSide">
+                    <!-- <img
+                    class="mb-sideImg"
+                    :src="'/images/8824717.jpg'" alt="">
+                    <img
+                    class="mb-sideImg"
+                    :src="'/images/8824717.jpg'" alt=""> -->
+                    <div class="button button-2">Servizi</div>
+                </div>
                 <div class="mb-perks">
                     <div class="container">
                         <div class="row">
@@ -229,13 +237,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// template{
-//     }
-// .frontCont{
-//     // position: absolute;
-//     // z-index: 2;
-//     // top: 100%;
-// }
+
 // sezione immagini
 .mb-imgPg{
     background-color: rgb(187, 187, 187);
@@ -255,12 +257,15 @@ export default {
             .mb-containerSide{
                 // width: 31.8%;
                 // margin-left: 2.7%;
-
-                .mb-sideImg{
-                    width: 77%;
-                    margin-bottom: 10%;
+                img{
+                    width: 70%;
+                    margin: 0 auto;;
+                // width: 68.2%;
                 }
-
+                img:hover{
+                    filter: brightness(80%);
+                }
+            .mb-containerSide{
 
                 // button show more
                 .button {
@@ -277,7 +282,7 @@ export default {
                 .button-2 {
                     color: #fff;
                     border: 3px solid #000000;
-                    background-image: linear-gradient(30deg, #000000 50%, transparent 50%);
+                    background-image: linear-gradient(60deg, #000000 50%, transparent 50%);
                     background-size: 300%;
                     background-repeat: no-repeat;
                     background-position: 0%;
@@ -383,6 +388,34 @@ export default {
 
     // container perks
     .mb-services{
+        .mb-containerSide{
+            width: 500px;
+                // button show more
+                .button {
+                    width: 67%;
+                    padding-top: 30px;
+                    padding-bottom: 30px;
+                    text-align: center;
+                    color: #000;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    display: inline-block;
+                }
+                .button-2 {
+                    color: #fff;
+                    border: 3px solid #000000;
+                    background-image: linear-gradient(30deg, #000000 50%, transparent 50%);
+                    background-size: 300%;
+                    background-repeat: no-repeat;
+                    background-position: 0%;
+                    transition: background 300ms ease-in-out;
+                }
+                .button-2:hover {
+                    background-position: 100%;
+                    color: #000000;
+                }
+            }
+
         background-color: rgb(187, 187, 187);
         padding: 80px 0;
         border-bottom:  2px solid #403829;
