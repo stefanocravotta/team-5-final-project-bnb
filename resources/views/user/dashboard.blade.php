@@ -17,10 +17,16 @@
             <hr>
             <p><a href="{{route('user.dwellings.create')}}"><i class="fa-solid fa-building"></i> Aggiungi un appartamento</a></p>
             <hr>
-            @for ($i=0;$i<5;$i++)
-                <p><a href="{{route('user.dashboard')}}">Altri link</a></p>
-                <hr>
-            @endfor
+            <p><a id="navbarDropdown" href="#" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                    <i class="fa-solid fa-person-through-window"></i>
+                    Log out
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form></p>
+
         </div>
         {{-- fine box sinistra --}}
 
