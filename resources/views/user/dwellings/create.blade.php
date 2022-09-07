@@ -8,7 +8,7 @@
 
             <div class="mb-3">
                 <label for="name">Nome della struttura *</label>
-                <input class="form-control" type="text" name="name" id="name"
+                <input class="form-control styled-input" type="text" name="name" id="name"
                 @if ($errors->any())
                     value="{{ old('name') }}"
                 @endif>
@@ -24,7 +24,7 @@
             <div class="d-flex justify-content-between">
                 <div class="mb-3 pr-1 w-50">
                     <label for="category">Tipo di struttura</label>
-                    <select class="form-control" name="category">
+                    <select class="form-control styled-input" name="category">
                         @foreach ($categories as $category)
 
                             <option value="{{$category->id}}"
@@ -45,7 +45,7 @@
 
                 <div class="mb-3 pl-1 w-50">
                     <label for="rooms">Numero di stanze</label>
-                    <select class="form-control" name="rooms" id="rooms">
+                    <select class="form-control styled-input" name="rooms" id="rooms">
                         @for ($i = 1; $i < 26; $i++)
                             <option value="{{ $i }}">{{ $i }}</option>
                         @endfor
@@ -65,7 +65,7 @@
 
                 <div class="mb-3 w-30">
                     <label for="beds">Numero di letti</label>
-                    <select class="form-control" name="beds" id="beds">
+                    <select class="form-control styled-input" name="beds" id="beds">
                         @for ($i = 1; $i < 26; $i++)
                             <option value="{{ $i }}">{{ $i }}</option>
                         @endfor
@@ -81,7 +81,7 @@
 
                 <div class="mb-3 w-30">
                     <label for="bathrooms">Numero di bagni</label>
-                    <select class="form-control" name="bathrooms" id="bathrooms">
+                    <select class="form-control styled-input" name="bathrooms" id="bathrooms">
                         @for ($i = 1; $i < 26; $i++)
                             <option value="{{ $i }}">{{ $i }}</option>
                         @endfor
@@ -97,7 +97,7 @@
 
                 <div class="mb-3 w-30">
                     <label for="dimentions">Metri quadri della struttura *</label>
-                    <input class="form-control" min="0" type="number" placeholder="10" name="dimentions" id="dimentions"
+                    <input class="form-control styled-input" min="0" type="number" placeholder="10" name="dimentions" id="dimentions"
                     @if ($errors->any())
                         value="{{ old('dimentions') }}"
                     @endif>
@@ -116,7 +116,7 @@
                     <label for="address">Inserisci la via, con civico se presente *</label>
 
                     <div id="searchBox-container">
-                    <input id="main-input" type="hidden" name="address">
+                    <input id="main-input address-input" type="hidden" name="address">
 
 
                     </div>
@@ -134,7 +134,7 @@
             <div class="d-flex justify-content-between">
                 <div class="mb-3 w-50 pr-1">
                     <label for="image">Carica un'immagine della struttura</label>
-                    <input type="file" class="form-control" id="image" name="image" accept="image/*"
+                    <input type="file" class="form-control styled-input" id="image" name="image" accept="image/*"
                     @if ($errors->any())
                         value="{{ old('image') }}"
                     @endif>
@@ -149,7 +149,7 @@
 
                 <div class="mb-3 w-50 pl-1">
                     <label for="price">Prezzo per notte *</label>
-                    <input class="form-control" type="text" name="price" id="price"
+                    <input class="form-control styled-input" type="text" name="price" id="price"
                     @if ($errors->any())
                         value="{{ old('price') }}"
                     @endif>
@@ -167,6 +167,7 @@
             <div class="mb-3">
                 @foreach ($perks as $perk)
                     <input
+                    class="styled-perks"
                         type="checkbox"
                         name="perks[]"
                         id="perk{{ $loop->iteration }}"
@@ -182,7 +183,7 @@
 
             <div class="mb-3">
                 <label for="description">Descrizione dell'appartamento</label>
-                <textarea class="form-control" type="text" name="description" id="description" cols="30" rows="10"
+                <textarea class="form-control styled-input" type="text" name="description" id="description" cols="30" rows="10"
                 @if ($errors->any())
                     value="{{ old('description') }}"
                 @endif></textarea>
@@ -196,14 +197,14 @@
             </div>
 
             <div class="mb-3">
-                <button id="pubblica" class="btn btn-primary" name="visible" type="button" value="1" data-toggle="modal" data-target="#modal-public">Pubblica</button>
-                <button id="bozza" class="btn btn-primary" name="visible" type="submit" value="0">Salva in bozza</button>
+                <button id="pubblica" class="btn-pubblica" name="visible" type="button" value="1" data-toggle="modal" data-target="#modal-public">Pubblica</button>
+                <button id="bozza" class=" btn-bozza" name="visible" type="submit" value="0">Salva in bozza</button>
             </div>
 
-            <div class="modal fade" id="modal-public" tabindex="-1" aria-labelledby="modal-public-label" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
+            <div class="modal fade mb-modal" id="modal-public" tabindex="-1" aria-labelledby="modal-public-label" aria-hidden="true">
+                <div class="modal-dialog mb-modalCont">
+                    <div class="modal-content mb-modalCont">
+                        <div class="modal-header mb-modalCont">
                             <h5 class="modal-title" id="modal-public-label">Vuoi pubblicare?</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -212,9 +213,9 @@
                         <div class="modal-body">
                             <p>Sei sicuro di aver compilato tutte le informazioni correttamente?</p>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
-                            <button type="submit" class="btn btn-success">Pubblica</button>
+                        <div class="modal-footer  mb-modalFoot">
+                            <button type="button" class="btn-chiudi" data-dismiss="modal">Chiudi</button>
+                            <button type="submit" class="btn-inserisci">Pubblica</button>
                         </div>
                     </div>
                 </div>
