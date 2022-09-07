@@ -2,45 +2,65 @@
     <div class="container">
         <h1>Risultati della ricerca</h1>
 
-        <div v-if="!isFiltered">
-
-            <div  v-for="apartment in apartments" :key="apartment.id" class="mb-4">
-                <div>{{ apartment.name}}</div>
-                <div>{{ apartment.address }}</div>
-            </div>
-
-        </div>
-
-        <div v-else>
-
-            <p v-for="apartment in filtered_apartments" :key="apartment.id">{{ apartment.name}}</p>
-
-        </div>
-
+        <SearchbarComp @searchDwelling="searchDwelling"/>
         <div>
-            <div v-for="perk in perks" :key="perk.id" class="d-inline mx-2">
-                <label :for="perk.name">{{ perk.name }}</label>
-                <input @click="addPerk(perk.id)" type="checkbox" name="perk-box" :id="perk.name" :value="perk.id">
+            <div v-if="haveResults">
+                <div v-if="!isFiltered" class="d-flex flex-wrap">
+
+                <div v-for="apartment in apartments" :key="apartment.id" class="my-4 mx-2 card w-45 dwellingCard">
+
+                    <router-link :to="{name: 'show-apartment', params:{ slug: apartment.slug}}" class="card-link">
+                        <DwellingcardComp :apartment="apartment"/>
+                    </router-link>
+
+                </div>
+
+                </div>
+
+                <div v-else>
+
+                <div class="my-4 mx-2 card w-45 dwellingCard" v-for="apartment in filtered_apartments" :key="apartment.id">
+
+                    <router-link :to="{name: 'show-apartment', params:{apartment}}" class="card-link">
+                        <DwellingcardComp :apartment="apartment"/>
+                    </router-link>
+
+                </div>
+
+                </div>
+                <div>
+                    <div v-for="perk in perks" :key="perk.id" class="d-inline mx-2">
+                        <label :for="perk.name">{{ perk.name }}</label>
+                        <input @click="addPerk(perk.id)" type="checkbox" name="perk-box" :id="perk.name" :value="perk.id">
+                    </div>
+                </div>
+
+                <div>
+                    <button :id="`category${category.id}`" class="btn btn-primary mr-2" v-for="category in categories"
+                    :key="category.id" @click="addCategory(`category${category.id}`)">{{category.name}}</button>
+                </div>
+
+                <button class="btn btn-secondary mt-3" @click.prevent="applyFilters(), filtersErrorMethod()">Applica i filtri</button>
+                <button class="btn btn-secondary mt-3" @click.prevent="removeFilters()">Rimuovi tutti i filtri</button>
+
+                <div v-if="filtersError" id="filters-error" class="mt-2">Non ci sono filtri da applicare</div>
+            </div>
+            <div v-else>
+                <h3>Non ci sono appartamenti con i seguenti parametri di ricerca</h3>
             </div>
         </div>
 
-        <div>
-            <button class="btn btn-primary mr-2" v-for="category in categories"
-            :key="category.id" @click="addCategory(category.id)">{{category.name}}</button>
-        </div>
-
-        <button class="btn btn-secondary mt-3" @click.prevent="applyFilters()">Applica i filtri</button>
-        <button class="btn btn-secondary mt-3" @click.prevent="removeFilters()">Rimuovi tutti i filtri</button>
-
-        <div v-if="filtersError" id="filters-error" class="mt-2">Non ci sono filtri da applicare</div>
-
-
+        <button class="btn btn-primary m-5" @click="getUser()">user</button>
     </div>
 </template>
 
 <script>
+import SearchbarComp from '../partials/SearchbarComp.vue';
+import DwellingcardComp from '../partials/DwellingcardComp.vue';
+
 export default {
     name: 'SearchresultsComp',
+    components: { SearchbarComp, DwellingcardComp },
     data(){
         return{
             city: this.$route.params.city,
@@ -52,19 +72,32 @@ export default {
             checkedCategories: [],
             categories: null,
             filtered_apartments: [],
-            isFiltered: false
+            isFiltered: false,
+            haveResults: true
         }
     },
 
     methods:{
-        searchDwelling(){
 
-            axios.get(this.apiUrl + '/search-dwelling/' + this.city)
+        searchDwelling(city){
+
+            axios.get(this.apiUrl + '/search-dwelling/' + city)
             .then(r =>{
                 this.apartments = r.data.dwellings;
-                this.perks = r.data.perks;
-                this.categories = r.data.categories;
+
+                if (this.perks == null && this.categories == null) {
+                    this.perks = r.data.perks;
+                    this.categories = r.data.categories;
+                }
+
+                if(this.apartments.length == 0){
+                    this.haveResults = false;
+                }
+                this.applyFilters();
             })
+            .catch((error) =>{
+                this.isLoading = false;
+            });
         },
 
         addPerk(perkId) {
@@ -76,16 +109,20 @@ export default {
         },
 
         addCategory(categoryId) {
+            let button = document.getElementById(categoryId);
+
             if (!this.checkedCategories.includes(categoryId)) {
                 this.checkedCategories.push(categoryId);
+                button.classList.toggle('selected');
             } else {
                 this.checkedCategories = this.arrayFilter(this.checkedCategories, categoryId);
+                button.classList.toggle('selected');
             }
         },
 
         arrayFilter(array, value) {
-
             return array.filter( el =>
+
                 el != value
             );
         },
@@ -103,7 +140,7 @@ export default {
 
                     this.apartments.forEach(apartment => {
                         // controllo se la categoria dell'appartamento si trova tra le categorie selezionate
-                        if (this.checkedCategories.includes(Number(apartment.category))) {
+                        if (this.checkedCategories.includes(`category${apartment.category}`)) {
 
                             apartments_categories_filtered.push(apartment);
                         }
@@ -144,11 +181,30 @@ export default {
                 }
                 else if (apartments_perks_filtered.length > apartments_categories_filtered.length) {
                     this.filtered_apartments = apartments_categories_filtered.filter( el => apartments_perks_filtered.includes(el))
-                }
+                };
+
+                let checkboxes = document.getElementsByName('perk-box');
+                checkboxes.forEach(element => {
+                    if (this.checkedPerks.includes(element._value)) {
+                        element.checked = true;
+                    };
+                });
+
+                let categoriesButtons = document.querySelectorAll('button.selected');
+                categoriesButtons.forEach(button => {
+                    if (this.checkedCategories.includes(button.id)) {
+                        button.classList.add('selected');
+                    }
+                });
 
                 this.isFiltered = true;
             } else {
                 this.isFiltered = false;
+            }
+        },
+
+        filtersErrorMethod() {
+            if (this.checkedPerks == [] && this.checkedCategories == []) {
                 this.filtersError = true;
             }
         },
@@ -159,15 +215,43 @@ export default {
             this.filtered_apartments = [];
             this.isFiltered = false;
             this.filtersError = false;
-        }
-
+            let checkboxes = document.getElementsByName('perk-box');
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    checkbox.checked = false;
+                }
+            });
+            let categoriesButtons = document.querySelectorAll('button.selected');
+            categoriesButtons.forEach(button => {
+                button.classList.remove('selected');
+            });
+        },
     },
-    mounted(){
-        this.searchDwelling();
+    mounted() {
+        this.searchDwelling(this.city);
     }
 }
 </script>
 
 <style lang="scss" scoped>
+
+    button.selected {
+        color: rgb(172, 23, 23);
+        border: 2px solid rgb(172, 23, 23);
+    }
+    
+.dwellingCard{
+    border: 1px solid black;
+    border-radius: 5px;
+
+    .card-link{
+        text-decoration: none;
+        color: black;
+
+        &:hover {
+            color: blue;
+        }
+    }
+}
 
 </style>
