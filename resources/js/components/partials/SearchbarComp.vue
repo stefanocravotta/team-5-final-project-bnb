@@ -5,7 +5,7 @@
 
 
         </div>
-        <!-- <router-link :to="{name:'search-results', params:{ city: city }}" class="search-button d-inline"><span @click="getValue()">Cerca</span></router-link> -->
+
         <router-link :to="{name:'search-results' , params:{city: city}}" class="search-button d-inline"><span @click="getValue()">Cerca</span></router-link>
     </div>
 </template>
@@ -44,6 +44,8 @@ export default {
             const searchBoxHTML = ttSearchBox.getSearchBoxHTML();
             //Attach searchboxHTML to your page
             document.getElementById('searchBox-container').append(searchBoxHTML);
+            document.querySelector('.tt-search-box-input-container').setAttribute('style', 'border-radius: 6px;')
+            document.querySelector('.tt-search-box').setAttribute('style', 'border-radius: 6px;')
         },
 
         // PRENDE IL VALORE AL CLICK DEL PULSANTE
@@ -64,9 +66,10 @@ export default {
 .search-button{
     margin: 12px 0 0 10px;
     padding: 10px 19px;
+    border-radius: 6px;
+    font-size: 0.9rem;
     background-color: rgb(71, 71, 233);
     color: white;
-    border-radius: 6px;
     text-decoration: none;
     & :hover {
         text-decoration: none;

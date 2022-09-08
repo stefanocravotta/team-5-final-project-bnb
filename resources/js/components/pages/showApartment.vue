@@ -3,9 +3,9 @@
         <!-- imgages -->
         <div class="container-fluid mb-imgPg">
             <div class="row mb-imgSection">
-                <img v-if="apartment.image"
+                <img v-if="apartment[0].image"
                 class="mb-principalImg"
-                :src="`/images/${apartment.image}`" :alt="apartment.name">
+                :src="`/images/${apartment[0].image}`" :alt="apartment[0].name">
                 <img class="mb-principalImg col-8" v-else :src="`/images/villa-affitto-italia-ada-1624884100.jpg`">
             </div>
         </div>
@@ -14,8 +14,8 @@
         <div class="mb-frontCont">
             <!-- propriety description -->
             <div class="container-fluid mb-proprietyDesc">
-                <h1>{{apartment.name}}</h1>
-                <p v-if="apartment.decription">{{apartment.description}}</p>
+                <h1>{{apartment[0].name}}</h1>
+                <p v-if="apartment[0].decription">{{apartment[0].description}}</p>
             </div>
 
             <!-- home info -->
@@ -27,29 +27,31 @@
                     </div>
                     <div class=" mb-infoHome d-flex">
                         <h2>Numero di stanze:</h2>
-                        <h3>{{apartment.rooms}}</h3>
+                        <h3>{{apartment[0].rooms}}</h3>
                     </div>
                     <div class=" mb-infoHome d-flex">
                         <h2>Numero letti:</h2>
-                        <h3>{{apartment.beds}}</h3>
+                        <h3>{{apartment[0].beds}}</h3>
                     </div>
                     <div class=" mb-infoHome d-flex">
                         <h2>Numero bagni:</h2>
-                        <h3>{{apartment.bathrooms}}</h3>
+                        <h3>{{apartment[0].bathrooms}}</h3>
                     </div>
                     <div class=" mb-infoHome d-flex">
                         <h2>Dimensioni della proprietà:</h2>
-                        <h3>{{apartment.dimentions}} mtq</h3>
+                        <h3>{{apartment[0].dimentions}} mtq</h3>
                     </div>
                 </div>
-                    <div class="mb-positionInfo">
-                        <div class="container-fluid">
-                            <h2>Posizione</h2>
-                            <h3>{{apartment.address}}</h3>
+                    <div class="mb-positionInfo d-flex">
+                        <div>
+                            <div>
+                                <h2>Posizione su mappa di:</h2>
+                                <h3>{{apartment[0].address}}</h3>
+                            </div>
                         </div>
-                        <div class="mb-mappa">
-                            <p>Qui ci sarà la mappa giganterrima</p>
-                        </div>
+
+                        <MapComp v-if="apartment != null" :apartments="apartment" :coordinates="coordinates" />
+
                     </div>
             </div>
 
@@ -126,14 +128,15 @@
 </template>
 
 <script>
-// import showApartment from '../showApartment.vue'
+import MapComp from '../partials/MapComp.vue';
 export default {
+  components: { MapComp },
     name: 'ShowApartment',
     data(){
         return{
             apiUrl: '/api/dwellings',
             messageUrl: '/api/save-message',
-            apartment: '',
+            apartment: null,
             apartmentPerks:[],
             categories: null,
             category: '',
@@ -147,7 +150,11 @@ export default {
                 text: null,
                 email: null
             },
-            success: false
+            success: false,
+            coordinates: {
+                lat: null,
+                long: null
+            }
         }
     },
 
@@ -196,7 +203,10 @@ export default {
             axios.get(this.apiUrl + '/show-dwelling/' + this.$route.params.slug)
             .then(r =>{
 
-                this.apartment = r.data.dwelling;
+                this.coordinates.lat = r.data.dwelling.lat;
+                this.coordinates.long = r.data.dwelling.long;
+                this.apartment = [r.data.dwelling];
+                console.log(this.apartment, this.coordinates);
                 this.categories = r.data.categories;
                 this.apartmentPerks = r.data.dwelling.perks;
                 this.dwelling_id = r.data.dwelling.id;
@@ -216,7 +226,7 @@ export default {
         findCategory(){
             // console.log('funzione', this.categories);
             this.categories.forEach(el => {
-                if(this.apartment.category == el.id){
+                if(this.apartment[0].category == el.id){
                     this.category = el.name;
                 }
             });
@@ -366,9 +376,29 @@ export default {
         width: 100%;
         border-bottom:  2px solid #7a9e9f;
         padding-top: 30px;
-        .mb-mappa{
+        & > div:first-child{
+            width: 35%;
+            height: 85vh;
             background-color: rgb(173, 171, 145);
-            width: 100%;
+            color: #292F36;
+            margin: 30px 0px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            & > div{
+                height: 45%;
+                width: 60%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border-top: 2px solid #292F36;
+                border-bottom: 2px solid #292F36;
+            }
+        }
+        #mapContainer{
+            background-color: rgb(173, 171, 145);
+            width: 65%;
             height: 85vh;
             display: flex;
             align-items: center;
@@ -390,7 +420,6 @@ export default {
         h2{
             width: 184px;
             height: fit-content;
-            margin-top: 10vh;
             margin-left: 30%;
             color: rgb(124, 124, 124);
             padding: 12.5px 5px;
