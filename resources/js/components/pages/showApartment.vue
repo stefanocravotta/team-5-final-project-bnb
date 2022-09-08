@@ -3,19 +3,10 @@
         <!-- imgages -->
         <div class="container-fluid mb-imgPg">
             <div class="row mb-imgSection">
-                <img v-if="apartment.image"
-                class="mb-principalImg col-8"
-                :src="`/images/${apartment.image}`" :alt="apartment.name">
+                <img v-if="apartment[0].image"
+                class="mb-principalImg"
+                :src="`/images/${apartment[0].image}`" :alt="apartment[0].name">
                 <img class="mb-principalImg col-8" v-else :src="`/images/villa-affitto-italia-ada-1624884100.jpg`">
-                <div class="mb-containerSide col">
-                    <img
-                    class="mb-sideImg"
-                    :src="'/images/8824717.jpg'" alt="">
-                    <img
-                    class="mb-sideImg"
-                    :src="'/images/8824717.jpg'" alt="">
-                    <div class="button button-2">Mostra più immagini</div>
-                </div>
             </div>
         </div>
 
@@ -23,8 +14,8 @@
         <div class="mb-frontCont">
             <!-- propriety description -->
             <div class="container-fluid mb-proprietyDesc">
-                <h1>{{apartment.name}}</h1>
-                <p v-if="apartment.decription">{{apartment.description}}</p>
+                <h1>{{apartment[0].name}}</h1>
+                <p v-if="apartment[0].decription">{{apartment[0].description}}</p>
             </div>
 
             <!-- home info -->
@@ -36,49 +27,45 @@
                     </div>
                     <div class=" mb-infoHome d-flex">
                         <h2>Numero di stanze:</h2>
-                        <h3>{{apartment.rooms}}</h3>
+                        <h3>{{apartment[0].rooms}}</h3>
                     </div>
                     <div class=" mb-infoHome d-flex">
                         <h2>Numero letti:</h2>
-                        <h3>{{apartment.beds}}</h3>
+                        <h3>{{apartment[0].beds}}</h3>
                     </div>
                     <div class=" mb-infoHome d-flex">
                         <h2>Numero bagni:</h2>
-                        <h3>{{apartment.bathrooms}}</h3>
+                        <h3>{{apartment[0].bathrooms}}</h3>
                     </div>
                     <div class=" mb-infoHome d-flex">
                         <h2>Dimensioni della proprietà:</h2>
-                        <h3>{{apartment.dimentions}} mtq</h3>
+                        <h3>{{apartment[0].dimentions}} mtq</h3>
                     </div>
                 </div>
-                    <div class="mb-positionInfo">
-                        <div class="container-fluid">
-                            <h2>Posizione</h2>
-                            <h3>{{apartment.address}}</h3>
+                    <div class="mb-positionInfo d-flex">
+                        <div>
+                            <div>
+                                <h2>Posizione su mappa di:</h2>
+                                <h3>{{apartment[0].address}}</h3>
+                            </div>
                         </div>
-                        <div class="mb-mappa">
-                            <p>Qui ci sarà la mappa giganterrima</p>
-                        </div>
+
+                        <MapComp v-if="apartment != null" :apartments="apartment" :coordinates="coordinates" />
+
                     </div>
             </div>
 
             <!-- PERKS -->
             <div class="mb-services d-flex justify-content-between">
                 <div class="mb-containerSide">
-                    <!-- <img
-                    class="mb-sideImg"
-                    :src="'/images/8824717.jpg'" alt="">
-                    <img
-                    class="mb-sideImg"
-                    :src="'/images/8824717.jpg'" alt=""> -->
-                    <div class="button button-2">Servizi</div>
+                    <h2>Servizi</h2>
                 </div>
                 <div class="mb-perks">
                     <div class="container">
                         <div class="row">
 
                             <div v-for="perk in apartmentPerks" :key="perk.id" class="col-4 mb-rowPerks">
-                                <i>{{perk.icon}}</i>
+                                <i v-html="perk.icon"></i>
                                 <p>{{perk.name}}</p>
                             </div>
 
@@ -122,9 +109,11 @@
                                     <p v-if="errors.text" class="mt-2 error">{{ errors.text[0] }}</p>
                                 </div>
 
-                                <div class="d-flex flex-column mt-3">
-                                    <button type="submit" class="btn btn-success">
-                                        {{ sending ? 'Invio in corso...' : 'Invia' }}
+                                <div class="d-flex flex-column mt-3 mb-btnSub">
+                                    <button type="submit" class="button button-2">
+                                        <!-- <div class="button button-2"> -->
+                                            {{ sending ? 'Invio in corso...' : 'Invia' }}
+                                        <!-- </div> -->
                                     </button>
                                 </div>
                             </form>
@@ -139,14 +128,15 @@
 </template>
 
 <script>
-// import showApartment from '../showApartment.vue'
+import MapComp from '../partials/MapComp.vue';
 export default {
+  components: { MapComp },
     name: 'ShowApartment',
     data(){
         return{
             apiUrl: '/api/dwellings',
             messageUrl: '/api/save-message',
-            apartment: '',
+            apartment: null,
             apartmentPerks:[],
             categories: null,
             category: '',
@@ -160,7 +150,11 @@ export default {
                 text: null,
                 email: null
             },
-            success: false
+            success: false,
+            coordinates: {
+                lat: null,
+                long: null
+            }
         }
     },
 
@@ -209,7 +203,10 @@ export default {
             axios.get(this.apiUrl + '/show-dwelling/' + this.$route.params.slug)
             .then(r =>{
 
-                this.apartment = r.data.dwelling;
+                this.coordinates.lat = r.data.dwelling.lat;
+                this.coordinates.long = r.data.dwelling.long;
+                this.apartment = [r.data.dwelling];
+                console.log(this.apartment, this.coordinates);
                 this.categories = r.data.categories;
                 this.apartmentPerks = r.data.dwelling.perks;
                 this.dwelling_id = r.data.dwelling.id;
@@ -229,7 +226,7 @@ export default {
         findCategory(){
             // console.log('funzione', this.categories);
             this.categories.forEach(el => {
-                if(this.apartment.category == el.id){
+                if(this.apartment[0].category == el.id){
                     this.category = el.name;
                 }
             });
@@ -244,62 +241,62 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 // sezione immagini
 .mb-imgPg{
-    background-color: rgb(187, 187, 187);
-    padding-top: 40px;
+    background-color: #beb7a4;
+    padding: 40px 0;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    img{
+        height: fit-content;
+    }
     // height: 80%;
     // position: sticky;
     // top: 0;
     // z-index: -1;
     .mb-imgSection{
         overflow: scroll;
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+            img{
+                width: 100%;
+            }
             img:hover{
                 filter: brightness(80%);
             }
             // .mb-principalImg{
             //     // width: 68.2%;
             // }
-            .mb-containerSide{
-                // width: 31.8%;
-                // margin-left: 2.7%;
-                img{
-                    width: 70%;
-                    margin: 0 auto;;
-                // width: 68.2%;
-                }
-                img:hover{
-                    filter: brightness(80%);
-                }
-                // button show more
-                .button {
-                    width: 77%;
+
+        }
+}               .button {
+                    width: 100%;
                     padding-top: 30px;
                     padding-bottom: 30px;
-                    text-align: center;
+                    // text-align: center;
                     color: #000;
                     text-transform: uppercase;
                     font-weight: 600;
-                    cursor: pointer;
                     display: inline-block;
                 }
                 .button-2 {
                     color: #fff;
-                    border: 3px solid #000000;
-                    background-image: linear-gradient(60deg, #000000 50%, transparent 50%);
+                    border: 0;
+                    background-image: linear-gradient(45deg, #000000 50%, transparent 50%);
                     background-size: 300%;
                     background-repeat: no-repeat;
                     background-position: 0%;
                     transition: background 300ms ease-in-out;
                 }
                 .button-2:hover {
+                    // background-image: linear-gradient(60deg, #FFFFFF 50%, transparent 50%);
+                    // border: 3px solid #FFFFFF;
                     background-position: 100%;
                     color: #000000;
                 }
-            }
-        }
-}
 // descrizione con titolo dell'abitazione + descrizione di 200parole
     .mb-proprietyDesc{
         // background-color: rgb(187, 187, 187);
@@ -333,9 +330,9 @@ export default {
         // background-color: rgb(187, 187, 187);
         margin: 0;
         .mb-infoHome{
-            border: 1px solid #403829;
-            border-bottom: 2px solid #403829;
-            border-top: 2px solid #403829;
+            border: 2px solid #7a9e9f;
+            border-bottom: 2px solid #7a9e9f;
+            border-top: 2px solid #7a9e9f;
             // box-sizing: border-box;
             flex-grow: 1;
             width: 100%;
@@ -359,16 +356,16 @@ export default {
         }
         @media screen and (max-width: 992px) {
             .mb-infoHome{
-                border-bottom: 1px solid #403829;
-                border-top: 1px solid #403829;
+                border-bottom: 1px solid #7a9e9f;
+                border-top: 1px solid #7a9e9f;
             }
             .mb-infoHome:first-of-type{
-                border-top:  2px solid #403829;
-                border-left:  2px solid #403829;
+                border-top:  2px solid #7a9e9f;
+                border-left:  2px solid #7a9e9f;
             }
             .mb-infoHome:last-of-type{
-                border-bottom:  2px solid #403829;
-                border-right:  2px solid #403829;
+                border-bottom:  2px solid #7a9e9f;
+                border-right:  2px solid #7a9e9f;
             }
         }
     }
@@ -377,11 +374,31 @@ export default {
     .mb-positionInfo{
         // background-color: rgb(187, 187, 187);
         width: 100%;
-        border-bottom:  2px solid #403829;
+        border-bottom:  2px solid #7a9e9f;
         padding-top: 30px;
-        .mb-mappa{
+        & > div:first-child{
+            width: 35%;
+            height: 85vh;
             background-color: rgb(173, 171, 145);
-            width: 100%;
+            color: #292F36;
+            margin: 30px 0px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            & > div{
+                height: 45%;
+                width: 60%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border-top: 2px solid #292F36;
+                border-bottom: 2px solid #292F36;
+            }
+        }
+        #mapContainer{
+            background-color: rgb(173, 171, 145);
+            width: 65%;
             height: 85vh;
             display: flex;
             align-items: center;
@@ -393,44 +410,21 @@ export default {
     // container perks
     .mb-services{
         .mb-containerSide{
-            width: 500px;
+            width: 45%;
                 // button show more
-                .button {
-                    width: 67%;
-                    padding-top: 30px;
-                    padding-bottom: 30px;
-                    text-align: center;
-                    color: #000;
-                    text-transform: uppercase;
-                    font-weight: 600;
-                    display: inline-block;
-                }
-                .button-2 {
-                    color: #fff;
-                    border: 3px solid #000000;
-                    background-image: linear-gradient(30deg, #000000 50%, transparent 50%);
-                    background-size: 300%;
-                    background-repeat: no-repeat;
-                    background-position: 0%;
-                    transition: background 300ms ease-in-out;
-                }
-                .button-2:hover {
-                    background-position: 100%;
-                    color: #000000;
-                }
             }
 
         // background-color: rgb(187, 187, 187);
         padding: 80px 0;
-        border-bottom:  2px solid #403829;
-        h3{
-            width: 25%;
+        border-bottom:  2px solid #7a9e9f;
+        h2{
+            width: 184px;
             height: fit-content;
-            margin-top: 10vh;
+            margin-left: 30%;
             color: rgb(124, 124, 124);
             padding: 12.5px 5px;
-            border-top: 1px solid #403829;
-            border-bottom: 1px solid #403829;
+            border-top: 2px solid #7a9e9f;
+            border-bottom: 2px solid #7a9e9f;
             text-align: center;
         }
         .mb-perks{
@@ -467,6 +461,7 @@ export default {
             text-decoration: none;
             transform: rotate(180deg);
             height: 54px;
+            cursor:help;
 
         &__arrow {
             display: inline-flex;
@@ -497,7 +492,7 @@ export default {
             left: 0;
             width: 0;
             height: 2px;
-            background: #596D28;
+            background: #7a9e9f;
         }
     }
   }
@@ -519,7 +514,7 @@ export default {
         left: 80px;
         width: 70px;
         height: 2px;
-        background: #596D28;
+        background: #7a9e9f;
         }
     }
         .wrapper {
@@ -540,7 +535,7 @@ export default {
         position: absolute;
         left: 0;
         top: 0;
-        color: #596D28;
+        color: #7a9e9f;
         transition: width .5s ease-in-out;
         white-space: nowrap;
         }
@@ -595,7 +590,7 @@ export default {
 
             .mb-emailContact, .mb-msgContact{
                 margin: 0 auto;
-                color: #758F34;
+                color: #beb7a4;
             }
             #content{
                 height: 200px;
@@ -615,6 +610,13 @@ export default {
         }
     }
 
+.mb-btnSub{
+    height: 60px;
+    button{
+        height: 100%;
+    }
+}
+
 .error{
     color: red;
     font-size: 14px;
@@ -623,5 +625,7 @@ export default {
 .success{
     color: rgb(6, 148, 6);
 }
+
+
 
 </style>

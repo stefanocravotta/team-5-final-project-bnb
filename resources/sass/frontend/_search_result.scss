@@ -1,0 +1,24 @@
+.perk-button{
+    position: relative;
+    background-color: transparent;
+    color: $secondary-color;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    opacity: .4;
+    &:hover{
+        opacity: 1;
+    }
+
+
+
+.perk-link{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 998;
+    }
+}
+

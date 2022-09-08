@@ -13,25 +13,37 @@ use Illuminate\Http\Request;
 class SearchDwellingController extends Controller
 {
     public function getDwellingsByCity($city){
-        $httpClient = new \GuzzleHttp\Client();
-        $provider = new \Geocoder\Provider\TomTom\TomTom($httpClient, '1ICjwoAETA30YhhNatAlLrdJ6g8V1ZDc');
-        $geocoder = new \Geocoder\StatefulGeocoder($provider);
-        $address = $city;
 
-        $result = $geocoder->geocodeQuery(GeocodeQuery::create($address));
+        $coordinates = $this->getCityCoordinates($city);
 
-        $lat = $result->get(0)->getCoordinates()->getLatitude();
-        $long = $result->get(0)->getCoordinates()->getLongitude();
+        $lat = $coordinates['lat'];
+        $long = $coordinates['long'];
 
         $radius = 0.2;
 
-        $dwellings = Dwelling::whereBetween('lat', [$lat - $radius, $lat + $radius])->whereBetween('long', [$long - $radius, $long + $radius])->where('visible', 1)->with('perks')->get();
+        $dwellings = Dwelling::whereBetween('lat', [$lat - $radius, $lat + $radius])->whereBetween('long', [$long - $radius, $long + $radius])->with('perks')->get();
 
         return $dwellings;
 
     }
 
+    public function getCityCoordinates($city) {
+        $httpClient = new \GuzzleHttp\Client();
+        $provider = new \Geocoder\Provider\TomTom\TomTom($httpClient, '1ICjwoAETA30YhhNatAlLrdJ6g8V1ZDc');
+        $geocoder = new \Geocoder\StatefulGeocoder($provider);
+
+        $result = $geocoder->geocodeQuery(GeocodeQuery::create($city));
+
+        $lat = $result->get(0)->getCoordinates()->getLatitude();
+        $long = $result->get(0)->getCoordinates()->getLongitude();
+
+        return compact('lat', 'long');
+
+    }
+
     public function SearchDwelling($city){
+
+        $coordinates = $this->getCityCoordinates($city);
 
         $dwellings = $this->getDwellingsByCity($city);
 
@@ -40,16 +52,7 @@ class SearchDwellingController extends Controller
         $categories = Category::all();
 
 
-        return response()->json(compact('dwellings', 'perks', 'categories'));
-    }
-
-    public function searchByCategory($category, $dwelling){
-
-        $dwellings_by_city = $this->getDwellingsByCity($dwelling);
-
-        $apartment = Dwelling::where('category', $category)->get();
-
-        return response()->json(compact('apartment'));
+        return response()->json(compact('dwellings', 'perks', 'categories', 'coordinates'));
     }
 
     public function showDwelling($slug){
@@ -63,4 +66,15 @@ class SearchDwellingController extends Controller
         return response()->json(compact('dwelling', 'categories'));
     }
 
+
+    public function getSponsoredDwellings(){
+
+        $countDwellings = count(Dwelling::all());
+
+        $i = $countDwellings - 1;
+
+        $random_dwellings = Dwelling::all()->random($i);
+
+        return response()->json(compact('random_dwellings'));
+    }
 }
