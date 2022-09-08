@@ -20,13 +20,23 @@
     width: 350px;
     background-color: silver;
     border-radius: 40px;
+}.row-wrap{
+    align-items: center;
+    justify-content: center;
 }
 .c-row{
-    width: 100%;
-    height: 1px;
+    width: 95%;
+    height: 3px;
     background-color: white;
     margin-top: 8px;
     margin-bottom: 8px;
+    border-radius: 5px;
+    animation-name: linerow;
+    animation-duration: 3s;
+}
+@keyframes linerow{
+    0%{width: 0%;}
+    100%{width: 95%;}
 }
 .sm-img{
     height: 50px;
@@ -86,15 +96,22 @@ a{
 a:hover{
     text-decoration: none;
 }
+.c-cont{
+    margin-bottom: 20px;
+    rotate: 270deg;
 
+}
+.c-wrap{
+    width: 50px;
+    height: 3px;
+}
 .c-1{
     height: 3px;
     width: 10px;
     background-color: yellow;
     animation-name: c-1an;
-    animation-duration: 5s;
-
-    // animation-iteration-count: infinite;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
 }
 @keyframes c-1an {
     0%{width: 10px;}
@@ -107,7 +124,7 @@ a:hover{
     background-color: red;
     animation-name: c-2an;
     animation-duration: 5s;
-    // animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
 }
 @keyframes c-2an {
     0%{width: 50px;}
@@ -119,8 +136,8 @@ a:hover{
     width: 32px;
     background-color: blue;
     animation-name: c-3an;
-    animation-duration: 5s;
-    // animation-iteration-count: infinite;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
 }
 @keyframes c-3an {
     0%{width: 32px;}

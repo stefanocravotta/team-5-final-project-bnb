@@ -55,7 +55,10 @@
                         @endif
                     </div>
                 </div>
-            </header>
+
+            </div>
+        </header>
+        <div class="bt-row">
         </div>
 
         <div id="app"></div>

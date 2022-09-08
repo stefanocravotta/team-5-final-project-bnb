@@ -14,9 +14,15 @@
                     <div  class="arrow">freccia sx</div>
                     <div  class="arrow-dx">freccia dx</div>
                 </div> -->
-                <div class="box">
-                    <div><h2>Benvenuto</h2></div>
+                <div class="box"><h2>Benvenuto</h2></div>
+                <div class="d-flex txt-wrap">
+                         <div class="show-text">BENVENUTO</div>
                 </div>
+                <!-- <div class="show-text">
+                        <span>Cerca la miglior offerta tra case, ville e molto altro! <br></span>
+                        <span>Goditi le vacanze, al resto pensiamo noi.</span>
+                </div> -->
+
 
 
 
@@ -65,10 +71,6 @@ export default {
         background-color: rgba($color: #000000, $alpha: 0.6);
     }.box{
         width: 15%;
-        // min-height: 60%;
-        // background-color: rgb(207, 203, 203);
-        // background-color: #95A3B3;
-        // background-color: #FAFAFA;
         border-radius: 20px;
         background-color: #282f35;
         text-align: center;
@@ -76,7 +78,6 @@ export default {
         margin-left: 80px;
         animation-name: test;
         animation-duration: 3s;
-        // animation-iteration-count: infinite;
         position: relative;
     }
     @keyframes test {
@@ -85,7 +86,27 @@ export default {
         60%{ color:transparent;}
         99%{ color:transparent;}
         100%{width: 15%; opacity: 1;}
-
+    }
+    .txt-wrap{
+        max-width: 100%;
+        justify-content: center;
+    }
+    .show-text{
+        display: flex;
+        justify-content: center;
+        border-radius: 20px;
+        background-color: #282f35;
+        font-size: 50px;
+        width: 30%;
+        animation-name: test2;
+        animation-duration: 1s;
+    }
+    @keyframes test2 {
+        0%{width: 0%; color:transparent; opacity: 0;}
+        40%{ color:transparent;}
+        60%{ color:transparent;}
+        99%{ color:transparent;}
+        100%{width: 30%; opacity: 1;}
     }
     .arrow{
         position: absolute;

@@ -2,7 +2,7 @@
     <div>
         <JumboComp />
         <div class="container">
-            <div>prova</div>
+
             <h4>Cerca offerte su hotel, ville e tanto altro...</h4>
             <p>Cerca il nome di una città o di una via!</p>
 
@@ -184,6 +184,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+
 .content{
     flex-direction: column;
     margin-bottom: 80px;
