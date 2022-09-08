@@ -4,7 +4,6 @@ return $dwellings = [
     [
         "user_id" => 1,
         "name" => "Appartamento Pistoiese",
-        "slug" => "appartamento-pistoiese",
         "category" => 2,
         "rooms" => 3,
         "beds" => 2,
@@ -21,7 +20,6 @@ return $dwellings = [
     [
         "user_id" => 1,
         "name" => "Appartamento Livornese",
-        "slug" => "appartamento-livornese",
         "category" => 2,
         "rooms" => "4",
         "beds" => "1",
@@ -38,7 +36,6 @@ return $dwellings = [
     [
         "user_id" => 1,
         "name" => "Appartamento Milanese",
-        "slug" => "appartamento-milanese",
         "category" => 2,
         "rooms" => "2",
         "beds" => "1",
@@ -56,7 +53,6 @@ return $dwellings = [
     [
         "user_id" => 1,
         "name" => "Casa in Torino",
-        "slug" => "casa-in-torino",
         "category" => 1,
         "rooms" => "5",
         "beds" => "3",
@@ -75,7 +71,6 @@ return $dwellings = [
     [
         "user_id" => 1,
         "name" => "Camera a Parigi",
-        "slug" => "camera-a-parigi",
         "category" => 5,
         "rooms" => "1",
         "beds" => "1",
@@ -94,7 +89,6 @@ return $dwellings = [
     [
         "user_id" => 1,
         "name" => "Camera Romana",
-        "slug" => "camera-romana",
         "category" => 5,
         "rooms" => "1",
         "beds" => "1",
@@ -113,7 +107,6 @@ return $dwellings = [
     [
         "user_id" => 1,
         "name" => "Appartamento Roma Centro",
-        "slug" => "appartamento-roma-centro",
         "category" => 2,
         "rooms" => "4",
         "beds" => "2",
@@ -132,7 +125,6 @@ return $dwellings = [
     [
         "user_id" => 1,
         "name" => "Appartamento Centro Romano",
-        "slug" => "appartamento-centro-romano",
         "category" => 2,
         "rooms" => "3",
         "beds" => "2",
@@ -150,7 +142,6 @@ return $dwellings = [
     [
         "user_id" => 1,
         "name" => "Appartamento centro di Firenze",
-        "slug" => "appartamento-centro-di-firenze",
         "category" => 2,
         "rooms" => "3",
         "beds" => "2",
@@ -167,7 +158,6 @@ return $dwellings = [
     [
         "user_id" => 1,
         "name" => "Affittasi appartamento Firenze",
-        "slug" => "affittasi-appartamento-firenze",
         "category" => 2,
         "rooms" => "4",
         "beds" => "2",
@@ -184,7 +174,6 @@ return $dwellings = [
     [
         "user_id" => 1,
         "name" => "Appartamento Pistoiese",
-        "slug" => "appartamento-pistoiese",
         "category" => 2,
         "rooms" => "3",
         "beds" => "2",
