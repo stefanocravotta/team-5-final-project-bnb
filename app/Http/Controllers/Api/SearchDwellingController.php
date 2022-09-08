@@ -65,12 +65,8 @@ class SearchDwellingController extends Controller
 
     public function getSponsoredDwellings(){
 
-        $countDwellings = count(Dwelling::all());
+        $dwellings = Dwelling::whereNotNull('expiration_date')->get();
 
-        $i = $countDwellings - 1;
-
-        $random_dwellings = Dwelling::all()->random($i);
-
-        return response()->json(compact('random_dwellings'));
+        return response()->json(compact('dwellings'));
     }
 }
