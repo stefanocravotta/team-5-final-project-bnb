@@ -29,9 +29,6 @@ class CreateDwellingSponsorisationTable extends Migration
                   ->on('sponsorisations')
                   ->onDelete('cascade');
 
-            $table->dateTime('start_date');
-            $table->dateTime('expiration_date');
-
         });
     }
 

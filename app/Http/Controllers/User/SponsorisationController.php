@@ -30,22 +30,19 @@ class SponsorisationController extends Controller
 
         $dwelling = Dwelling::where('id', $data['dwelling_id'])->first();
 
-        dd($dwelling->sponsorisations);
+        $today = Carbon::now('Europe/Rome');
 
-        /* foreach ($dwelling->sponsorisations as $sponsorisation){
-            dd($sponsorisation->pivot->DwellingsSponsorisation);
-        } */
+        $dwelling->star_date = $today;
 
-        $today = Carbon::now('Europe/Rome')->format('d-m-Y H:i');
+        $dwelling->expiration_date = Carbon::now('Europe/Rome')->addHours($sponsorisation->time);
 
-        $data['start_date'] = $today;
+        $dwelling->sponsored = 1;
 
-        $data['expiration_date'] = Carbon::now('Europe/Rome')->addHours($sponsorisation->time)->format('d-m-Y H:i');
+        $dwelling->update();
 
-        $dwelling->sponsorisations()->sync(['']);
+        $dwelling->sponsorisations()->attach($sponsorisation->id);
 
-        // Cambiare da many to many a one to many e vaffanculo!
-
+        return redirect()->route('user.dashboard');
 
 
 

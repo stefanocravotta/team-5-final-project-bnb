@@ -37,6 +37,8 @@ class CreateDwellingsTable extends Migration
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->boolean('visible')->default(1);
+            $table->dateTime('star_date')->nullable();
+            $table->dateTime('expiration_date')->nullable();
             $table->mediumInteger('price');
             $table->timestamps();
         });
