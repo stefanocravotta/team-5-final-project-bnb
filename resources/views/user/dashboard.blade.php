@@ -13,7 +13,7 @@
             <hr>
             <p><a href="{{route('user.messages')}}"><i class="fa-solid fa-envelope"></i> Vai ai tuoi messaggi</a></p>
             <hr>
-            <p><a href="{{route('user.dashboard')}}"><i class="fa-solid fa-money-bill"></i> Sponsorizzazioni</a></p>
+            <p><a href="{{route('user.sponsorisations')}}"><i class="fa-solid fa-money-bill"></i> Sponsorizzazioni</a></p>
             <hr>
             <p><a href="{{route('user.dwellings.create')}}"><i class="fa-solid fa-building"></i> Aggiungi un appartamento</a></p>
             <hr>
