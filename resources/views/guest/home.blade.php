@@ -45,10 +45,10 @@
                                 @auth
                                     <a href="{{ route('user.dashboard') }}"><i class="fa-regular fa-user"></i></a>
                                 @else
-                                    <a href="{{ route('login') }}">Login</a>
+                                    <a href="{{ route('login') }}">Accedi</a>
 
                                     @if (Route::has('register'))
-                                        <a href="{{ route('register') }}">Register</a>
+                                        <a href="{{ route('register') }}">Registrati</a>
                                     @endif
                                 @endauth
                             </div>

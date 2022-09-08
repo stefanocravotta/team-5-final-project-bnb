@@ -2,9 +2,10 @@
     <div>
         <JumboComp />
         <div class="container">
+            <h4>Cerca offerte su hotel, ville e tanto altro...</h4>
+
             <SearchbarComp />
-            <h1>Homepage</h1>
-            <h4>Welcome to the homepage of our website!</h4>
+
         </div>
         <div class="content d-flex">
 
@@ -23,7 +24,7 @@
                             <h4>{{dwelling.name}}</h4>
                         </div>
                         <div>
-                            <p>{{dwelling.price}}</p>
+                            <p>{{dwelling.price}} €</p>
                         </div>
                     </div>
 
@@ -41,7 +42,7 @@
                             <h4>{{dwelling.name}}</h4>
                         </div>
                         <div>
-                            <p>{{dwelling.price}}</p>
+                            <p>{{dwelling.price}} €</p>
                         </div>
                     </div>
 
@@ -200,7 +201,7 @@ export default {
         justify-content: center;
     }.box{
         width: calc(90% / 3);
-        height: 250px;
+        min-height: 250px;
         margin: 15px;
         background-color: #FAFAFA;
         justify-content: center;
