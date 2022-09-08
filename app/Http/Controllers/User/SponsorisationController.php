@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
+session_start();
+require_once('../vendor/autoload.php');
+
 use App\Dwelling;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SponsorisationRequest;
@@ -18,14 +21,23 @@ class SponsorisationController extends Controller
         $sponsorisations = Sponsorisation::all();
         $dwellings_user = Dwelling::where('user_id', $user_id)->get();
 
-        return view('user.sponsorisation', compact('sponsorisations','dwellings_user'));
+        $gateway = new \Braintree\Gateway([
+            'environment' => env('BT_ENVIRONMENT'),
+            'merchantId' => env('BT_MERCHANT_ID'),
+            'publicKey' => env('BT_PUBLIC_KEY'),
+            'privateKey' => env('BT_PRIVATE_KEY')
+        ]);
+
+        $token = $gateway->ClientToken()->generate();
+
+        return view('user.sponsorisation', compact('sponsorisations','dwellings_user', 'token'));
     }
 
     public function update(SponsorisationRequest $request){
 
         $data = $request->all();
 
-        $sponsorisation = Sponsorisation::where('id', $data['sponsorisation_id'])->first();
+        $sponsorisation = Sponsorisation::where('price', $data['amount'])->first();
 
         $dwelling = Dwelling::where('id', $data['dwelling_id'])->first();
 
@@ -47,7 +59,37 @@ class SponsorisationController extends Controller
 
         $dwelling->sponsorisations()->attach($sponsorisation->id);
 
-        return redirect()->route('user.dashboard');
+        $gateway = new \Braintree\Gateway([
+            'environment' => env('BT_ENVIRONMENT'),
+            'merchantId' => env('BT_MERCHANT_ID'),
+            'publicKey' => env('BT_PUBLIC_KEY'),
+            'privateKey' => env('BT_PRIVATE_KEY')
+        ]);
+
+        $amount = $request->amount;
+        $nonce = $request->payment_method_nonce;
+
+        $result = $gateway->transaction()->sale([
+            'amount' => $amount,
+            'paymentMethodNonce' => $nonce,
+            'options' => [
+                'submitForSettlement' => true
+            ]
+        ]);
+
+        if ($result->success) {
+            $transaction = $result->transaction;
+
+            return redirect()->route('user.dashboard')->with('success_message', 'Transaction successfull');
+        } else {
+            $errorString = "";
+
+            foreach($result->errors->deepAll() as $error) {
+                $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
+            }
+
+            return redirect()->route('user.dashboard')->with('error_message', 'Transaction unsuccessfull');
+        }
 
     }
 
