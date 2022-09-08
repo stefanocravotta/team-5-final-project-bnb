@@ -86,3 +86,46 @@ a{
 a:hover{
     text-decoration: none;
 }
+
+.c-1{
+    height: 3px;
+    width: 10px;
+    background-color: yellow;
+    animation-name: c-1an;
+    animation-duration: 5s;
+
+    // animation-iteration-count: infinite;
+}
+@keyframes c-1an {
+    0%{width: 10px;}
+    50%{width: 50px;}
+    100%{width: 10px;}
+}
+.c-2{
+    height: 3px;
+    width: 50px;
+    background-color: red;
+    animation-name: c-2an;
+    animation-duration: 5s;
+    // animation-iteration-count: infinite;
+}
+@keyframes c-2an {
+    0%{width: 50px;}
+    50%{width: 10px;}
+    100%{width: 50px;}
+}
+.c-3{
+    height: 3px;
+    width: 32px;
+    background-color: blue;
+    animation-name: c-3an;
+    animation-duration: 5s;
+    // animation-iteration-count: infinite;
+}
+@keyframes c-3an {
+    0%{width: 32px;}
+    50%{width: 10px;}
+    100%{width: 32px;}
+}
+
+

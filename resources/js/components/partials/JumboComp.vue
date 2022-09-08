@@ -8,12 +8,17 @@
                     <h2>Prenota l'albergo/appartamento/casa/Villa migliore per le tue vacanze</h2>
                 </div> -->
 
-                <div class="box">
+                <!-- <div class="box">
                     <div><h2>Experience the Stoke difference at Adelaide's Showroom!</h2></div>
                     <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae et fuga sequi eaque laborum consequatur cupiditate illo, exercitationem quos doloribus cumque illum, minus alias corporis vitae enim provident sunt! Itaque?</div>
                     <div  class="arrow">freccia sx</div>
                     <div  class="arrow-dx">freccia dx</div>
-                    </div>
+                </div> -->
+                <div class="box">
+                    <div><h2>Benvenuto</h2></div>
+                </div>
+
+
 
             </div>
     </div>
@@ -58,19 +63,31 @@ export default {
         position: absolute;
         z-index: 2;
         background-color: rgba($color: #000000, $alpha: 0.6);
-    }
-    .box{
-
-        width: 25%;
-        min-height: 60%;
-        padding: 30px;
+    }.box{
+        width: 15%;
+        // min-height: 60%;
         // background-color: rgb(207, 203, 203);
         // background-color: #95A3B3;
-        background-color: #FAFAFA;
-        margin-top: 80px;
+        // background-color: #FAFAFA;
+        border-radius: 20px;
+        background-color: #282f35;
+        text-align: center;
+        margin-top: 10px;
         margin-left: 80px;
+        animation-name: test;
+        animation-duration: 3s;
+        // animation-iteration-count: infinite;
         position: relative;
-    }.arrow{
+    }
+    @keyframes test {
+        0%{width: 0%; color:transparent; opacity: 0;}
+        40%{ color:transparent;}
+        60%{ color:transparent;}
+        99%{ color:transparent;}
+        100%{width: 15%; opacity: 1;}
+
+    }
+    .arrow{
         position: absolute;
         bottom: 0;
         left: 0;

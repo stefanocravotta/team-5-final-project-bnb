@@ -37,8 +37,12 @@
             <div class="d-flex justify-content-around mb-5">
                 <div class="small-box">
                     <h6>Sessioni totali:</h6>
-                    <div class="d-flex justify-content-between">
-                        <h5>450</h5> <div><i class="fa-solid fa-chart-simple"></i></div>
+                    <div class="first d-flex justify-content-between">
+                        <h5>450</h5> <div>
+                            <div class="c-1"></div>
+                            <div class="c-2"></div>
+                            <div class="c-3"></div>
+                        </div>
                     </div>
                     <div class="c-row"></div>
                     <span style="font-size: 12px">Nessun visitatore al momento</span>

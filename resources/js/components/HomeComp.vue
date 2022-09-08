@@ -2,7 +2,9 @@
     <div>
         <JumboComp />
         <div class="container">
+            <div>prova</div>
             <h4>Cerca offerte su hotel, ville e tanto altro...</h4>
+            <p>Cerca il nome di una città o di una via!</p>
 
             <SearchbarComp />
 
@@ -17,8 +19,9 @@
                 <div class="img-sec d-flex ">
                     <div v-for="dwelling in sponsoredDwellings" :key="`sponsorizzati-${dwelling.id}`" class="box d-flex">
                         <div class="dwelling_img">
-                            <img class="w-100" v-if="dwelling.image != null" :src="`/images/${dwelling.image}`" :alt="dwelling.name">
+                            <img class="w-100" v-if="dwelling.image != null"  :src="`/images/${dwelling.image}`" :alt="dwelling.name">
                             <img class="w-100" v-else :src="`/images/villa-affitto-italia-ada-1624884100.jpg`">
+
                         </div>
                         <div>
                             <h4>{{dwelling.name}}</h4>
@@ -207,7 +210,11 @@ export default {
         justify-content: center;
         align-items: center;
         flex-direction: column;
-    }.box-col{
+        transition: 1s;
+    }.box:hover{
+        color: black;
+    }
+    .box-col{
         // background-color: #FAFAFA;
         height: 300px;
         transition: 1s;
@@ -239,6 +246,7 @@ export default {
     .section{
         flex-direction: column;
         margin-bottom: 50px;
+
     }.sm-box{
         // height: 90px;
         width: calc(90%/4);
@@ -249,13 +257,15 @@ export default {
         cursor: pointer;
     }
     .sm-box:hover{
-        background-color: skyblue;
+
+        color: black;
     }
     .xs-box{
         display: flex;
         justify-content: center;
         align-items: center;
         height: 50px;
+        color: black;
         width: calc(90%/5);
         background-color: #FAFAFA;
         margin: 5px;
