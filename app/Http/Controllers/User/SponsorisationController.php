@@ -25,7 +25,6 @@ class SponsorisationController extends Controller
 
         $data = $request->all();
 
-
         $sponsorisation = Sponsorisation::where('id', $data['sponsorisation_id'])->first();
 
         $dwelling = Dwelling::where('id', $data['dwelling_id'])->first();
@@ -34,9 +33,15 @@ class SponsorisationController extends Controller
 
         $dwelling->star_date = $today;
 
-        $dwelling->expiration_date = Carbon::now('Europe/Rome')->addHours($sponsorisation->time);
+        $date_expiration = Carbon::parse($dwelling->expiration_date);
 
-        $dwelling->sponsored = 1;
+        //$dwelling->expiration_date = Carbon::now('Europe/Rome')->addHours($sponsorisation->time)->format('d-m-Y');
+
+        if($dwelling->expiration_date != null){
+            $dwelling->expiration_date = $date_expiration->addHours($sponsorisation->time);
+        }else{
+            $dwelling->expiration_date = Carbon::now('Europe/Rome')->addHours($sponsorisation->time);
+        }
 
         $dwelling->update();
 
@@ -44,9 +49,6 @@ class SponsorisationController extends Controller
 
         return redirect()->route('user.dashboard');
 
-
-
     }
-
 
 }
