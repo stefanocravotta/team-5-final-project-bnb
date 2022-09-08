@@ -1,0 +1,12 @@
+.create_link:hover .fa-plus{
+    text-decoration: none;
+    color: $secondary-color;
+
+    // transform: rotate(0deg);
+    transform: rotate(180deg);
+}
+
+.fa-plus{
+    transition: transform .3s ease-in-out;
+}
+

@@ -54,7 +54,7 @@
 
                                     @endif
                                     <div class="layer d-flex justify-content-center align-items-center">
-                                        <h3 class="span-view text-white">View project
+                                        <h3 class="span-view text-white">Vedi la proprietà
                                         </h3>
                                         <i class="fa-solid fa-arrow-right ml-2 pb-1"></i>
                                     </div>
@@ -69,19 +69,19 @@
 
                             <div class="py-3">
 
-                                <a href="{{ route('user.dwellings.edit', $dwelling)}}" class="btn btn-primary">Modifica</a>
+                                <a href="{{ route('user.dwellings.edit', $dwelling)}}" class="btn-pubblica">Modifica</a>
 
                                 <form class="d-inline" action="{{ route('user.dwellings.destroy', $dwelling) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-public-{{ $dwelling->id }}">
+                                    <button type="button" class="btn-bozza" data-toggle="modal" data-target="#modal-public-{{ $dwelling->id }}">
                                         Elimina
                                     </button>
 
                                     <div class="modal fade" id="modal-public-{{ $dwelling->id }}" tabindex="-1" aria-labelledby="modal-public-label" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
+                                        <div class="modal-dialog mb-modalCont">
+                                            <div class="modal-content mb-modalCont">
+                                                <div class="modal-header mb-modalCont">
                                                     <h5 class="modal-title" id="modal-public-label">Elimina appartamento</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -90,9 +90,9 @@
                                                 <div class="modal-body">
                                                     <p>Sei sicuro di voler eliminare l'appartamento {{ $dwelling->name }}?</p>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
-                                                    <button type="submit" class="btn btn-danger">Elimina</button>
+                                                <div class="modal-footer mb-modalFoot">
+                                                    <button type="button" class="btn-chiudi" data-dismiss="modal">Chiudi</button>
+                                                    <button type="submit" class="btn-inserisci">Elimina</button>
                                                 </div>
                                             </div>
                                         </div>

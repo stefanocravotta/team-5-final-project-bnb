@@ -7,7 +7,7 @@
             </div>
         @endif
 
-        <div class="card dwelling-card">
+        <div class="card dwelling-card mb-userShow">
 
             <div class="h-50">
                 <div class="d-flex img-map-box">
@@ -43,17 +43,17 @@
             <div class="d-flex dwelling-data">
                 <div class="w-50 pr-2">
                     {{-- APARTMENTS PARAMS --}}
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush mb-listInfo">
 
-                        <li class="list-group-item">Metri quadrati: {{ $dwelling->dimentions ? $dwelling->dimentions : "---" }}</li>
+                        <li class="list-group-item mb-listSingleInfo">Metri quadrati: {{ $dwelling->dimentions ? $dwelling->dimentions : "---" }}</li>
 
-                        <li class="list-group-item">Numero di stanze: {{ $dwelling->rooms ? $dwelling->rooms : "---" }}</li>
+                        <li class="list-group-item mb-listSingleInfo">Numero di stanze: {{ $dwelling->rooms ? $dwelling->rooms : "---" }}</li>
 
-                        <li class="list-group-item">Numero di bagni: {{ $dwelling->bathrooms ? $dwelling->bathrooms : "---" }}</li>
+                        <li class="list-group-item mb-listSingleInfo">Numero di bagni: {{ $dwelling->bathrooms ? $dwelling->bathrooms : "---" }}</li>
 
-                        <li class="list-group-item">Posti letto: {{ $dwelling->beds ? $dwelling->beds : "---" }}</li>
+                        <li class="list-group-item mb-listSingleInfo">Posti letto: {{ $dwelling->beds ? $dwelling->beds : "---" }}</li>
 
-                        <li class="list-group-item">Prezzo: {{ $dwelling->price }}&euro; /notte</li>
+                        <li class="list-group-item mb-listSingleInfo">Prezzo: {{ $dwelling->price }}&euro; /notte</li>
 
                     </ul>
                     {{-- /APARTMENTS PARAMS --}}
@@ -61,16 +61,19 @@
 
                     {{-- BOTTONI CARD --}}
                     <div class="card-body">
-                        <a href="{{ route('user.dwellings.index')}}" class="btn btn-dark">&lt;&lt; Torna ai tuoi appartamenti</a>
+                        <div>
+                            <a href="{{ route('user.dwellings.edit', $dwelling)}}" class="">
+                                <button class="btn-inserisci">Modifica</button>
+                            </a>
+                            <form class="d-inline" action="{{ route('user.dwellings.destroy', $dwelling) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="btn-inserisci" data-toggle="modal" data-target="#modal-draft">
+                                    Elimina
+                                </button>
+                            </div>
+                            <a href="{{ route('user.dwellings.index')}}" class="btn-chiudi d-block p-1"><i class="fa-solid fa-arrow-left"></i> Torna ai tuoi appartamenti</a>
 
-                        <a href="{{ route('user.dwellings.edit', $dwelling)}}" class="btn btn-primary">Edit</a>
-
-                        <form class="d-inline" action="{{ route('user.dwellings.destroy', $dwelling) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-draft">
-                                Elimina
-                            </button>
 
                             <div class="modal fade" id="modal-draft" tabindex="-1" aria-labelledby="modal-draft-label" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -98,8 +101,8 @@
                 <div class="w-50 dwelling-msg pl-2">
 
                     @foreach ($messages as $message)
-                        <div class="card p-3">
-                            <div class="faq-line clearfix">
+                        <div class="card">
+                            <div class="faq-line clearfix mb-listInfo">
                                 <span>{{ $message->sender_email }}</span>
                                 <span><i class="fa-solid fa-chevron-down"></i></span>
                                 <p class="drpdwn-p faq-text">{{ $message->text }}</p>

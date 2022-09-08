@@ -15,7 +15,7 @@
             <!-- propriety description -->
             <div class="container-fluid mb-proprietyDesc">
                 <h1>{{apartment[0].name}}</h1>
-                <p v-if="apartment[0].decription">{{apartment[0].description}}</p>
+                <p v-if="apartment[0].description">{{apartment[0].description}}</p>
             </div>
 
             <!-- home info -->
