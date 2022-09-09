@@ -14,10 +14,10 @@
                     <div  class="arrow">freccia sx</div>
                     <div  class="arrow-dx">freccia dx</div>
                 </div> -->
-                <div class="box"><h2>Benvenuto</h2></div>
-                <div class="d-flex txt-wrap">
+                <div class="box"><h2>Benvenuto {{userName}} </h2></div>
+                <!-- <div class="d-flex txt-wrap">
                          <div class="show-text">BENVENUTO</div>
-                </div>
+                </div> -->
                 <!-- <div class="show-text">
                         <span>Cerca la miglior offerta tra case, ville e molto altro! <br></span>
                         <span>Goditi le vacanze, al resto pensiamo noi.</span>
@@ -33,7 +33,13 @@
 <script>
 export default {
     name: 'JumboComp',
-}
+        data(){
+            return{
+                userName : window.User.name,
+            }
+        }
+    }
+
 
 </script>
 
@@ -70,8 +76,9 @@ export default {
         z-index: 2;
         background-color: rgba($color: #000000, $alpha: 0.6);
     }.box{
-        width: 15%;
+        max-width: 35%;
         border-radius: 20px;
+        max-height: 35px;
         background-color: #282f35;
         text-align: center;
         margin-top: 10px;
@@ -82,10 +89,13 @@ export default {
     }
     @keyframes test {
         0%{width: 0%; color:transparent; opacity: 0;}
-        40%{ color:transparent;}
-        60%{ color:transparent;}
-        99%{ color:transparent;}
-        100%{width: 15%; opacity: 1;}
+        40%{ color:rgba($color: #beb7a4, $alpha: 0.2);opacity: 0.4;}
+        60%{ color:rgba($color: #beb7a4, $alpha: 0.4);opacity: 0.6;}
+        70%{ color:rgba($color: #beb7a4, $alpha: 0.5);opacity: 0.6;}
+        80%{ color:rgba($color: #beb7a4, $alpha: 0.6);opacity: 0.6;}
+        90%{ color:rgba($color: #beb7a4, $alpha: 0.7);opacity: 0.6;}
+        99%{ color:rgba($color: #beb7a4, $alpha: 0.8);opacity: 0.8;}
+        100%{width: 100%; opacity: 1;}
     }
     .txt-wrap{
         max-width: 100%;
