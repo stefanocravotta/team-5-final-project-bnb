@@ -17,18 +17,10 @@
                 <h3>Appartamenti consigliati</h3>
                 <!-- SEZIONE IMG PRIMO PIANO -->
                 <div class="img-sec d-flex ">
-                    <div v-for="dwelling in sponsoredDwellings" :key="`sponsorizzati-${dwelling.id}`" class="box d-flex">
-                        <div class="dwelling_img">
-                            <img class="w-100" v-if="dwelling.image != null"  :src="`/images/${dwelling.image}`" :alt="dwelling.name">
-                            <img class="w-100" v-else :src="`/images/villa-affitto-italia-ada-1624884100.jpg`">
+                    <div v-for="dwelling in sponsoredDwellings" :key="`sponsorizzati-${dwelling.id}`">
 
-                        </div>
-                        <div>
-                            <h4>{{dwelling.name}}</h4>
-                        </div>
-                        <div>
-                            <p>{{dwelling.price}} €</p>
-                        </div>
+                        <DwellingcardComp :apartment="dwelling" :categories="categories"/>
+
                     </div>
 
                 </div>
@@ -36,17 +28,10 @@
                 <h3>Nuove offerte</h3>
                 <div class="img-sec d-flex">
 
-                    <div v-for="dwelling in sponsoredDwellings" :key="`Offerte-${dwelling.id}`" class="box d-flex">
-                        <div class="dwelling_img">
-                            <img class="w-100" v-if="dwelling.image != null" :src="`/images/${dwelling.image}`" :alt="dwelling.name">
-                            <img class="w-100" v-else :src="`/images/villa-affitto-italia-ada-1624884100.jpg`">
-                        </div>
-                        <div>
-                            <h4>{{dwelling.name}}</h4>
-                        </div>
-                        <div>
-                            <p>{{dwelling.price}} €</p>
-                        </div>
+                    <div v-for="dwelling in sponsoredDwellings" :key="`Offerte-${dwelling.id}`">
+
+                        <DwellingcardComp :apartment="dwelling" :categories="categories"/>
+
                     </div>
 
                 </div>
@@ -149,6 +134,7 @@
 import JumboComp from './partials/JumboComp.vue';
 import SearchbarComp from './partials/SearchbarComp.vue';
 import FooterComp from './partials/FooterComp.vue';
+import DwellingcardComp from './partials/DwellingcardComp.vue';
 
 
 export default {
@@ -157,11 +143,13 @@ export default {
         JumboComp,
         SearchbarComp,
         FooterComp,
+        DwellingcardComp
     },
     data(){
         return{
             apiUrl: '/api/dwellings',
             sponsoredDwellings: [],
+            categories: ''
 
         }
     },
@@ -172,7 +160,9 @@ export default {
 
             axios.get(this.apiUrl + '/sponsored-dwellings')
             .then(r =>{
+                console.log(r);
                 this.sponsoredDwellings = r.data.dwellings;
+                this.categories = r.data.categories;
             })
 
         }

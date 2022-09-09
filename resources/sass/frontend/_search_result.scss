@@ -1,13 +1,15 @@
 .perk-button{
     position: relative;
     background-color: transparent;
-    color: $secondary-color;
+    color: black;
     padding: 5px;
     border: none;
     cursor: pointer;
     opacity: .4;
+    border-bottom: 2px solid transparent;
     &:hover{
         opacity: 1;
+        border-bottom: 2px solid $primary-color;
     }
 
 
@@ -22,3 +24,42 @@
     }
 }
 
+.background{
+    background-color: $primary-color !important;
+}
+
+.btn-invert{
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    background-color: $primary-color;
+    color: $primary-color;
+    border: 2px solid $primary-color;
+    &:hover{
+    border: 2px solid $secondary-color;
+    }
+}
+
+.btn-gold{
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    background-color: $secondary-color;
+    color: $primary-color;
+    border: 2px solid $secondary-color;
+    &:hover{
+    border: 2px solid $primary-color;
+    }
+}
+
+button.selected {
+    border: 2px solid $primary-color;
+}
+
+.active{
+    opacity: 1;
+    color: $primary-color;
+    border-bottom: 2px solid $primary-color;
+}

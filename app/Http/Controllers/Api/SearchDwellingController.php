@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Category;
 use App\Dwelling;
 use App\Perk;
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Geocoder\Query\GeocodeQuery;
 use Illuminate\Http\Request;
@@ -66,11 +67,21 @@ class SearchDwellingController extends Controller
         return response()->json(compact('dwelling', 'categories'));
     }
 
-
     public function getSponsoredDwellings(){
+
+        $today = Carbon::now('Europe/Rome');
 
         $dwellings = Dwelling::whereNotNull('expiration_date')->get();
 
-        return response()->json(compact('dwellings'));
+        $categories = Category::all();
+
+        foreach ($dwellings as $key => $dwelling) {
+           if (Carbon::parse($dwelling->expiration_date) < $today) {
+
+               unset($dwellings[$key]);
+           }
+        }
+
+        return response()->json(compact('dwellings', 'categories'));
     }
 }

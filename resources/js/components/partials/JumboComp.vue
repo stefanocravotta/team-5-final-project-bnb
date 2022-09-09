@@ -14,10 +14,12 @@
                     <div  class="arrow">freccia sx</div>
                     <div  class="arrow-dx">freccia dx</div>
                 </div> -->
-                <div class="box"><h2>Benvenuto</h2></div>
-                <div class="d-flex txt-wrap">
+                <div class="box"><h2>Benvenuto {{userName}}
+                    <!-- <div class="abs d-flex">test</div> -->
+                 </h2></div>
+                <!-- <div class="d-flex txt-wrap">
                          <div class="show-text">BENVENUTO</div>
-                </div>
+                </div> -->
                 <!-- <div class="show-text">
                         <span>Cerca la miglior offerta tra case, ville e molto altro! <br></span>
                         <span>Goditi le vacanze, al resto pensiamo noi.</span>
@@ -33,7 +35,13 @@
 <script>
 export default {
     name: 'JumboComp',
-}
+        data(){
+            return{
+                userName : window.User.name,
+            }
+        }
+    }
+
 
 </script>
 
@@ -70,8 +78,9 @@ export default {
         z-index: 2;
         background-color: rgba($color: #000000, $alpha: 0.6);
     }.box{
-        width: 15%;
+        max-width: 35%;
         border-radius: 20px;
+        max-height: 40px;
         background-color: #282f35;
         text-align: center;
         margin-top: 10px;
@@ -82,41 +91,45 @@ export default {
     }
     @keyframes test {
         0%{width: 0%; color:transparent; opacity: 0;}
-        40%{ color:transparent;}
-        60%{ color:transparent;}
-        99%{ color:transparent;}
-        100%{width: 15%; opacity: 1;}
+        40%{ color:rgba($color: #beb7a4, $alpha: 0.2);opacity: 0.4;}
+        60%{ color:rgba($color: #beb7a4, $alpha: 0.4);opacity: 0.6;}
+        70%{ color:rgba($color: #beb7a4, $alpha: 0.5);opacity: 0.6;}
+        80%{ color:rgba($color: #beb7a4, $alpha: 0.6);opacity: 0.6;}
+        90%{ color:rgba($color: #beb7a4, $alpha: 0.7);opacity: 0.6;}
+        99%{ color:rgba($color: #beb7a4, $alpha: 0.8);opacity: 0.8;}
+        100%{width: 100%; opacity: 1;}
     }
     .txt-wrap{
         max-width: 100%;
         justify-content: center;
     }
-    .show-text{
-        display: flex;
-        justify-content: center;
-        border-radius: 20px;
-        background-color: #282f35;
-        font-size: 50px;
-        width: 30%;
-        animation-name: test2;
-        animation-duration: 1s;
-    }
-    @keyframes test2 {
-        0%{width: 0%; color:transparent; opacity: 0;}
-        40%{ color:transparent;}
-        60%{ color:transparent;}
-        99%{ color:transparent;}
-        100%{width: 30%; opacity: 1;}
-    }
-    .arrow{
-        position: absolute;
-        bottom: 0;
-        left: 0;
-    }.arrow-dx{
-        position: absolute;
-        bottom: 0;
-        right: 0;
-    }
+    // .abs{
+    //     position: absolute;
+    //     top: 0;
+    //     border-radius: 20px;
+    //     // background-color: #282f35;
+    //     opacity: 1;
+    //     justify-content: center;
+    //     align-items: center;
+    //     width: 100%;
+    // }
 }
 
+        // .show-text{
+        //     display: flex;
+        //     justify-content: center;
+        //     border-radius: 20px;
+        //     background-color: #282f35;
+        //     font-size: 50px;
+        //     width: 30%;
+        //     animation-name: test2;
+        //     animation-duration: 1s;
+        // }
+        // @keyframes test2 {
+        //     0%{width: 0%; color:transparent; opacity: 0;}
+        //     40%{ color:transparent;}
+        //     60%{ color:transparent;}
+        //     99%{ color:transparent;}
+        //     100%{width: 30%; opacity: 1;}
+        // }
 </style>

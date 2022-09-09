@@ -14,7 +14,7 @@
                 <ul class="mb-infoTxt d-flex justify-content-between">
                     <li class="d-flex justify-content-between">
                         <p class="mb-date">{{$message->created_at}}</p>
-                        <p class="mb-sender">{{$message->sender_email}}</ class="mb-text">
+                        <p class="mb-sender">{{$message->sender_email}}</p>
                         <p class="mb-textCut">{{$message->text}}</p>
 
 
@@ -26,16 +26,16 @@
                         <!-- Modal -->
                         <div class="modal fade" id="modal{{$message->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
+                            <div class="modal-content mb-modalCont">
+                                <div class="modal-header mb-modalCont">
                                 <h5 class="modal-title" id="exampleModalLabel{{$message->id}}">{{$message->sender_email}}</h5>
                                 <button type="button" class="btn btn-secondarty" data-dismiss="modal" aria-label="Close">X</button>
                                 </div>
                                 <div class="modal-body">
                                 {{$message->text}}
                                 </div>
-                                <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <div class="modal-footer mb-modalFoot">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
                                 </div>
                             </div>
                             </div>
