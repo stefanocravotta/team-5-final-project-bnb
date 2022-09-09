@@ -109,6 +109,8 @@ export default {
 
                 if(this.apartments.length == 0){
                     this.haveResults = false;
+                }else{
+                    this.haveResults = true;
                 }
                 this.applyFilters();
             })
