@@ -7,17 +7,28 @@
 
 {{-- box sinistra --}}
 <div class="left-box">
-            <p><a href="{{route('home')}}"><i class="fa-solid fa-house"></i> Home</a></p>
-            <hr>
-            <p><a href="{{route('user.dwellings.index')}}"><i class="fa-solid fa-building"></i> Vai agli appartamenti</a></p>
-            <hr>
-            <p><a href="{{route('user.messages')}}"><i class="fa-solid fa-envelope"></i> Vai ai tuoi messaggi</a></p>
-            <hr>
-            <p><a href="{{route('user.sponsorisations')}}"><i class="fa-solid fa-money-bill"></i> Sponsorizzazioni</a></p>
-            <hr>
-            <p><a href="{{route('user.dwellings.create')}}"><i class="fa-solid fa-building"></i> Aggiungi un appartamento</a></p>
-            <hr>
-            <p><a id="navbarDropdown" href="#" onclick="event.preventDefault();
+            <p>
+                <a href="{{route('home')}}"><i class="fa-solid fa-house"></i> Home</a>
+            </p>
+
+            <p>
+                <a href="{{route('user.dwellings.index')}}"><i class="fa-solid fa-building"></i> Vai agli appartamenti</a>
+            </p>
+
+            <p>
+                <a href="{{route('user.messages')}}"><i class="fa-solid fa-envelope"></i> Vai ai tuoi messaggi</a>
+            </p>
+
+            <p>
+                <a href="{{route('user.dashboard')}}"><i class="fa-solid fa-money-bill"></i> Sponsorizzazioni</a>
+            </p>
+
+            <p>
+                <a href="{{route('user.dwellings.create')}}"><i class="fa-solid fa-building"></i> Aggiungi un appartamento</a>
+            </p>
+
+            <p>
+                <a id="navbarDropdown" href="#" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
                     <i class="fa-solid fa-person-through-window"></i>
                     Log out
@@ -25,7 +36,8 @@
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
-                </form></p>
+                </form>
+            </p>
 
                 @if (session('success_message'))
                     <div class="alert alert-success">
