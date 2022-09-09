@@ -88,7 +88,7 @@ class SponsorisationController extends Controller
                 $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
             }
 
-            return redirect()->route('user.dashboard')->with('error_message', 'Transaction negata');
+            return redirect()->route('user.dashboard')->with('error_message', 'Transazione negata');
         }
 
     }

@@ -34,8 +34,8 @@
                 <div>
                     <a href="{{route('home')}}">Home</a>
                 </div>
-                <a href="{{route('home')}}">
-                    <img class="logo" src="{{asset('images/logononame.png')}}" alt="">
+                <a class="logo m-0 d-flex align-items-start" href="{{route('home')}}">
+                    <img class="img-logo" src="{{asset('images/logo/1.png')}}" alt="">
                 </a>
 
                 <div class="d-flex">
@@ -71,9 +71,12 @@
     </body>
 </html>
 <style>
-    a{
-        margin-left: 20px;
+    .logo{
+        height: 80px;
     }
+    .img-logo{
+           height: 100%
+        }
 </style>
 <script >
 
