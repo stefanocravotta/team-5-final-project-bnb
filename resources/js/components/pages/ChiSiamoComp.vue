@@ -12,31 +12,31 @@
         <div class="d-flex url">
             <i class="fa-solid fa-crown"></i>
             <div>
-                <a href="https://github.com/agostinopique">Agostino Piqè</a>
+                <a href="https://github.com/agostinopique" target="_blank">Agostino Piqè</a>
             </div>
         </div>
         <div class="d-flex url">
             <i class="fa-solid fa-crown"></i>
             <div>
-                <a href="https://github.com/davide1217">Davide Pizzola</a>
+                <a href="https://github.com/davide1217" target="_blank">Davide Pizzola</a>
             </div>
         </div>
         <div class="d-flex url">
             <i class="fa-solid fa-crown"></i>
             <div>
-                <a href="https://github.com/DavideManciucca">Davide Manciucca</a>
+                <a href="https://github.com/DavideManciucca" target="_blank">Davide Manciucca</a>
             </div>
         </div>
         <div class="d-flex url">
             <i class="fa-solid fa-crown"></i>
             <div>
-                <a href="https://github.com/stefanocravotta">Stefano Cravotta</a>
+                <a href="https://github.com/stefanocravotta" target="_blank">Stefano Cravotta</a>
             </div>
         </div>
         <div class="d-flex url">
             <i class="fa-solid fa-crown"></i>
             <div>
-                <a href="https://github.com/MikeyBadi">Mihai Badia</a>
+                <a href="https://github.com/MikeyBadi" target="_blank">Mihai Badia</a>
             </div>
         </div>
 
