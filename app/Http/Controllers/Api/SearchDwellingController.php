@@ -73,6 +73,8 @@ class SearchDwellingController extends Controller
 
         $dwellings = Dwelling::whereNotNull('expiration_date')->get();
 
+        $categories = Category::all();
+
         foreach ($dwellings as $key => $dwelling) {
            if (Carbon::parse($dwelling->expiration_date) < $today) {
 
@@ -80,6 +82,6 @@ class SearchDwellingController extends Controller
            }
         }
 
-        return response()->json(compact('dwellings'));
+        return response()->json(compact('dwellings', 'categories'));
     }
 }

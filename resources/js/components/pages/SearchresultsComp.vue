@@ -45,7 +45,6 @@
                 <div v-if="!isFiltered" class="container-fluid _container">
                     <div class="raw d-flex flex-wrap">
                         <div v-for="apartment in apartments" :key="apartment.id" class="dwellingCard">
-                        <!-- mb-2 mr-4 col-11 col-lg-5 -->
 
                             <DwellingcardComp :apartment="apartment" :categories="categories"/>
 
@@ -56,11 +55,8 @@
                 <div v-else class="container-fluid _container">
                     <div class="raw d-flex flex-wrap">
                         <div v-for="apartment in filtered_apartments" :key="apartment.id" class="card dwellingCard">
-                        <!-- mb-2 mr-4 col-11 col-lg-5  -->
 
-                            <router-link :to="{name: 'show-apartment', params:{ slug: apartment.slug}}" class="card-link">
-                                <DwellingcardComp :apartment="apartment"/>
-                            </router-link>
+                                <DwellingcardComp :apartment="apartment" :categories="categories"/>
 
                         </div>
                     </div>
@@ -71,9 +67,13 @@
                 <h3>Non ci sono appartamenti con i seguenti parametri di ricerca</h3>
             </div>
 
-            <MapComp v-if="apartments != null && coordinates != null && isFiltered == false" :apartments="apartments" :coordinates="coordinates" class="w-50"/>
+            <div id="map-box">
 
-            <MapComp v-else-if="isFiltered == true && filtered_apartments != null" :apartments="filtered_apartments" :coordinates="coordinates" class="w-50"/>
+                <MapComp v-if="apartments != null && coordinates != null && isFiltered == false" :apartments="apartments" :coordinates="coordinates" class="w-50"/>
+
+                <MapComp v-else-if="isFiltered == true && filtered_apartments != null" :apartments="filtered_apartments" :coordinates="coordinates" class="w-50"/>
+
+            </div>
 
         </div>
     </div>
@@ -293,6 +293,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.active{
+    opacity: 1;
+    color: #3490DC;
+}
+
+#map-box{
+    position: sticky;
+    top: 0;
+
+}
+button.selected {
+    color: rgb(172, 23, 23);
+    border: 2px solid rgb(172, 23, 23);
+}
 
 ._container{
     padding-left: 0;

@@ -52,7 +52,7 @@ export default {
 
 .wrapper{
     background: white;
-    margin: auto;
+    max-width: 450px;
     position: relative;
     overflow: hidden;
     border-radius: 10px 10px 10px 10px;

@@ -12,7 +12,7 @@
         <div class="d-flex url">
             <i class="fa-solid fa-crown"></i>
             <div>
-                <a href="https://github.com/agostinopique" target="_blank">Agostino Piqè</a>
+                <a href="https://github.com/agostinopique" target="_blank">Agostino Piquè</a>
             </div>
         </div>
         <div class="d-flex url">
