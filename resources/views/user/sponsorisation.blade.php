@@ -4,13 +4,17 @@
     <div class="container">
         <h1 class="text-center">Sponsorisation</h1>
 
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between row">
 
             @foreach ($sponsorisations as $sponsorisation)
-                <div>
-                    <p>{{$sponsorisation->name}}</p>
-                    <p>{{$sponsorisation->price}}</p>
-                    <p>{{$sponsorisation->time}}</p>
+                <div class="col-3 mb-planDesc">
+                    <div class="mb-planName">
+                        <span>Fatti notare sponsorizzando la tua proprietà con il piano:</span>
+                        <h3>{{$sponsorisation->name}}</h3>
+                    </div>
+                    {{-- <p>{{$sponsorisation->name}}</p> --}}
+                    <p>Prezzo: {{$sponsorisation->price}} &euro;</p>
+                    <p>In primo piano per: {{$sponsorisation->time}}h</p>
                 </div>
             @endforeach
 
@@ -57,7 +61,7 @@
             </section>
 
             <input id="nonce" name="payment_method_nonce" type="hidden" />
-            <button class="button" type="submit"><span>Procedi al pagamento</span></button>
+            <button class="btn-pubblica" type="submit"><span>Procedi al pagamento</span></button>
         </form>
 
     </div>

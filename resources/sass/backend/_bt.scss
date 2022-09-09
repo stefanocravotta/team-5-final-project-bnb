@@ -1,0 +1,29 @@
+//braintree
+
+.braintree-test-class, .braintree-large-button{
+    display: none;
+}
+
+.mb-planDesc{
+    color: $primary-color;
+    text-align: center;
+    background-color: $secondary-color;
+    padding: 0;
+    .mb-planName{
+        border-bottom: 1px solid $primary-color;
+        border-bottom-left-radius: 7px solid $primary-color;
+        h3{
+            color: $primary-color;
+        }
+    }
+}
+
+.braintree-card{
+    background-color: $secondary-color;
+    border-radius: 0;
+    .braintree-form__hosted-field{
+        background-color: #FFFFFF;
+    }
+}
+//braintree-form__hosted-field braintree-form-expiration
+//braintree-form-number braintree-form__hosted-field

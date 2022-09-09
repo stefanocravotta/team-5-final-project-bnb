@@ -72,7 +72,7 @@
                                     Elimina
                                 </button>
                             </div>
-                            <a href="{{ route('user.dwellings.index')}}" class="btn-chiudi d-block p-1"><i class="fa-solid fa-arrow-left"></i> Torna ai tuoi appartamenti</a>
+                            <a href="{{ route('user.dwellings.index')}}" class="btn-bozza d-block p-1"><i class="fa-solid fa-arrow-left"></i> Torna ai tuoi appartamenti</a>
 
 
                             <div class="modal fade" id="modal-draft" tabindex="-1" aria-labelledby="modal-draft-label" aria-hidden="true">

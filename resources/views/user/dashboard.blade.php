@@ -44,7 +44,7 @@
                 </form>
             </p>
             <p class="back">
-                <a href="{{url()->previous()}}" class="btn btn-secondary"><- Torna alla pagina precedente </a>
+                <a href="{{url()->previous()}}" class="btn-chiudi"><i class="fa-solid fa-arrow-left"></i> Torna ai tuoi appartamenti</a>
             </p>
 
                 @if (session('success_message'))

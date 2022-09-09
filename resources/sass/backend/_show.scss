@@ -1,17 +1,17 @@
 .mb-userShow{
-    background-color: $secondary-color;
-    color: $primary-color;
+    background-color: $primary-color;
+    color: $secondary-color;
     border: 0;
     border-radius: 0;
 }
 h3{
-    color: $primary-color;
+    color: $secondary-color;
 }
 
 .mb-listInfo,.mb-listSingleInfo{
-    border: 5px solid $secondary-color;
-    background-color: #afa997;
-    color: $primary-color;
+    border: 5px solid $primary-color;
+    background-color: #3f4954;
+    color: $secondary-color;
     padding: 10px;
 }
 .mb-listSingleInfo{

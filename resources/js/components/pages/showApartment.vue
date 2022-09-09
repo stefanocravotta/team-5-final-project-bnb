@@ -94,7 +94,7 @@
                         </div>
                         <div class="mb-contactForm">
 
-                            <h2 v-if="success" class="success">Email inviata correttamente</h2>
+                            <h2 v-if="success" class="success">Messaggio inviato correttamente</h2>
                             <form @submit.prevent="sendMessage">
 
                                 <div v-if="!isAuthenticated" class="mb-emailContact d-flex flex-column mt-3">
@@ -242,6 +242,7 @@ export default {
 
 <style scoped lang="scss">
 // sezione immagini
+
 .mb-imgPg{
     background-color: #beb7a4;
     padding: 40px 0;
@@ -342,11 +343,12 @@ export default {
 
             h2{
                 color: rgb(124, 124, 124);
-                font-size: 16px;
+                font-size: 20px;
                 padding: 10px;
                 align-self: start;
             }
             h3{
+                font-size: 35px;
                 word-wrap: break-word;
                 text-align: center;
                 margin: 0;
@@ -588,9 +590,13 @@ export default {
         .mb-contactForm{
             padding: 180px 30px;
 
+
             .mb-emailContact, .mb-msgContact{
                 margin: 0 auto;
                 color: #beb7a4;
+                label{
+                    font-size: 20px;
+                }
             }
             #content{
                 height: 200px;
