@@ -1,0 +1,28 @@
+.mb-userShow{
+    background-color: $secondary-color;
+    color: $primary-color;
+    border: 0;
+    border-radius: 0;
+}
+h3{
+    color: $primary-color;
+}
+
+.mb-listInfo,.mb-listSingleInfo{
+    border: 5px solid $secondary-color;
+    background-color: #afa997;
+    color: $primary-color;
+    padding: 10px;
+}
+.mb-listSingleInfo{
+    border-width: 3px !important;
+
+}
+.card{
+    border: 0;
+}
+
+.card-body{
+    padding-top: 0;
+    padding-left: 5px;
+}
