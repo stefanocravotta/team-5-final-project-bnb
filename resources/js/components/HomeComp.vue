@@ -200,7 +200,7 @@ export default {
         margin-bottom: 50px;
     }.img-sec{
         flex-wrap: wrap;
-        width: 100%;
+        max-width: 100%;
         // align-items: center;
         justify-content: center;
     }.box{

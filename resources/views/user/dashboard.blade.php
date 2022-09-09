@@ -20,7 +20,7 @@
             </p>
 
             <p>
-                <a href="{{route('user.dashboard')}}"><i class="fa-solid fa-money-bill"></i> Sponsorizzazioni</a>
+                <a href="{{route('user.sponsorisations')}}"><i class="fa-solid fa-money-bill"></i> Sponsorizzazioni</a>
             </p>
 
             <p>
@@ -37,6 +37,9 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
+            </p>
+            <p class="back">
+                <a href="{{url()->previous()}}" class="btn btn-secondary"><- Torna alla pagina precedente </a>
             </p>
 
                 @if (session('success_message'))

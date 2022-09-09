@@ -52,6 +52,7 @@
     overflow-y: auto;
     border-right: 2px solid white;
     width: 30%;
+    position: relative;
     padding: 10px;
     background-color: #F1F2F3;
 }
@@ -144,5 +145,8 @@ a:hover{
     50%{width: 10px;}
     100%{width: 32px;}
 }
-
+.back{
+    position: absolute;
+    bottom: 0;
+}
 

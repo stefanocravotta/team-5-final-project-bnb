@@ -39,37 +39,15 @@
          <div class="ft-col">
             <ul>
                 <router-link :to="{name:'chi-siamo'}">Chi siamo</router-link>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
+                <li><a href="#">Termini di Servizio</a></li>
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Note Legali</a></li>
+                <li><a href="#">Metodi di pagamento</a></li>
+                <li><a href="#">Contatti</a></li>
+                <li><a href="#">Community</a></li>
             </ul>
         </div>
-         <div class="ft-col">
-            <ul>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-            </ul>
-        </div>
-         <div class="ft-col">
-            <ul>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-            </ul>
-        </div>
+
 
     </div>
 
@@ -109,7 +87,7 @@ export default {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 150px;
+            width: 250px;
             margin: 2px;
             // height: 40px;
             // background-color: red;
