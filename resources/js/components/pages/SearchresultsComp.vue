@@ -5,7 +5,7 @@
         <div class="d-flex">
 
         <SearchbarComp @searchDwelling="searchDwelling"/>
-            <b-button id="show-btn" @click="showModal">Applica i tuoi filtri</b-button>
+            <b-button id="show-btn" class="py-0" @click="showModal"><i class="fa-solid fa-list"></i> Applica i tuoi filtri</b-button>
         </div>
 
         <div class="d-flex justify-content-center pt-3 w-50">
