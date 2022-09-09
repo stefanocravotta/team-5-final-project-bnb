@@ -38,7 +38,7 @@
 
             </div>
             <!-- FINE COLONNA  -->
-            <div class="section d-flex">
+            <div class="section d-flex align-items-center">
 
                 <h3>Viaggia di più e spendi di meno con...</h3>
                 <div class="d-flex">
@@ -61,9 +61,10 @@
                 </div>
             </div>
 
-            <div class="section">
-                    <h3>Le mete preferite dagli utenti</h3>
-                    <div class="d-flex">
+            <div class="section d-flex align-items-center">
+                <div class="w-100">
+                    <h3 class="h3-margin">Le mete preferite dagli utenti</h3>
+                    <div class="d-flex justify-content-center">
                         <div class="xs-box">Sicilia</div>
                         <div class="xs-box">Val di Fassa</div>
                         <div class="xs-box">Cinque Terre</div>
@@ -71,7 +72,7 @@
                         <div class="xs-box">Lago di Como</div>
                         <!-- prima riga -->
                     </div>
-                    <div class="d-flex">
+                    <div class="d-flex justify-content-center">
                         <div class="xs-box">Isola d'Elba</div>
                         <div class="xs-box">Toscana</div>
                         <div class="xs-box">Isola del Giglio</div>
@@ -79,7 +80,7 @@
                         <div class="xs-box">Argentario</div>
                         <!-- seconda riga -->
                     </div>
-                    <div class="d-flex">
+                    <div class="d-flex justify-content-center">
                         <div class="xs-box">Ibiza</div>
                         <div class="xs-box">Costiera Amalfitana</div>
                         <div class="xs-box">Puglia</div>
@@ -87,7 +88,7 @@
                         <div class="xs-box">Sardegna</div>
                         <!-- terza riga -->
                     </div>
-                    <div class="d-flex">
+                    <div class="d-flex justify-content-center">
                         <div class="xs-box">Salento</div>
                         <div class="xs-box">Isole di Ischia</div>
                         <div class="xs-box">Isole di Lipari</div>
@@ -95,6 +96,8 @@
                         <div class="xs-box">Isola di Capri</div>
                         <!-- quarta riga -->
                     </div>
+                </div>
+
             </div>
             <div class="section out">
                     <h3>Trova ispirazione per i tuoi prossimi viaggi!</h3>
@@ -174,7 +177,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-
+.h3-margin{
+    margin-left: 3.5%;
+}
 .content{
     flex-direction: column;
     margin-bottom: 80px;

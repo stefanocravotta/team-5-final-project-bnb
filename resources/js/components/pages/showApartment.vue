@@ -4,14 +4,14 @@
         <div class="container-fluid mb-imgPg">
             <div class="row w-100">
 
-                <div class="col-6 mb-imgSection">
+                <div class="col-lg-6 col-12 mb-imgSection">
                     <img v-if="apartment[0].image"
                     class="mb-principalImg"
                     :src="`/images/${apartment[0].image}`" :alt="apartment[0].name">
                     <img class="mb-principalImg" v-else :src="`/images/villa-affitto-italia-ada-1624884100.jpg`">
                 </div>
 
-                <MapComp class="col-6" v-if="apartment != null" :apartments="apartment" :coordinates="coordinates" />
+                <MapComp class="col-lg-6 col-12" v-if="apartment != null" :apartments="apartment" :coordinates="coordinates" />
 
             </div>
         </div>
