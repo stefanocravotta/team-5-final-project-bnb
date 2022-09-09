@@ -1,7 +1,7 @@
 <template>
-    <div class="d-flex align-items-center">
+    <div class="d-flex  min-width">
 
-        <div class="w-75" id="searchBox-container">
+        <div class="w-100" id="searchBox-container">
 
 
         </div>
@@ -63,6 +63,10 @@ export default {
 
 <style lang="scss" scoped>
 
+ .min-width{
+     width: 80%;
+     margin-right: 10px;
+}
 .search-button{
     margin: 12px 0 0 10px;
     padding: 10px 19px;
