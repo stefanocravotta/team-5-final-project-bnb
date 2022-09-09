@@ -5,6 +5,9 @@ window.axios = require('axios');
 
 
 import Vue from 'vue';
+import { BootstrapVue} from 'bootstrap-vue';
+Vue.use(BootstrapVue)
+
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
@@ -15,6 +18,10 @@ import Vue from 'vue';
  */
 import App from './App.vue';
 import router from './routes';
+// Import Bootstrap and BootstrapVue CSS files (order is important)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 
 const app = new Vue({
     el: '#app',
