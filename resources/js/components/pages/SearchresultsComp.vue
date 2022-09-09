@@ -44,11 +44,10 @@
 
                 <div v-if="!isFiltered" class="container-fluid _container">
                     <div class="raw d-flex flex-wrap">
-                        <div v-for="apartment in apartments" :key="apartment.id" class="mb-2 mr-4 col-11 col-lg-5 card dwellingCard">
+                        <div v-for="apartment in apartments" :key="apartment.id" class="dwellingCard">
+                        <!-- mb-2 mr-4 col-11 col-lg-5 -->
 
-                        <router-link :to="{name: 'show-apartment', params:{ slug: apartment.slug}}" class="card-link">
-                            <DwellingcardComp :apartment="apartment"/>
-                        </router-link>
+                            <DwellingcardComp :apartment="apartment" :categories="categories"/>
 
                         </div>
                     </div>
@@ -56,7 +55,8 @@
 
                 <div v-else class="container-fluid _container">
                     <div class="raw d-flex flex-wrap">
-                        <div v-for="apartment in filtered_apartments" :key="apartment.id" class="mb-2 mr-4 col-11 col-lg-5 card dwellingCard">
+                        <div v-for="apartment in filtered_apartments" :key="apartment.id" class="card dwellingCard">
+                        <!-- mb-2 mr-4 col-11 col-lg-5  -->
 
                             <router-link :to="{name: 'show-apartment', params:{ slug: apartment.slug}}" class="card-link">
                                 <DwellingcardComp :apartment="apartment"/>
@@ -141,6 +141,8 @@ export default {
             .then(r =>{
                 this.apartments = r.data.dwellings;
                 this.coordinates = r.data.coordinates;
+
+                // console.log(this.apartments);
 
                 if (this.perks == null && this.categories == null) {
                     this.perks = r.data.perks;
@@ -297,7 +299,7 @@ export default {
 }
 
 .dwellingCard{
-    border: 1px solid black;
+    // border: 1px solid black;
     border-radius: 5px;
     overflow: hidden;
     padding: 0;
