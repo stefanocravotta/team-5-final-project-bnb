@@ -21,7 +21,7 @@
                             </button>
                         </div>
                         <div>
-                            <button :id="`category${category.id}`" class="btn btn-primary mr-2 mb-2" v-for="category in categories"
+                            <button name="categories" :id="`category${category.id}`" class="btn btn-primary mr-2 mb-2" v-for="category in categories"
                             :key="category.id" @click="addCategory(`category${category.id}`)">{{category.name}}</button>
                         </div>
                     </div>
@@ -104,7 +104,28 @@ export default {
     methods:{
 
         showModal() {
-        this.$refs['my-modal'].show()
+        this.$refs['my-modal'].show();
+
+        let oldFilters = setTimeout(() => {
+
+            let checkboxes = document.getElementsByName('perk-box');
+
+            checkboxes.forEach(element => {
+
+                if (this.checkedPerks.includes(element._value)) {
+                    let button = document.getElementById(`button${element._value}`);
+                    element.checked = true;
+                    button.classList.toggle('active');
+                };
+            });
+
+            let categoriesButtons = document.getElementsByName('categories');
+            categoriesButtons.forEach(button => {
+                if (this.checkedCategories.includes(button.id)) {
+                    button.classList.add('selected');
+                }
+            });
+        }, 100);
         },
 
         searchDwelling(city){
@@ -166,6 +187,7 @@ export default {
 
         applyFilters() {
             this.$refs['my-modal'].hide();
+
             if (this.checkedPerks.length > 0 || this.checkedCategories.length > 0) {
 
                 this.filtered_apartments = null;
@@ -226,19 +248,6 @@ export default {
                         this.filtered_apartments = apartments_categories_filtered.filter( el => apartments_perks_filtered.includes(el))
                     };
 
-                    let checkboxes = document.getElementsByName('perk-box');
-                        checkboxes.forEach(element => {
-                        if (this.checkedPerks.includes(element._value)) {
-                            element.checked = true;
-                        };
-                    });
-
-                    let categoriesButtons = document.querySelectorAll('button.selected');
-                    categoriesButtons.forEach(button => {
-                        if (this.checkedCategories.includes(button.id)) {
-                            button.classList.add('selected');
-                        }
-                    });
                 }, 300);
             }
             else {
@@ -263,40 +272,14 @@ export default {
             this.filtered_apartments = null;
             this.filtersError = false;
 
-            let buttons = document.getElementsByName('perk-button');
-            buttons.forEach(button =>{
-                button.classList.remove('active');
-            })
-
-            let checkboxes = document.getElementsByName('perk-box');
-            checkboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    checkbox.checked = false;
-                }
-            });
-
-            let categoriesButtons = document.querySelectorAll('button.selected');
-            categoriesButtons.forEach(button => {
-                button.classList.remove('selected');
-            });
-
             const setFilteredFalse = setTimeout(() => {
                     this.isFiltered = false;
                 }, 300);
-        },
-
-        // setStyles() {
-        //    let popups = document.querySelectorAll('div');
-        //    console.log(popups);
-        //    popups.forEach(popup => {
-        //        popup.setAttribute('style','color: black;')
-        //    });
-        // }
+        }
     },
 
     mounted() {
         this.searchDwelling(this.city);
-        // this.setStyles();
     }
 
 }

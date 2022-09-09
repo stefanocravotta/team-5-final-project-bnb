@@ -2,11 +2,17 @@
     <div class="">
         <!-- imgages -->
         <div class="container-fluid mb-imgPg">
-            <div class="row mb-imgSection">
-                <img v-if="apartment[0].image"
-                class="mb-principalImg"
-                :src="`/images/${apartment[0].image}`" :alt="apartment[0].name">
-                <img class="mb-principalImg col-8" v-else :src="`/images/villa-affitto-italia-ada-1624884100.jpg`">
+            <div class="row w-100">
+
+                <div class="col-6 mb-imgSection">
+                    <img v-if="apartment[0].image"
+                    class="mb-principalImg"
+                    :src="`/images/${apartment[0].image}`" :alt="apartment[0].name">
+                    <img class="mb-principalImg" v-else :src="`/images/villa-affitto-italia-ada-1624884100.jpg`">
+                </div>
+
+                <MapComp class="col-6" v-if="apartment != null" :apartments="apartment" :coordinates="coordinates" />
+
             </div>
         </div>
 
@@ -42,17 +48,6 @@
                         <h3>{{apartment[0].dimentions}} mtq</h3>
                     </div>
                 </div>
-                    <div class="mb-positionInfo d-flex">
-                        <div>
-                            <div>
-                                <h2>Posizione su mappa di:</h2>
-                                <h3>{{apartment[0].address}}</h3>
-                            </div>
-                        </div>
-
-                        <MapComp v-if="apartment != null" :apartments="apartment" :coordinates="coordinates" />
-
-                    </div>
             </div>
 
             <!-- PERKS -->
@@ -206,7 +201,6 @@ export default {
                 this.coordinates.lat = r.data.dwelling.lat;
                 this.coordinates.long = r.data.dwelling.long;
                 this.apartment = [r.data.dwelling];
-                console.log(this.apartment, this.coordinates);
                 this.categories = r.data.categories;
                 this.apartmentPerks = r.data.dwelling.perks;
                 this.dwelling_id = r.data.dwelling.id;
@@ -234,8 +228,8 @@ export default {
 
     },
     mounted(){
-        this.getDwelling()
-        this.getUser()
+        this.getDwelling();
+        this.getUser();
     }
 }
 </script>
@@ -248,21 +242,21 @@ export default {
         display: flex;
         justify-content: center;
         align-content: center;
-    img{
-        height: fit-content;
-    }
+
     // height: 80%;
     // position: sticky;
     // top: 0;
     // z-index: -1;
     .mb-imgSection{
         overflow: scroll;
-        width: 80%;
+        width: 100%;
         display: flex;
         justify-content: center;
         align-content: center;
             img{
-                width: 100%;
+                width: 90%;
+                margin-left: 20px;
+                border-radius: 3px;
             }
             img:hover{
                 filter: brightness(80%);

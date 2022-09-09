@@ -43,6 +43,12 @@ class SponsorisationController extends Controller
 
         $today = Carbon::now('Europe/Rome');
 
+        if (Carbon::parse($dwelling->expiration_date) < $today) {
+
+            $dwelling->expiration_date = null;
+            $dwelling->update();
+        }
+
         $dwelling->star_date = $today;
 
         $date_expiration = Carbon::parse($dwelling->expiration_date);
