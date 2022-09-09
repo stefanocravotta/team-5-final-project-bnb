@@ -8,12 +8,23 @@
                     <h2>Prenota l'albergo/appartamento/casa/Villa migliore per le tue vacanze</h2>
                 </div> -->
 
-                <div class="box">
+                <!-- <div class="box">
                     <div><h2>Experience the Stoke difference at Adelaide's Showroom!</h2></div>
                     <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae et fuga sequi eaque laborum consequatur cupiditate illo, exercitationem quos doloribus cumque illum, minus alias corporis vitae enim provident sunt! Itaque?</div>
                     <div  class="arrow">freccia sx</div>
                     <div  class="arrow-dx">freccia dx</div>
-                    </div>
+                </div> -->
+                <div class="box"><h2>Benvenuto</h2></div>
+                <div class="d-flex txt-wrap">
+                         <div class="show-text">BENVENUTO</div>
+                </div>
+                <!-- <div class="show-text">
+                        <span>Cerca la miglior offerta tra case, ville e molto altro! <br></span>
+                        <span>Goditi le vacanze, al resto pensiamo noi.</span>
+                </div> -->
+
+
+
 
             </div>
     </div>
@@ -58,19 +69,46 @@ export default {
         position: absolute;
         z-index: 2;
         background-color: rgba($color: #000000, $alpha: 0.6);
-    }
-    .box{
-
-        width: 25%;
-        min-height: 60%;
-        padding: 30px;
-        // background-color: rgb(207, 203, 203);
-        // background-color: #95A3B3;
-        background-color: #FAFAFA;
-        margin-top: 80px;
+    }.box{
+        width: 15%;
+        border-radius: 20px;
+        background-color: #282f35;
+        text-align: center;
+        margin-top: 10px;
         margin-left: 80px;
+        animation-name: test;
+        animation-duration: 3s;
         position: relative;
-    }.arrow{
+    }
+    @keyframes test {
+        0%{width: 0%; color:transparent; opacity: 0;}
+        40%{ color:transparent;}
+        60%{ color:transparent;}
+        99%{ color:transparent;}
+        100%{width: 15%; opacity: 1;}
+    }
+    .txt-wrap{
+        max-width: 100%;
+        justify-content: center;
+    }
+    .show-text{
+        display: flex;
+        justify-content: center;
+        border-radius: 20px;
+        background-color: #282f35;
+        font-size: 50px;
+        width: 30%;
+        animation-name: test2;
+        animation-duration: 1s;
+    }
+    @keyframes test2 {
+        0%{width: 0%; color:transparent; opacity: 0;}
+        40%{ color:transparent;}
+        60%{ color:transparent;}
+        99%{ color:transparent;}
+        100%{width: 30%; opacity: 1;}
+    }
+    .arrow{
         position: absolute;
         bottom: 0;
         left: 0;

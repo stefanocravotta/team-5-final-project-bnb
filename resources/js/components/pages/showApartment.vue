@@ -274,8 +274,8 @@ export default {
         }
 }               .button {
                     width: 100%;
-                    padding-top: 30px;
-                    padding-bottom: 30px;
+                    // padding-top: 30px;
+                    // padding-bottom: 30px;
                     // text-align: center;
                     color: #000;
                     text-transform: uppercase;
@@ -612,8 +612,10 @@ export default {
 
 .mb-btnSub{
     height: 60px;
+
     button{
         height: 100%;
+
     }
 }
 

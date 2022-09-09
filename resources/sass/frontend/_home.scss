@@ -19,6 +19,18 @@ header{
     height: 80px;
     display: flex;
     align-items: center;
+
+}
+.bt-row{
+    height: 20px;
+    width: 100%;
+    animation-name: action;
+    animation-duration: 5s;
+}
+@keyframes action {
+    0%{width: 0%; background-color: black;}
+    50%{width: 100%; background-color: black;}
+    100%{width: 0%; background-color: black;}
 }
 .logo{
     height: 70px;

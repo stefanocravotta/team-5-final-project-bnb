@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,8 @@ Route::middleware('auth')
         Route::get('/', 'UserController@index')->name('dashboard');
         Route::get('/messages', 'MessagesController@index')->name('messages');
         Route::resource('dwellings', 'DwellingsController');
+        Route::get('/sponsorisation', 'SponsorisationController@index')->name('sponsorisations');
+        Route::post('/sponsorisation-form', 'SponsorisationController@update')->name('sponsorisations-form');
     });
 
 Route::get('{any?}', function(){

@@ -39,6 +39,18 @@
                 </form>
             </p>
 
+                @if (session('success_message'))
+                    <div class="alert alert-success">
+                        {{ session('success_message') }}
+                    </div>
+                @endif
+
+                @if (session('error_message'))
+                    <div class="alert alert-danger">
+                        {{ session('error_message') }}
+                    </div>
+                @endif
+
         </div>
         {{-- fine box sinistra --}}
 
@@ -49,10 +61,19 @@
             <div class="d-flex justify-content-around mb-5">
                 <div class="small-box">
                     <h6>Sessioni totali:</h6>
-                    <div class="d-flex justify-content-between">
-                        <h5>450</h5> <div><i class="fa-solid fa-chart-simple"></i></div>
+                    <div class="first d-flex justify-content-between">
+                        <h5>450</h5>
+                        <div class="c-cont">
+                            <div class="c-wrap">
+                                <div class="c-1"></div>
+                            </div>
+                            <div class="c-2"></div>
+                            <div class="c-3"></div>
+                        </div>
                     </div>
-                    <div class="c-row"></div>
+                    <div class="row-wrap d-flex">
+                        <div class="c-row"></div>
+                    </div>
                     <span style="font-size: 12px">Nessun visitatore al momento</span>
                 </div>
 
@@ -61,7 +82,9 @@
                     <div class="d-flex ">
                         Ancora nessuna vendita
                     </div>
-                    <div class="c-row"></div>
+                    <div class="row-wrap d-flex">
+                        <div class="c-row"></div>
+                    </div>
                     <span style="font-size: 12px">Ancora nessun ordine</span>
                 </div>
 
@@ -78,7 +101,9 @@
                             Accetta i pagamenti "tap and chip" con un lettore di schede completamente integrato e ottieni tariffe basse e costanti
                         </span>
                     </div>
-                    <div class="c-row"></div>
+                    <div class="row-wrap d-flex">
+                        <div class="c-row"></div>
+                    </div>
                     <span class="btn btn-secondary">Visualizza dettagli</span>
                 </div>
 
@@ -92,7 +117,9 @@
                             Aggiungi il canale Messenger per Facebook e Instagram per avviare chat, condividere prodotti e concludere vendite rapidamente da un solo posto.
                         </span>
                     </div>
-                    <div class="c-row"></div>
+                    <div class="row-wrap d-flex">
+                        <div class="c-row"></div>
+                    </div>
                     <span class="btn btn-secondary">Visualizza dettagli</span>
                 </div>
             </div>
