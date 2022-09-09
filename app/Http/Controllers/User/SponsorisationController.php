@@ -80,7 +80,7 @@ class SponsorisationController extends Controller
         if ($result->success) {
             $transaction = $result->transaction;
 
-            return redirect()->route('user.dashboard')->with('success_message', 'Transaction successfull');
+            return redirect()->route('user.dashboard')->with('success_message', 'Transazione accettata');
         } else {
             $errorString = "";
 
@@ -88,7 +88,7 @@ class SponsorisationController extends Controller
                 $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
             }
 
-            return redirect()->route('user.dashboard')->with('error_message', 'Transaction unsuccessfull');
+            return redirect()->route('user.dashboard')->with('error_message', 'Transaction negata');
         }
 
     }
