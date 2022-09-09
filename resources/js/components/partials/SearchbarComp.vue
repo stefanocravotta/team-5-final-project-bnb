@@ -64,7 +64,7 @@ export default {
 <style lang="scss" scoped>
 
  .min-width{
-     width: 60%;
+     width: 80%;
      margin-right: 10px;
 }
 .search-button{
