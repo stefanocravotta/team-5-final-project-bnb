@@ -9,6 +9,7 @@
 		import HomeComp from './components/HomeComp.vue';
         import ShowApartment from './components/pages/ShowApartment.vue';
         import SearchresultsComp from './components/pages/SearchresultsComp.vue';
+        import TestComp from './components/pages/TestComp.vue';
 		//creo il router
 		const router = new VueRouter({
             mode: 'history',
@@ -28,6 +29,11 @@
                     path: '/search-results/:city',
                     name: 'search-results',
                     component: SearchresultsComp
+                },
+                {
+                    path: '/chi-siamo',
+                    name: 'chi-siamo',
+                    component: TestComp
                 },
                 {
                     // questa rotta deve stare in coda alle altre
