@@ -51,7 +51,7 @@
             </div>
             <div >
                 <a href="{{route('home')}}">
-                    <img class="logo" src="{{asset('images/logononame.png')}}" alt="">
+                    <img class="logo" src="{{asset('images/logo/1.png')}}" alt="">
                 </a>
             </div>
 

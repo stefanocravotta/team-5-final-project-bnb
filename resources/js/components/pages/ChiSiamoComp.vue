@@ -5,7 +5,7 @@
             <div class="c-row d-flex"></div>
         </div>
     <div class="logo d-flex">
-        <img src="images/logoname.png" alt="">
+        <img src="images/logo/1.png" alt="">
     </div>
     <h2>Membri</h2>
     <div class="d-flex url-wrap">
