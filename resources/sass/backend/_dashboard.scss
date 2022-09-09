@@ -2,28 +2,38 @@
 
 .wrapper{
     display: flex;
-    min-height: 100vh;
+    min-height: 85vh;
     border: 1px solid gray;
 }
-.box-test{
-    min-height: 250px;
-    width: 100%;
-    background-color: silver;
-    border-radius: 50px;
-}
+// .box-test{
+//     // min-height: 250px;
+//     width: 100%;
+//     background-color: silver;
+//     border-radius: 50px;
+// }
+
 .small-box{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     min-height: 150px;
     padding: 20px;
     width: 350px;
-    background-color: silver;
-    border-radius: 40px;
-}.row-wrap{
+    background-color: #B3C6CB;
+    border-radius: 12px;
+
+}
+
+.sell-data{
+    color: black;
+    margin: 0 auto;
+}
+
+.row-wrap{
     align-items: center;
     justify-content: center;
 }
+
 .c-row{
     width: 95%;
     height: 3px;
@@ -34,36 +44,49 @@
     animation-name: linerow;
     animation-duration: 3s;
 }
+.dashboard-link{
+    height: 50px;
+    margin-bottom: 0;
+
+    &:hover{
+        background-color: #B3C6CB;
+    }
+
+    i{
+        color: rgb(91, 74, 74);
+    }
+}
+
 @keyframes linerow{
     0%{width: 0%;}
     100%{width: 95%;}
 }
+
 .sm-img{
-    height: 50px;
-    width: 50px;
+    // height: 50px;
+    // width: 50px;
+    width: 60%;
 }
 
 .head{
     text-align: center;
 }
 .left-box{
-    // min-height: 100vh;
-    height: 100vh;
     overflow-y: auto;
     border-right: 2px solid white;
     width: 30%;
     position: relative;
     padding: 10px;
-    background-color: #F1F2F3;
+    // background-color: #F1F2F3;
+    background-color: #E6EADE;
+
 }
 
 .right-box{
-    // min-height: 100vh;
     color: black;
-    height: 100vh;
     width: 70%;
     padding: 10px;
-    background-color: #F1F2F3;
+    background-color: #E6EADE;
     overflow-y:auto;
 }
 
@@ -87,7 +110,7 @@
     min-height: 200px;
     padding: 30px;
     border-radius: 50px;
-    background-color: silver;
+    background-color: #B3C6CB;
     margin: 0 auto;
 }
 a{
