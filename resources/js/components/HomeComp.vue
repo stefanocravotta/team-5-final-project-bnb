@@ -168,7 +168,7 @@ export default {
 
             axios.get(this.apiUrl + '/sponsored-dwellings')
             .then(r =>{
-                this.sponsoredDwellings = r.data.random_dwellings;
+                this.sponsoredDwellings = r.data.dwellings;
             })
 
         }
