@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@tomtom-international/web-sdk-plugin-searchbox": "^3.2.0",
+        "bootstrap-vue": "^2.22.0",
         "vue-router": "^2.8.1"
     }
 }
