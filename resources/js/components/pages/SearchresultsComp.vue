@@ -2,11 +2,14 @@
     <div class="container">
         <h1>Risultati della ricerca</h1>
 
+        <div class="d-flex">
+
         <SearchbarComp @searchDwelling="searchDwelling"/>
+            <b-button id="show-btn" @click="showModal">Applica i tuoi filtri</b-button>
+        </div>
 
         <div class="d-flex justify-content-center pt-3 w-50">
             <div>
-                <b-button id="show-btn" @click="showModal">-------- Applica i tuoi filtri -------</b-button>
 
                 <b-modal ref="my-modal" hide-footer title="Applica i filtri">
                 <div class="d-block text-center">
