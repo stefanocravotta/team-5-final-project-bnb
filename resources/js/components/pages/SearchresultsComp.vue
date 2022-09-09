@@ -13,8 +13,8 @@
 
                 <b-modal ref="my-modal" hide-footer title="Applica i filtri">
                 <div class="d-block text-center">
-                    <div class="d-flex flex-column ">
-                        <div class="d-flex flex-wrap">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex justify-content-center flex-wrap py-3">
                             <button v-for="perk in perks" :key="perk.id" name="perk-button" :id="`button${perk.id}`"
                                 role="radio" aria-checked="false" type="toggle" class="d-flex flex-column perk-button mx-2">
                                 <label v-html="perk.icon"></label>
@@ -24,7 +24,7 @@
                             </button>
                         </div>
                         <div>
-                            <button name="categories" :id="`category${category.id}`" class="btn btn-primary mr-2 mb-2" v-for="category in categories"
+                            <button name="categories" :id="`category${category.id}`" class="btn-gold mr-2 mb-2" v-for="category in categories"
                             :key="category.id" @click="addCategory(`category${category.id}`)">{{category.name}}</button>
                         </div>
                     </div>
@@ -291,15 +291,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.active{
-    opacity: 1;
-    color: #3490DC;
-}
-
-button.selected {
-    color: rgb(172, 23, 23);
-    border: 2px solid rgb(172, 23, 23);
-}
 
 ._container{
     padding-left: 0;
