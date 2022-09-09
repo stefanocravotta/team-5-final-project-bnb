@@ -20,7 +20,7 @@
             </p>
 
             <p>
-                <a href="{{route('user.dashboard')}}"><i class="fa-solid fa-money-bill"></i> Sponsorizzazioni</a>
+                <a href="{{route('user.sponsorisations')}}"><i class="fa-solid fa-money-bill"></i> Sponsorizzazioni</a>
             </p>
 
             <p>

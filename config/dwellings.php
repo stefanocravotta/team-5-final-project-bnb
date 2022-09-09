@@ -156,7 +156,7 @@ return $dwellings = [
         "price" => 80
     ],
     [
-        "user_id" => 1,
+        "user_id" => 2,
         "name" => "Affittasi appartamento Firenze",
         "category" => 2,
         "rooms" => "4",
@@ -172,7 +172,7 @@ return $dwellings = [
         "price" => 90
     ],
     [
-        "user_id" => 1,
+        "user_id" => 2,
         "name" => "Appartamento Pistoiese",
         "category" => 2,
         "rooms" => "3",
