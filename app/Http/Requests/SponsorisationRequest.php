@@ -25,7 +25,7 @@ class SponsorisationRequest extends FormRequest
     {
         return [
             'dwelling_id'=> 'numeric|min:1',
-            'sponsorisation_id'=> 'numeric|min:1'
+            'amount'=> 'numeric|min:1'
         ];
     }
 
@@ -33,7 +33,7 @@ class SponsorisationRequest extends FormRequest
     {
         return [
             'dwelling_id.min' => 'Seleziona un appartamento',
-            'sponsorisation_id.min' => 'Seleziona una sponsorizzazione'
+            'amount.min' => 'Seleziona una sponsorizzazione'
         ];
     }
 }
