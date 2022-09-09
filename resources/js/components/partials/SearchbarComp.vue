@@ -6,7 +6,7 @@
 
         </div>
 
-        <router-link :to="{name:'search-results' , params:{city: city}}" class="search-button d-inline"><span @click="getValue()">Cerca</span></router-link>
+        <router-link :to="{name:'search-results' , params:{city: city}}" class="search-button d-inline"><span @click="getValue()" >Cerca</span></router-link>
     </div>
 </template>
 

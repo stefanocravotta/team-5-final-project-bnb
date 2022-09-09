@@ -38,6 +38,7 @@
         </div> -->
          <div class="ft-col">
             <ul>
+                <router-link :to="{name:'chi-siamo'}">Chi siamo</router-link>
                 <li><a href="#">Link</a></li>
                 <li><a href="#">Link</a></li>
                 <li><a href="#">Link</a></li>
