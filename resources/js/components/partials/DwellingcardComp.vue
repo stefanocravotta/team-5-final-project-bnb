@@ -53,6 +53,7 @@ export default {
 .wrapper{
     background: white;
     max-width: 450px;
+    height: 450px;
     position: relative;
     overflow: hidden;
     border-radius: 10px 10px 10px 10px;
@@ -68,12 +69,12 @@ export default {
     width:100%;
     height:100%;
     .top{
-      height: 80%;
+      height: 56%;
       width:100%;
     }
     .bottom{
       width: 200%;
-      height: 20%;
+      height: 44%;
       transition: transform 0.5s;
       &.clicked{
         transform: translateX(-50%);
@@ -93,7 +94,7 @@ export default {
         position:relative;
         float:left;
         .details{
-          padding: 20px;
+          padding: 20px 10px 10px 20px;
           float: left;
           width: 70%;
             color: #00394B;
