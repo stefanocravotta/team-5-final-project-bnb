@@ -57,7 +57,7 @@
                 </div>
                 <div class="mb-perks">
                     <div class="container">
-                        <div v-if="apartmentPerks > 0" class="row">
+                        <div v-if="apartmentPerks.length > 0" class="row">
 
                             <div v-for="perk in apartmentPerks" :key="perk.id" class="col-4 mb-rowPerks">
                                 <i v-html="perk.icon"></i>
@@ -65,7 +65,7 @@
                             </div>
 
                         </div>
-                        <div v-else>Fanculo</div>
+                        <div v-else>Non sono dichiarati servizi disponibili</div>
                     </div>
 
                 </div>

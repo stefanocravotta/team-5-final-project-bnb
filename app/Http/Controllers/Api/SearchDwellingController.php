@@ -71,7 +71,7 @@ class SearchDwellingController extends Controller
 
         $today = Carbon::now('Europe/Rome');
 
-        $dwellings = Dwelling::whereNotNull('expiration_date')->get();
+        $dwellings = Dwelling::whereNotNull('expiration_date')->with('perks')->get();
 
         $categories = Category::all();
 

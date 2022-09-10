@@ -23,15 +23,13 @@
         <div class="inside">
             <div class="icon"><i class="fa-solid fa-circle-info"></i></div>
             <div class="contents">
-
-                <h3>Perk disponibili con questo appartamento</h3>
                 <div class="d-flex" v-for="perk in apartment.perks" :key="`perk-${perk.id}`">
                     <p v-html="perk.icon"></p>
                     <p class="ml-3">{{perk.name}}</p>
                 </div>
 
                 <div v-for="category in categories" :key="`category-${category.id}`">
-                    <h3 v-if="category.id == apartment.category">Categoria dell'immobile: {{category.name}}</h3>
+                    <h3 v-if="category.id == apartment.category">{{category.name}}</h3>
                 </div>
 
             </div>
@@ -205,7 +203,7 @@ export default {
       right:0;
       top:0;
       border-radius: 0;
-      height: 71%;
+      height: 56%;
       .icon{
         opacity: 0;
         right:15px;
