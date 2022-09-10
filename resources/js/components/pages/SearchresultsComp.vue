@@ -300,6 +300,7 @@ export default {
 <style lang="scss" scoped>
 .container-card-map{
     overflow-y: auto ;
+    max-height: 90vh;
 }
 #show-btn{
     height: 43px;
