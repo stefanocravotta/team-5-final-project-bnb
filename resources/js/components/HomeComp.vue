@@ -3,18 +3,18 @@
         <JumboComp />
         <div class="container">
 
-            <h4>Cerca offerte su hotel, ville e tanto altro...</h4>
-            <p>Cerca il nome di una città o di una via!</p>
+            <h2 class="text-center mb-5">Cerca offerte su hotel, ville e tanto altro...</h2>
+            <h3 class="text-center ">Inizia la tua ricerca da una città</h3>
 
             <SearchbarComp />
 
         </div>
-        <div class="content d-flex">
+        <div class="content mt-5 d-flex">
 
             <!-- INIZIO COLONNA  -->
             <div class="dx-cont d-flex">
 
-                <h3>Appartamenti consigliati</h3>
+                <h3 class="py-3">Appartamenti consigliati</h3>
                 <!-- SEZIONE IMG PRIMO PIANO -->
                 <div class="img-sec d-flex ">
                     <div v-for="dwelling in sponsoredDwellings" :key="`sponsorizzati-${dwelling.id}`">
@@ -25,7 +25,7 @@
 
                 </div>
                 <!-- FINE SEZIONE IMG PRIMO PIANO -->
-                <h3>Nuove offerte</h3>
+                <h3 class="py-3">Nuove offerte</h3>
                 <div class="img-sec d-flex">
 
                     <div v-for="dwelling in sponsoredDwellings" :key="`Offerte-${dwelling.id}`">

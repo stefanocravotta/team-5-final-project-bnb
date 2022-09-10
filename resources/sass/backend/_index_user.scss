@@ -18,8 +18,10 @@ h3{
 .card-custom{
     overflow: hidden;
     cursor: pointer;
+    min-height: 650px;
     .card-head{
         position: relative;
+        overflow: hidden;
         &:hover{
             img{
                 scale: 110%;
@@ -38,6 +40,9 @@ h3{
     .card-image{
         overflow: hidden;
         position: relative;
+        height: 65%;
+        background-position: center;
+        background-size: cover;
         img{
             transition: all .5s;
         }

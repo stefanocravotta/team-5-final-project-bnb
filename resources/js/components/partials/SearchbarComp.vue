@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex  min-width">
+    <div class="d-flex min-width">
 
         <div class="w-100" id="searchBox-container">
 
@@ -65,7 +65,7 @@ export default {
 
  .min-width{
      width: 80%;
-     margin-right: 10px;
+     margin: 0 auto;
 }
 .search-button{
     margin: 12px 0 0 10px;

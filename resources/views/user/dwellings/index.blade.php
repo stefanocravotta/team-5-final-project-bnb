@@ -41,33 +41,26 @@
                         {{-- INIZIO CARD --}}
 
                         <div class="card-custom my-2 col-12 col-md-6">
-                            <div class="card-head">
+                            <div class="card-head h-75">
 
-                                <div class="card-image">
-                                    @if($dwelling->image)
+                                <div class="card-image h-75" style="background-image: url({{ $dwelling->image ? asset('images/'.$dwelling->image) : asset('images/placeholder/1.png') }}) ">
 
-                                    <img src="{{ asset('images/'.$dwelling->image) }}" class="img-fluid w-100" alt="{{ $dwelling->name }}">
-
-                                    @else
-
-                                    <img class="img-fluid w-100" src="{{ asset('images/villa-affitto-italia-ada-1624884100.jpg') }}" alt="default">
-
-                                    @endif
                                     <div class="layer d-flex justify-content-center align-items-center">
                                         <h3 class="span-view text-white">Vedi la proprietà
                                         </h3>
                                         <i class="fa-solid fa-arrow-right ml-2 pb-1"></i>
                                     </div>
                                 </div>
-
-                                <div class="py-3">
+                                <div class="py-3 h-25">
                                     <h3 class="card-title">{{ $dwelling->name }}</h3>
                                     <p class="card-text">{{ $dwelling->address }}</p>
                                     <a class="show-link" href="{{ route('user.dwellings.show', $dwelling)}}"></a>
                                 </div>
                             </div>
 
-                            <div class="py-3">
+
+
+                            <div class="py-3 h-25">
 
                                 <a href="{{ route('user.dwellings.edit', $dwelling)}}" class="btn-pubblica">Modifica</a>
 

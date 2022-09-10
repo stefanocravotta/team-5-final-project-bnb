@@ -18,7 +18,7 @@
 
                         @else
 
-                        <img class="dwelling-img" src="{{ asset('images/villa-affitto-italia-ada-1624884100.jpg') }}" alt="default">
+                        <img class="dwelling-img" src="{{ asset('images/placeholder/1.png') }}" alt="default">
 
                         @endif
                     </div>
