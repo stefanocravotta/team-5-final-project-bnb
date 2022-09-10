@@ -90,7 +90,7 @@ export default {
       .left{
         height:100%;
         width: 50%;
-        background: #f4f4f4;
+        background: #BEB7A4;
         position:relative;
         float:left;
         .details{
@@ -105,7 +105,8 @@ export default {
             align-items: center;
             justify-content: center;
             width: 30%;
-            background: #f1f1f1;
+            color: #00394B;
+            background: #BEB7A4;
             transition: background 0.5s;
             border-left:solid thin rgba(0,0,0,0.1);
 
@@ -117,7 +118,7 @@ export default {
             }
 
             &:hover{
-                background: #A6CDDE;
+                background: #A3A1A4;
             }
 
             &:hover i{
@@ -182,7 +183,7 @@ export default {
 
   .inside{
     z-index:9;
-    background: #92879B;
+    background: #292f36;
     width:140px;
     height:140px;
     position: absolute;

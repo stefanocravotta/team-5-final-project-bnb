@@ -244,7 +244,7 @@ export default {
         display: flex;
         justify-content: center;
         align-content: center;
-
+    overflow: hidden;
     // height: 80%;
     // position: sticky;
     // top: 0;
@@ -333,7 +333,7 @@ export default {
             flex-grow: 1;
             width: 100%;
             height: 150px;
-            overflow: scroll;
+            overflow: hidden;
             flex-direction: column;
 
             h2{
