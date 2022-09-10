@@ -250,7 +250,8 @@ export default {
     // top: 0;
     // z-index: -1;
     .mb-imgSection{
-        overflow: scroll;
+        // overflow: scroll;
+        overflow: hidden;
         width: 100%;
         display: flex;
         justify-content: center;
