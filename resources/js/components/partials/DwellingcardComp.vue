@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div class="dwelling_card">
             <div class="top">
-                <img class="w-100" :src="`/images/villa-affitto-italia-ada-1624884100.jpg`" alt="">
+                <img class="w-100" :src="`/images/placeholder/1.png`" alt="">
             </div>
             <div class="bottom">
                 <div class="left d-flex">

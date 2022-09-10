@@ -1,79 +1,84 @@
 <template>
-    <div class="container">
-        <h1>Risultati della ricerca</h1>
+    <div class="d-flex">
 
-        <div class="d-flex">
+        <div class="container-card-map px-2">
+            <h1 class="pl-2">Risultati della ricerca</h1>
 
-        <SearchbarComp @searchDwelling="searchDwelling"/>
-            <b-button id="show-btn" class="py-0" @click="showModal"><i class="fa-solid fa-list"></i> Applica i tuoi filtri</b-button>
-        </div>
-
-        <div class="d-flex justify-content-center pt-3 w-50">
-            <div>
-
-                <b-modal ref="my-modal" hide-footer title="Applica i filtri">
-                <div class="d-block text-center">
-                    <div class="d-flex flex-column">
-                        <div class="d-flex justify-content-center flex-wrap py-3">
-                            <button v-for="perk in perks" :key="perk.id" name="perk-button" :id="`button${perk.id}`"
-                                role="radio" aria-checked="false" type="toggle" class="d-flex flex-column perk-button mx-2">
-                                <label v-html="perk.icon"></label>
-                                <label>{{ perk.name }}</label>
-                                <input type="checkbox" @click="addPerk(perk.id)" name="perk-box" :id="perk.name"
-                                :value="perk.id" class="perk-link m-0">
-                            </button>
-                        </div>
-                        <div>
-                            <button name="categories" :id="`category${category.id}`" class="btn-gold mr-2 mb-2" v-for="category in categories"
-                            :key="category.id" @click="addCategory(`category${category.id}`)">{{category.name}}</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between" >
-                    <b-button class="btn btn-secondary mt-3" @click.prevent="applyFilters(), filtersErrorMethod()">Applica filtri</b-button>
-                    <b-button class="btn btn-secondary mt-3" @click.prevent="removeFilters()">Rimuovi tutti i filtri</b-button>
-                </div>
-            </b-modal>
+            <div class="d-flex align-items-end pl-2">
+                <SearchbarComp @searchDwelling="searchDwelling"/>
+                <b-button id="show-btn" class="py-0" @click="showModal"><i class="fa-solid fa-list"></i> Filtri</b-button>
             </div>
-            <div v-if="filtersError" id="filters-error" class="mt-2">Non ci sono filtri da applicare</div>
-        </div>
 
-        <div class="d-flex mt-4">
+            <div class="d-flex justify-content-center pt-3 ">
+                <div>
 
-            <div v-if="haveResults" class="w-50">
-
-                <div v-if="!isFiltered" class="container-fluid _container">
-                    <div class="raw d-flex flex-wrap">
-                        <div v-for="apartment in apartments" :key="apartment.id" class="dwellingCard">
-
-                            <DwellingcardComp :apartment="apartment" :categories="categories"/>
-
+                    <b-modal ref="my-modal" hide-footer title="Applica i filtri">
+                    <div class="d-block text-center">
+                        <div class="d-flex flex-column">
+                            <div class="d-flex justify-content-center flex-wrap py-3">
+                                <button v-for="perk in perks" :key="perk.id" name="perk-button" :id="`button${perk.id}`"
+                                    role="radio" aria-checked="false" type="toggle" class="d-flex flex-column perk-button mx-2">
+                                    <label v-html="perk.icon"></label>
+                                    <label>{{ perk.name }}</label>
+                                    <input type="checkbox" @click="addPerk(perk.id)" name="perk-box" :id="perk.name"
+                                    :value="perk.id" class="perk-link m-0">
+                                </button>
+                            </div>
+                            <div>
+                                <button name="categories" :id="`category${category.id}`" class="btn-gold mr-2 mb-2" v-for="category in categories"
+                                :key="category.id" @click="addCategory(`category${category.id}`)">{{category.name}}</button>
+                            </div>
                         </div>
                     </div>
+                    <div class="d-flex justify-content-between" >
+                        <b-button class="btn btn-secondary mt-3" @click.prevent="applyFilters(), filtersErrorMethod()">Applica filtri</b-button>
+                        <b-button class="btn btn-secondary mt-3" @click.prevent="removeFilters()">Rimuovi tutti i filtri</b-button>
+                    </div>
+                </b-modal>
                 </div>
+                <div v-if="filtersError" id="filters-error" class="mt-2">Non ci sono filtri da applicare</div>
+            </div>
 
-                <div v-else class="container-fluid _container">
-                    <div class="raw d-flex flex-wrap">
-                        <div v-for="apartment in filtered_apartments" :key="apartment.id" class="card dwellingCard">
+            <div class="d-flex mt-4">
+
+                <div v-if="haveResults" class="">
+
+                    <div v-if="!isFiltered" class="container-fluid _container">
+                        <div class="raw d-flex flex-wrap">
+                            <div v-for="apartment in apartments" :key="apartment.id" class="dwellingCard">
 
                                 <DwellingcardComp :apartment="apartment" :categories="categories"/>
 
+                            </div>
                         </div>
                     </div>
+
+                    <div v-else class="container-fluid _container">
+                        <div class="raw d-flex flex-wrap">
+                            <div v-for="apartment in filtered_apartments" :key="apartment.id" class="card dwellingCard">
+
+                                    <DwellingcardComp :apartment="apartment" :categories="categories"/>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div v-else class="w-50">
+                    <h3>Non ci sono appartamenti con i seguenti parametri di ricerca</h3>
                 </div>
 
-            </div>
-            <div v-else class="w-50">
-                <h3>Non ci sono appartamenti con i seguenti parametri di ricerca</h3>
-            </div>
-
-            <div id="map-box">
-
-                <MapComp v-if="apartments != null && coordinates != null && isFiltered == false" :apartments="apartments" :coordinates="coordinates" class="w-50"/>
-
-                <MapComp v-else-if="isFiltered == true && filtered_apartments != null" :apartments="filtered_apartments" :coordinates="coordinates" class="w-50"/>
 
             </div>
+
+        </div>
+
+
+        <div id="map-box">
+
+            <MapShowComp v-if="apartments != null && coordinates != null && isFiltered == false" :apartments="apartments" :coordinates="coordinates" class="w-50"/>
+
+            <MapShowComp v-else-if="isFiltered == true && filtered_apartments != null" :apartments="filtered_apartments" :coordinates="coordinates" class="w-50"/>
 
         </div>
     </div>
@@ -82,11 +87,11 @@
 <script>
 import SearchbarComp from '../partials/SearchbarComp.vue';
 import DwellingcardComp from '../partials/DwellingcardComp.vue';
-import MapComp from '../partials/MapComp.vue';
+import MapShowComp from '../partials/MapShowComp.vue';
 
 export default {
     name: 'SearchresultsComp',
-    components: { SearchbarComp, DwellingcardComp, MapComp },
+    components: { SearchbarComp, DwellingcardComp, MapShowComp },
     data(){
         return{
             city: this.$route.params.city,
@@ -293,6 +298,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container-card-map{
+    overflow-y: auto ;
+}
+#show-btn{
+    height: 43px;
+    padding: 10px 19px;
+}
 .active{
     opacity: 1;
     color: #3490DC;

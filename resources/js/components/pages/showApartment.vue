@@ -8,7 +8,7 @@
                     <img v-if="apartment[0].image"
                     class="mb-principalImg"
                     :src="`/images/${apartment[0].image}`" :alt="apartment[0].name">
-                    <img class="mb-principalImg" v-else :src="`/images/villa-affitto-italia-ada-1624884100.jpg`">
+                    <img class="mb-principalImg" v-else :src="`/images/placeholder/1.png`">
                 </div>
 
                 <MapComp class="col-lg-6 col-12" v-if="apartment != null" :apartments="apartment" :coordinates="coordinates" />
@@ -57,7 +57,7 @@
                 </div>
                 <div class="mb-perks">
                     <div class="container">
-                        <div class="row">
+                        <div v-if="apartmentPerks > 0" class="row">
 
                             <div v-for="perk in apartmentPerks" :key="perk.id" class="col-4 mb-rowPerks">
                                 <i v-html="perk.icon"></i>
@@ -65,6 +65,7 @@
                             </div>
 
                         </div>
+                        <div v-else>Fanculo</div>
                     </div>
 
                 </div>
@@ -255,7 +256,7 @@ export default {
         justify-content: center;
         align-content: center;
             img{
-                width: 90%;
+                width: 100%;
                 margin-left: 20px;
                 border-radius: 3px;
             }
