@@ -45,7 +45,7 @@
                     </div>
                     <div class=" mb-infoHome d-flex">
                         <h2>Dimensioni della proprietà:</h2>
-                        <h3>{{apartment[0].dimentions}} mtq</h3>
+                        <h3>{{apartment[0].dimentions}} mq</h3>
                     </div>
                 </div>
             </div>

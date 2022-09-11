@@ -20,7 +20,7 @@
 
 
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal{{$message->id}  }">
+                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal{{$message->id}}">
                                     mostra tutto il messaggio
                                 </button>
 

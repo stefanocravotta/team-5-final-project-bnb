@@ -25,7 +25,7 @@
 
                 </div>
                 <!-- FINE SEZIONE IMG PRIMO PIANO -->
-                <h3 class="py-3">Nuove offerte</h3>
+                <!-- <h3 class="py-3">Nuove offerte</h3>
                 <div class="img-sec d-flex">
 
                     <div v-for="dwelling in sponsoredDwellings" :key="`Offerte-${dwelling.id}`">
@@ -34,73 +34,55 @@
 
                     </div>
 
-                </div>
+                </div> -->
 
             </div>
             <!-- FINE COLONNA  -->
-            <div class="section d-flex align-items-center">
-
-                <h3>Viaggia di più e spendi di meno con...</h3>
-                <div class="d-flex">
-                    <div class="sm-box ">
-                        <p>Genius</p>
-                        <p>Approfitta degli sconti, viaggia ora</p>
-                    </div>
-                    <div class="sm-box ">
-                        <p>Sconti del 10%</p>
-                        <p>Approfitta degli sconti, viaggia ora</p>
-                    </div>
-                    <div class="sm-box ">
-                        <p>Sconti del 15%</p>
-                        <p>Approfitta degli sconti, viaggia ora</p>
-                    </div>
-                    <div class="sm-box ">
-                        <p>Sconti de 30%</p>
-                        <p>Approfitta degli sconti, viaggia ora</p>
-                    </div>
-                </div>
-            </div>
 
             <div class="section d-flex align-items-center">
                 <div class="w-100">
-                    <h3 class="h3-margin">Le mete preferite dagli utenti</h3>
+                    <h3 class="h3-margin text-center py-2">Le mete preferite dagli utenti</h3>
                     <div class="d-flex justify-content-center">
-                        <div class="xs-box">Sicilia</div>
-                        <div class="xs-box">Val di Fassa</div>
-                        <div class="xs-box">Cinque Terre</div>
-                        <div class="xs-box">Liguria</div>
-                        <div class="xs-box">Lago di Como</div>
+                        <div class="xs-box">
+                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Milano" @click="getValue('milano')"></router-link>
+                        </div>
+                        <div class="xs-box">
+                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Roma" @click="getValue('roma')"></router-link>
+                        </div>
+                        <div class="xs-box">
+                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Bali" @click="getValue('Bali, Rajasthan')"></router-link>
+                        </div>
+                        <div class="xs-box">
+                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Tanzania" @click="getValue('Tanzânia')"></router-link>
+                        </div>
+                        <div class="xs-box">
+                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Buenos Aires" @click="getValue('buenos-aires')"></router-link>
+                        </div>
                         <!-- prima riga -->
                     </div>
                     <div class="d-flex justify-content-center">
-                        <div class="xs-box">Isola d'Elba</div>
-                        <div class="xs-box">Toscana</div>
-                        <div class="xs-box">Isola del Giglio</div>
-                        <div class="xs-box">Lago di Garda</div>
-                        <div class="xs-box">Argentario</div>
+                        <div class="xs-box">
+                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Cape Town" @click="getValue('cape-town')"></router-link>
+                        </div>
+                        <div class="xs-box">
+                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Palm Springs" @click="getValue('palm-springs')"></router-link>
+                        </div>
+                        <div class="xs-box">
+                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Utah" @click="getValue('Sevier School District, Utah, Stati Uniti')"></router-link>
+                        </div>
+                        <div class="xs-box">
+                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Mauritius" @click="getValue('mauritius')"></router-link>
+                        </div>
+                        <div class="xs-box">
+                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Florida" @click="getValue('Westville, FL, ')"></router-link>
+                        </div>
                         <!-- seconda riga -->
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <div class="xs-box">Ibiza</div>
-                        <div class="xs-box">Costiera Amalfitana</div>
-                        <div class="xs-box">Puglia</div>
-                        <div class="xs-box">Isole Tremiti</div>
-                        <div class="xs-box">Sardegna</div>
-                        <!-- terza riga -->
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <div class="xs-box">Salento</div>
-                        <div class="xs-box">Isole di Ischia</div>
-                        <div class="xs-box">Isole di Lipari</div>
-                        <div class="xs-box">Valle d'Aosta</div>
-                        <div class="xs-box">Isola di Capri</div>
-                        <!-- quarta riga -->
                     </div>
                 </div>
 
             </div>
             <div class="section out">
-                    <h3>Trova ispirazione per i tuoi prossimi viaggi!</h3>
+                    <h3 class="text-center py-2">Trova ispirazione per i tuoi prossimi viaggi!</h3>
                     <div class="row">
                         <div class="col-md-4 col-xs-6 box-col d-flex ">
                             <img class="image" src="images/america.jpeg" alt="">
@@ -152,7 +134,8 @@ export default {
         return{
             apiUrl: '/api/dwellings',
             sponsoredDwellings: [],
-            categories: ''
+            categories: '',
+            city: ''
 
         }
     },
@@ -163,11 +146,19 @@ export default {
 
             axios.get(this.apiUrl + '/sponsored-dwellings')
             .then(r =>{
-                console.log(r);
                 this.sponsoredDwellings = r.data.dwellings;
                 this.categories = r.data.categories;
             })
 
+        },
+
+        // PRENDE IL VALORE AL CLICK DEL PULSANTE
+        getValue(value){
+            let city_top = value.replaceAll(' ' , '-').toLowerCase();
+            this.city = city_top;
+            console.log(this.city_top);
+            console.log(this.city);
+            this.$emit('searchDwelling', this.city);
         }
 
     },
@@ -177,6 +168,15 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+
+.search-input{
+    all: unset;
+    cursor: pointer;
+}
+.search-link{
+    all: unset;
+    cursor: pointer;
+}
 .h3-margin{
     margin-left: 3.5%;
 }
@@ -190,7 +190,7 @@ export default {
         align-items: center;
         margin: 0 auto;
         width: 90%;
-        min-height: 100vh;
+        min-height: 50vh;
         // background-color: #b3b3b3;
         margin-bottom: 50px;
     }.img-sec{

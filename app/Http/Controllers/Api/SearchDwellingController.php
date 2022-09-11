@@ -20,7 +20,7 @@ class SearchDwellingController extends Controller
         $lat = $coordinates['lat'];
         $long = $coordinates['long'];
 
-        $radius = 0.2;
+        $radius = 0.3;
 
         $dwellings = Dwelling::whereBetween('lat', [$lat - $radius, $lat + $radius])->whereBetween('long', [$long - $radius, $long + $radius])->with('perks')->get();
 
@@ -83,5 +83,19 @@ class SearchDwellingController extends Controller
         }
 
         return response()->json(compact('dwellings', 'categories'));
+    }
+
+    public function getDwellingByCityTop($city){
+
+        $coordinates = $this->getCityCoordinates($city);
+
+        $dwellings = $this->getDwellingsByCity($city);
+
+        $perks = Perk::all();
+
+        $categories = Category::all();
+
+        return response()->json(compact('dwellings', 'perks', 'categories', 'coordinates'));
+
     }
 }

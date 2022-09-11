@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="text-center mt-2 mb-3">Fatti notare sponsorizzando la tua proprietà attraverso uno dei seguenti piani:</h1>
+        <h1 class="text-center mt-2 mb-3">Fatti notare sponsorizzando il tuo appartamento attraverso uno dei seguenti piani:</h1>
 
         <div class="d-flex justify-content-between row">
 

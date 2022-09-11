@@ -2,12 +2,13 @@
     <div class="wrapper">
         <div class="dwelling_card">
             <div class="top">
-                <img class="w-100" :src="`/images/placeholder/1.png`" alt="">
+                <img v-if="apartment.image" class="w-100" :src="`/images/${apartment.image}`" alt="">
+                <img v-else class="w-100" :src="`/images/placeholder/1.png`" alt="">
             </div>
             <div class="bottom">
                 <div class="left d-flex">
                     <div class="details">
-                        <h1>{{apartment.name}}</h1>
+                        <h2>{{apartment.name}}</h2>
                         <p>&euro;{{apartment.price}}</p>
                     </div>
                     <router-link :to="{name: 'show-apartment', params:{ slug: apartment.slug}}" class="card-link buy">

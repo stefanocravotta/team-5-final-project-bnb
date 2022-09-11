@@ -2,7 +2,7 @@
     <div class="d-flex">
 
         <div class="container-card-map px-2">
-            <h1 class="pl-2">Risultati della ricerca</h1>
+            <h1 class="text-center">Risultati della ricerca</h1>
 
             <div class="d-flex align-items-end pl-2">
                 <SearchbarComp @searchDwelling="searchDwelling"/>
@@ -65,7 +65,7 @@
 
                 </div>
                 <div v-else>
-                    <h3 class="ml-3">Non ci sono appartamenti con i seguenti parametri di ricerca</h3>
+                    <h3 class="ml-5 pl-4">Oops! La ricerca non ha prodotto risultati :(</h3>
                 </div>
 
 
@@ -308,10 +308,12 @@ export default {
 .container-card-map{
     overflow-y: auto ;
     max-height: 90vh;
+    width: 50%;
 }
 #show-btn{
     height: 43px;
     padding: 10px 19px;
+    margin-left: -40px;
 }
 .active{
     opacity: 1;
@@ -319,8 +321,7 @@ export default {
 }
 
 #map-box{
-    position: sticky;
-    top: 0;
+width: 55%;
 
 }
 button.selected {

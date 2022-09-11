@@ -46,7 +46,7 @@
                                 <div class="card-image h-75" style="background-image: url({{ $dwelling->image ? asset('images/'.$dwelling->image) : asset('images/placeholder/1.png') }}) ">
 
                                     <div class="layer d-flex justify-content-center align-items-center">
-                                        <h3 class="span-view text-white">Vedi la proprietà
+                                        <h3 class="span-view text-white">Vedi il tuo appartamento
                                         </h3>
                                         <i class="fa-solid fa-arrow-right ml-2 pb-1"></i>
                                     </div>
