@@ -90,5 +90,9 @@ export default {
     height: 60vh;
     width: 45vw;
     border-radius: 5px;
+    @media screen and (max-width: 992px) {
+        width: 100%;
+        margin-top: 20px;
+    }
 }
 </style>

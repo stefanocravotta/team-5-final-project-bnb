@@ -51,7 +51,7 @@ export default {
 .wrapper{
     background: white;
     max-width: 450px;
-    height: 450px;
+    max-height: 450px;
     position: relative;
     overflow: hidden;
     border-radius: 10px 10px 10px 10px;
@@ -92,10 +92,15 @@ export default {
         position:relative;
         float:left;
         .details{
-          padding: 20px 10px 10px 20px;
-          float: left;
-          width: 70%;
+            padding: 20px 10px 10px 20px;
+            float: left;
+            width: 70%;
+            height: 30%;
             color: #00394B;
+            h1 {
+                height: 100px;
+                overflow-y: scroll;
+            }
         }
         .buy{
             float:right;
@@ -203,7 +208,7 @@ export default {
       right:0;
       top:0;
       border-radius: 0;
-      height: 56%;
+      height: 62.5%;
       .icon{
         opacity: 0;
         right:15px;

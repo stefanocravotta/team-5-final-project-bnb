@@ -19,7 +19,7 @@ class SponsorisationController extends Controller
 
         $user_id = Auth::id();
         $sponsorisations = Sponsorisation::all();
-        $dwellings_user = Dwelling::where('user_id', $user_id)->get();
+        $dwellings_user = Dwelling::where('user_id', $user_id)->where('visible', 1)->get();
 
         $gateway = new \Braintree\Gateway([
             'environment' => env('BT_ENVIRONMENT'),

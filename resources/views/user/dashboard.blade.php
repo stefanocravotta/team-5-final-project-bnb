@@ -66,85 +66,75 @@
         <div class="right-box">
             <div class="dx-wrap">
                 <h3 style="color: black">Le tue statistiche:</h3>
-                    <div class="d-flex justify-content-around mb-4">
-                        <div class="small-box">
-                            <h4>Sessioni totali:</h4>
-                            <div class="first d-flex justify-content-between">
-                                <h2 class="sell-data">450</h2>
-                                <div class="c-cont">
-                                    <div class="c-wrap">
-                                        <div class="c-1"></div>
-                                    </div>
-                                    <div class="c-2"></div>
-                                    <div class="c-3"></div>
+                <div class="d-flex justify-content-around mb-4">
+                    <div class="small-box">
+                        <h4>Sessioni totali:</h4>
+                        <div class="first d-flex justify-content-between">
+                            <h2 class="sell-data">450</h2>
+                            <div class="c-cont">
+                                <div class="c-wrap">
+                                    <div class="c-1"></div>
                                 </div>
+                                <div class="c-2"></div>
+                                <div class="c-3"></div>
                             </div>
-                            <div class="row-wrap d-flex">
-                                <div class="c-row"></div>
-                            </div>
-                            <div>
-
-                            </div>
-                            <span style="font-size: 18px; margin: 0 auto;">9 visitatori nell'ultima ora</span>
                         </div>
-
-                        <div class="small-box">
-                            <h4>Vendite totali:</h4>
-                            <div class="d-flex justify-content-center">
-                                <h2 class="sell-data">16</h2>
-                            </div>
-                            <div class="row-wrap d-flex">
-                                <div class="c-row"></div>
-                            </div>
-                            <span style="font-size: 18px; margin: 0 auto;">7 ordini in sospeso</span>
+                        <div class="row-wrap d-flex">
+                            <div class="c-row"></div>
                         </div>
-
-                    </div>
-                    <div class="d-flex justify-content-around">
-
-                        <div class="small-box">
-                            <div class="head">
-                                <img class="sm-img" src="images/pos.avif" alt="">
-                                <h5>L'hardware per il pagamento integrato è ora disponibile!</h5>
-                            </div>
-                            <div class="d-flex justify-content-between my-2">
-                                <span style="font-size: 14px">
-                                    Accetta i pagamenti "tap and chip" con un lettore di schede completamente integrato e ottieni tariffe basse e costanti
-                                </span>
-                            </div>
-                            <div class="row-wrap d-flex">
-                                <div class="c-row"></div>
-                            </div>
-                            <span class="btn btn-secondary">Visualizza dettagli</span>
+                        <div>
                         </div>
-
-                        <div class="small-box">
-                            <div class="head">
-                                <img src="images/pngwing.com.png" class="sm-img" id="ms-img" alt="">
-                                <h5>Vendi di più con il canale di vendita Messenger! <span class="badge badge-secondary">New</span></h5>
-                            </div>
-                            <div class="d-flex justify-content-between my-2">
-                                <span style="font-size: 12px">
-                                    Aggiungi il canale Messenger per Facebook e Instagram per avviare chat, condividere prodotti e concludere vendite rapidamente da un solo posto.
-                                </span>
-                            </div>
-                            <div class="row-wrap d-flex">
-                                <div class="c-row"></div>
-                            </div>
-                            <span class="btn btn-secondary">Visualizza dettagli</span>
-                        </div>
+                        <span style="font-size: 18px; margin: 0 auto;">9 visitatori nell'ultima ora</span>
                     </div>
 
-
-
-                    @for ($i=0;$i<1;$i++)
-
-                        <div class="dash-card mt-5">
-                            <h5>Personalizza le tue comunicazioni con la segmentazione dei clienti</h5>
-                            <div>Grazie alla segmentazione è più semplice creare e gestire gruppi di clienti, in modo da recapitare il messaggio giusto alle persone giuste e al momento giusto e dare impulso alle vendite.</div>
+                    <div class="small-box">
+                        <h4>Vendite totali:</h4>
+                        <div class="d-flex justify-content-center">
+                            <h2 class="sell-data">16</h2>
                         </div>
+                        <div class="row-wrap d-flex">
+                            <div class="c-row"></div>
+                        </div>
+                        <span style="font-size: 18px; margin: 0 auto;">7 ordini in sospeso</span>
+                    </div>
 
-                    @endfor
+                </div>
+
+                <div class="d-flex justify-content-around">
+
+                    <div class="small-box">
+                        <div class="head">
+                            <img class="sm-img" src="images/pos.avif" alt="">
+                            <h5>Sponsorizza uno o pi&eacute; appartamenti!</h5>
+                        </div>
+                        <div class="d-flex justify-content-between my-2">
+                            <span style="font-size: 14px">
+                                Sponsorizzando uno o pi&eacute; appartamenti, i clienti potranno visualizzarli nella home tragli "Appartamenti consigliati"
+                            </span>
+                        </div>
+                        <div class="row-wrap d-flex">
+                            <div class="c-row"></div>
+                        </div>
+                        <a class="btn btn-secondary" href="{{route('user.sponsorisations')}}">Visualizza i pacchetti</a>
+                    </div>
+
+                    <div class="small-box">
+                        <div class="head">
+                            <img src="images/pngwing.com.png" class="sm-img" id="ms-img" alt="">
+                            <h5>Ora gli utenti possono contattarti! <span class="badge badge-secondary">New</span></h5>
+                        </div>
+                        <div class="d-flex justify-content-between my-2">
+                            <span style="font-size: 12px">
+                                Controlla se sei stato/a contattato/a, troverai l'email dell'utente alla quale potrairispondere
+                            </span>
+                        </div>
+                        <div class="row-wrap d-flex">
+                            <div class="c-row"></div>
+                        </div>
+                        <a class="btn btn-secondary" href="{{route('user.messages')}}">Controlla i tuoi messaggi</a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

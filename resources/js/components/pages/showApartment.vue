@@ -260,9 +260,12 @@ export default {
                 width: 100%;
                 margin-left: 20px;
                 border-radius: 3px;
-            }
-            img:hover{
-                filter: brightness(80%);
+                @media screen and (max-width: 992px) {
+                    margin-left: 0px;
+                }
+                &:hover{
+                    filter: brightness(80%);
+                }
             }
             // .mb-principalImg{
             //     // width: 68.2%;
@@ -585,6 +588,10 @@ export default {
         // Form for sending messages
         .mb-contactForm{
             padding: 180px 30px;
+
+            @media screen and (max-width: 992px) {
+                padding: 80px 30px 50px;
+            }
 
 
             .mb-emailContact, .mb-msgContact{

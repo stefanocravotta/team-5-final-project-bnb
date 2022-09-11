@@ -6,7 +6,7 @@
 
         </div>
 
-        <router-link :to="{name:'search-results' , params:{city: city}}" class="search-button d-inline"><span @click="getValue()" >Cerca</span></router-link>
+        <router-link :to="{name:'search-results' , params:{city: city}}" class="search-button d-inline"><span class="search-span" @click="getValue()" >Cerca</span></router-link>
     </div>
 </template>
 
@@ -69,7 +69,7 @@ export default {
 }
 .search-button{
     margin: 12px 0 0 10px;
-    padding: 10px 19px;
+    padding: 10px 0;
     border-radius: 6px;
     font-size: 0.9rem;
     background-color: rgb(71, 71, 233);
@@ -78,6 +78,9 @@ export default {
     & :hover {
         text-decoration: none;
         box-shadow: 5px -10px rgb(71, 71, 233) inset;
+    }
+    .search-span {
+        padding: 12px 32px;
     }
 }
 </style>

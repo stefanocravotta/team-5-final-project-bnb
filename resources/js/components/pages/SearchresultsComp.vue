@@ -17,7 +17,7 @@
                         <div class="d-flex flex-column">
                             <div class="d-flex justify-content-center flex-wrap py-3">
                                 <button v-for="perk in perks" :key="perk.id" name="perk-button" :id="`button${perk.id}`"
-                                    role="radio" aria-checked="false" type="toggle" class="d-flex flex-column perk-button mx-2">
+                                    role="radio" aria-checked="false" type="toggle" class="d-flex flex-column align-items-center perk-button mx-2">
                                     <label v-html="perk.icon"></label>
                                     <label>{{ perk.name }}</label>
                                     <input type="checkbox" @click="addPerk(perk.id)" name="perk-box" :id="perk.name"
@@ -41,7 +41,7 @@
 
             <div class="d-flex mt-4">
 
-                <div v-if="haveResults" class="">
+                <div v-if="haveResults">
 
                     <div v-if="!isFiltered" class="container-fluid _container">
                         <div class="raw d-flex flex-wrap">
@@ -55,7 +55,7 @@
 
                     <div v-else class="container-fluid _container">
                         <div class="raw d-flex flex-wrap">
-                            <div v-for="apartment in filtered_apartments" :key="apartment.id" class="card dwellingCard">
+                            <div v-for="apartment in filtered_apartments" :key="apartment.id" class="dwellingCard">
 
                                     <DwellingcardComp :apartment="apartment" :categories="categories"/>
 
@@ -64,8 +64,8 @@
                     </div>
 
                 </div>
-                <div v-else class="w-50">
-                    <h3>Non ci sono appartamenti con i seguenti parametri di ricerca</h3>
+                <div v-else>
+                    <h3 class="ml-3">Non ci sono appartamenti con i seguenti parametri di ricerca</h3>
                 </div>
 
 
@@ -260,6 +260,10 @@ export default {
                         this.filtered_apartments = apartments_categories_filtered.filter( el => apartments_perks_filtered.includes(el))
                     };
 
+                    if (this.filtered_apartments.length == 0) {
+                        this.haveResults = false;
+                    }
+
                 }, 300);
             }
             else {
@@ -283,6 +287,9 @@ export default {
             this.checkedCategories = [];
             this.filtered_apartments = null;
             this.filtersError = false;
+            if (this.apartments.length > 0) {
+                this.haveResults = true;
+            }
 
             const setFilteredFalse = setTimeout(() => {
                     this.isFiltered = false;

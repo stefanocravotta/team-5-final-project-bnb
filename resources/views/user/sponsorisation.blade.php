@@ -2,14 +2,13 @@
 
 @section('content')
     <div class="container">
-        <h1 class="text-center">Sponsorisation</h1>
+        <h1 class="text-center mt-2 mb-3">Fatti notare sponsorizzando la tua proprietà attraverso uno dei seguenti piani:</h1>
 
         <div class="d-flex justify-content-between row">
 
             @foreach ($sponsorisations as $sponsorisation)
                 <div class="col-3 mb-planDesc">
-                    <div class="mb-planName">
-                        <span>Fatti notare sponsorizzando la tua proprietà con il piano:</span>
+                    <div class="mb-planName pt-2">
                         <h3>{{$sponsorisation->name}}</h3>
                     </div>
                     {{-- <p>{{$sponsorisation->name}}</p> --}}
@@ -20,49 +19,59 @@
 
         </div>
 
-        <h2>Sponsorizza il tuo appartamento</h2>
+        @if (count($dwellings_user) > 0)
+            <h3 class="mt-4">Sponsorizza il tuo appartamento</h3>
+        @endif
 
-        <form method="post" id="payment-form" action="{{ route('user.sponsorisations-form') }}">
-            @csrf
-            <section>
+        @if (count($dwellings_user) > 0)
 
-                <select name="dwelling_id" id="dwellings-select">
-                    <option  value='0' selected>Scegli il tuo appartamento</option>
-                    @foreach ($dwellings_user as $dwelling)
-                        <option value="{{$dwelling->id}}">{{$dwelling->name}}</option>
-                    @endforeach
-                </select>
+            <form method="post" id="payment-form" action="{{ route('user.sponsorisations-form') }}">
+                @csrf
+                <section>
 
-                @error('dwelling_id')
-                    <p class="error-msg text-danger"> {{ $message }} </p>
-                @enderror
+                    <select name="dwelling_id" id="dwellings-select">
+                        <option  value='0' selected>Scegli il tuo appartamento</option>
+                        @foreach ($dwellings_user as $dwelling)
+                            <option value="{{$dwelling->id}}">{{$dwelling->name}}</option>
+                        @endforeach
+                    </select>
 
-                <label for="amount">
-                    <div class="input-wrapper amount-wrapper">
-                        <select name="amount" id="amount">
+                    @error('dwelling_id')
+                        <p class="error-msg text-danger"> {{ $message }} </p>
+                    @enderror
 
-                            <option value='0' selected>Scegli il tuo piano</option>
+                    <label for="amount">
+                        <div class="input-wrapper amount-wrapper">
+                            <select name="amount" id="amount">
 
-                            @foreach ($sponsorisations as $sponsorisation)
-                                <option value="{{$sponsorisation->price}}">{{$sponsorisation->name}}</option>
-                            @endforeach
+                                <option value='0' selected>Scegli il tuo piano</option>
 
-                        </select>
+                                @foreach ($sponsorisations as $sponsorisation)
+                                    <option value="{{$sponsorisation->price}}">{{$sponsorisation->name}}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                    </label>
+
+                    @error('amount')
+                        <p class="error-msg text-danger"> {{ $message }} </p>
+                    @enderror
+
+                    <div class="bt-drop-in-wrapper">
+                        <div id="bt-dropin"></div>
                     </div>
-                </label>
+                </section>
 
-                @error('amount')
-                    <p class="error-msg text-danger"> {{ $message }} </p>
-                @enderror
+                <input id="nonce" name="payment_method_nonce" type="hidden" />
+                <button class="btn-pubblica" type="submit"><span>Procedi al pagamento</span></button>
+            </form>
 
-                <div class="bt-drop-in-wrapper">
-                    <div id="bt-dropin"></div>
-                </div>
-            </section>
+        @else
 
-            <input id="nonce" name="payment_method_nonce" type="hidden" />
-            <button class="btn-pubblica" type="submit"><span>Procedi al pagamento</span></button>
-        </form>
+            <h2 class="text-center mt-5">Non ci sono appartamenti da poter sponsorizzare</h2>
+
+        @endif
 
     </div>
 
