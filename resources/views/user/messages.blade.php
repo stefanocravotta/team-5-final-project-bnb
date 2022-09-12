@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="container-fluid mb-containerMsg">
-    <h2>I tuoi messaggi:</h2>
+    <h2>I tuoi messaggi</h2>
 
     @foreach ($dwellings as $dwelling)
         @if (count($dwelling->messages) > 0)
-            <h2>{{$dwelling->name}}:</h2>
+            <h3>Per {{$dwelling->name}}:</h3>
 
             <div class="container-fluid">
                 <div class="card my-3 flex-column flex-wrap mb-rowOfText">
@@ -56,5 +56,16 @@
     <div class="second">
 
     </div> --}}
+    <script>
+        function reduceText(text) {
+            let newText = null;
+            if (text.length > 20) {
+                newText = text.substr(0,19) . '...';
+                return newText
+            } else {
+                return text
+            }
+        }
+    </script>
 </div>
 @endsection
