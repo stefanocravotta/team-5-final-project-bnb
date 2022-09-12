@@ -253,12 +253,9 @@ export default {
                     else if (apartments_perks_filtered.length == 0) {
                         this.filtered_apartments = apartments_categories_filtered;
                     }
-                    else if (apartments_categories_filtered.length >= apartments_perks_filtered.length) {
+                    else {
                         this.filtered_apartments = apartments_perks_filtered.filter( el => apartments_categories_filtered.includes(el))
                     }
-                    else if (apartments_perks_filtered.length > apartments_categories_filtered.length) {
-                        this.filtered_apartments = apartments_categories_filtered.filter( el => apartments_perks_filtered.includes(el))
-                    };
 
                     if (this.filtered_apartments.length == 0) {
                         this.haveResults = false;

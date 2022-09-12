@@ -192,7 +192,7 @@
 
             </div>
             <div class="mb-3">
-                <button class="btn-pubblica" name="visible" type="button" value="1" data-toggle="modal" data-target="#modal-public">Pubblica</button>
+                <button class="btn-pubblica" name="visible" type="button" value="1" data-toggle="modal" data-target="#modal-public">Aggiorna</button>
                 <button class="btn-bozza" name="visible" type="submit" value="0">Salva in bozza</button>
             </div>
 
@@ -210,7 +210,7 @@
                         </div>
                         <div class="modal-footer mb-modalFoot">
                             <button type="button" class="btn-chiudi" data-dismiss="modal">Chiudi</button>
-                            <button type="submit" class="btn-inserisci">Pubblica</button>
+                            <button type="submit" class="btn-inserisci">Aggiorna</button>
                         </div>
                     </div>
                 </div>
