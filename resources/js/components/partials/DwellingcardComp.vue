@@ -68,12 +68,10 @@ export default {
     width:100%;
     height:100%;
     .top{
-      height: 56%;
       width:100%;
     }
     .bottom{
-      width: 200%;
-      height: 44%;
+      width: 100%;
       transition: transform 0.5s;
       &.clicked{
         transform: translateX(-50%);
@@ -88,7 +86,7 @@ export default {
       }
       .left{
         height:100%;
-        width: 50%;
+        width: 100%;
         background: #BEB7A4;
         position:relative;
         float:left;

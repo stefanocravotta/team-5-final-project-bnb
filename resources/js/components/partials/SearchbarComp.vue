@@ -77,7 +77,6 @@ export default {
     text-decoration: none;
     & :hover {
         text-decoration: none;
-        box-shadow: 5px -10px rgb(71, 71, 233) inset;
     }
     .search-span {
         padding: 12px 32px;

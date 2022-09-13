@@ -4,9 +4,9 @@
         <div class="container-card-map px-2">
             <h1 class="text-center">Risultati della ricerca</h1>
 
-            <div class="d-flex align-items-end pl-2">
+            <div class="d-flex flex-column align-items-center">
                 <SearchbarComp @searchDwelling="searchDwelling"/>
-                <b-button id="show-btn" class="py-0" @click="showModal"><i class="fa-solid fa-list"></i> Filtri</b-button>
+                <b-button id="show-btn" class="mt-3 ml-1 w-75" @click="showModal"><i class="fa-solid fa-list"></i> Filtri</b-button>
             </div>
 
             <div class="d-flex justify-content-center pt-3 ">
@@ -24,9 +24,27 @@
                                     :value="perk.id" class="perk-link m-0">
                                 </button>
                             </div>
+
+                            <div class="d-flex" id="requiredFilters">
+                                <div>
+                                    <label for="beds">Numero letti</label>
+                                    <input type="number" name="beds">
+                                </div>
+
+                                <div>
+                                    <label for="bathrooms">Numero bagni</label>
+                                    <input type="number" name="bathrooms">
+                                </div>
+
+                                <div>
+                                    <label for="distance">Raggio di ricerca:</label>
+                                    <input type="range" name="distance" min="5" max="40" value="20">
+                                </div>
+                            </div>
+
                             <div>
-                                <button name="categories" :id="`category${category.id}`" class="btn-gold mr-2 mb-2" v-for="category in categories"
-                                :key="category.id" @click="addCategory(`category${category.id}`)">{{category.name}}</button>
+                                <button name="categories" :id="`category${category.id}`" class="btn-gold mr-2 mb-2" v-for="category in categories" :key="category.id" @click="addCategory(`category${category.id}`)">
+                                {{category.name}}</button>
                             </div>
                         </div>
                     </div>
@@ -39,17 +57,15 @@
                 <div v-if="filtersError" id="filters-error" class="mt-2">Non ci sono filtri da applicare</div>
             </div>
 
-            <div class="d-flex mt-4">
+            <div class="mt-4">
 
                 <div v-if="haveResults">
 
                     <div v-if="!isFiltered" class="container-fluid _container">
-                        <div class="raw d-flex flex-wrap">
-                            <div v-for="apartment in apartments" :key="apartment.id" class="dwellingCard">
+                        <div class="raw d-flex flex-wrap justify-content-center">
 
-                                <DwellingcardComp :apartment="apartment" :categories="categories"/>
+                                <DwellingcardComp class="dwellingCard" v-for="apartment in apartments" :key="apartment.id" :apartment="apartment" :categories="categories"/>
 
-                            </div>
                         </div>
                     </div>
 
@@ -109,8 +125,7 @@ export default {
         }
     },
 
-    methods:{
-
+    methods: {
         showModal() {
         this.$refs['my-modal'].show();
 
@@ -302,6 +317,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#requiredFilters {
+    margin-bottom: 20px;
+    & > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 30%;
+        margin-right: 15px;
+
+        &:not(:last-child) > input{
+            width: 50%;
+        }
+    }
+}
 .container-card-map{
     overflow-y: auto ;
     max-height: 90vh;
