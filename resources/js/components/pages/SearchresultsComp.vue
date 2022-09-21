@@ -1,15 +1,15 @@
 <template>
     <div class="d-flex">
 
-        <div class="container-card-map px-2">
-            <h1 class="text-center">Risultati della ricerca</h1>
+        <div class="container-left px-2">
+            <h2 class="text-center">Risultati della ricerca</h2>
 
-            <div class="d-flex flex-column align-items-center">
-                <SearchbarComp @searchDwelling="searchDwelling"/>
-                <b-button id="show-btn" class="mt-3 ml-1 w-75" @click="showModal"><i class="fa-solid fa-list"></i> Filtri</b-button>
+            <div class="d-flex align-items-center justify-content-center">
+                <SearchbarComp @searchDwelling="searchDwelling" :range="range"/>
+                <b-button id="show-btn" class="ml-1" @click="showModal"><i class="fa-solid fa-list"></i> Filtri</b-button>
             </div>
 
-            <div class="d-flex justify-content-center pt-3 ">
+            <div class="d-flex justify-content-center ">
                 <div>
 
                     <b-modal ref="my-modal" hide-footer title="Applica i filtri">
@@ -27,18 +27,18 @@
 
                             <div class="d-flex" id="requiredFilters">
                                 <div>
-                                    <label for="beds">Numero letti</label>
-                                    <input type="number" name="beds">
+                                    <label for="beds">Numero minimo letti</label>
+                                    <input v-model="filters.beds" type="number" name="beds">
                                 </div>
 
                                 <div>
-                                    <label for="bathrooms">Numero bagni</label>
-                                    <input type="number" name="bathrooms">
+                                    <label for="rooms">Numero minimo stanze</label>
+                                    <input v-model="filters.rooms" type="number" name="rooms">
                                 </div>
 
                                 <div>
-                                    <label for="distance">Raggio di ricerca:</label>
-                                    <input type="range" name="distance" min="5" max="40" value="20">
+                                    <label for="distance">Raggio di ricerca:{{range}}</label>
+                                    <input v-model="range" type="range" name="distance" min="4" max="40" value="20">
                                 </div>
                             </div>
 
@@ -49,39 +49,38 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-between" >
-                        <b-button class="btn btn-secondary mt-3" @click.prevent="applyFilters(), filtersErrorMethod()">Applica filtri</b-button>
-                        <b-button class="btn btn-secondary mt-3" @click.prevent="removeFilters()">Rimuovi tutti i filtri</b-button>
+                        <button class="btn btn-primary mt-3" @click.prevent="applyFilters(), filtersErrorMethod()">Applica filtri</button>
+                        <button class="btn btn-danger mt-3" @click.prevent="removeFilters()">Rimuovi tutti i filtri</button>
                     </div>
                 </b-modal>
                 </div>
                 <div v-if="filtersError" id="filters-error" class="mt-2">Non ci sono filtri da applicare</div>
             </div>
 
-            <div class="mt-4">
+            <div id="cardsContainer" class="mt-4">
 
                 <div v-if="haveResults">
 
                     <div v-if="!isFiltered" class="container-fluid _container">
-                        <div class="raw d-flex flex-wrap justify-content-center">
+                        <div class="row d-flex flex-wrap justify-content-center">
 
-                                <DwellingcardComp class="dwellingCard" v-for="apartment in apartments" :key="apartment.id" :apartment="apartment" :categories="categories"/>
+                            <DwellingcardComp class="dwellingCard" v-for="apartment in apartments" :key="apartment.id" :apartment="apartment" :categories="categories" :ip_address="ip_address"/>
 
                         </div>
                     </div>
 
                     <div v-else class="container-fluid _container">
-                        <div class="raw d-flex flex-wrap">
-                            <div v-for="apartment in filtered_apartments" :key="apartment.id" class="dwellingCard">
+                        <div class="row d-flex justify-content-center flex-wrap">
 
-                                    <DwellingcardComp :apartment="apartment" :categories="categories"/>
+                            <DwellingcardComp v-for="apartment in filtered_apartments" :key="apartment.id" class="dwellingCard" :apartment="apartment" :categories="categories" :ip_address="ip_address"/>
 
-                            </div>
                         </div>
                     </div>
 
                 </div>
+
                 <div v-else>
-                    <h3 class="ml-5 pl-4">Oops! La ricerca non ha prodotto risultati :(</h3>
+                    <h3 class="ml-5 pl-4">Ci dispiace! La ricerca non ha prodotto risultati :(</h3>
                 </div>
 
 
@@ -90,11 +89,11 @@
         </div>
 
 
-        <div id="map-box">
+        <div id="map-box" class="d-none d-md-block">
 
-            <MapShowComp v-if="apartments != null && coordinates != null && isFiltered == false" :apartments="apartments" :coordinates="coordinates" class="w-50"/>
+            <MapComp v-if="apartments.length > 0 && coordinates != null && isFiltered == false" :apartments="apartments" :coordinates="coordinates" :range="range"/>
 
-            <MapShowComp v-else-if="isFiltered == true && filtered_apartments != null" :apartments="filtered_apartments" :coordinates="coordinates" class="w-50"/>
+            <MapComp v-else-if="isFiltered == true && filtered_apartments.length > 0" :apartments="filtered_apartments" :coordinates="coordinates" :range="range"/>
 
         </div>
     </div>
@@ -103,25 +102,32 @@
 <script>
 import SearchbarComp from '../partials/SearchbarComp.vue';
 import DwellingcardComp from '../partials/DwellingcardComp.vue';
-import MapShowComp from '../partials/MapShowComp.vue';
+import MapComp from '../partials/MapComp.vue';
 
 export default {
     name: 'SearchresultsComp',
-    components: { SearchbarComp, DwellingcardComp, MapShowComp },
+    components: { SearchbarComp, DwellingcardComp, MapComp },
     data(){
         return{
             city: this.$route.params.city,
             apiUrl: '/api/dwellings',
             coordinates: null,
-            apartments: null,
+            range: '20',
+            oldRange: null,
+            filters: {
+                beds: null,
+                rooms: null,
+                checkedPerks: [],
+                checkedCategories: []
+            },
+            apartments: [],
             filtersError: false,
             perks: null,
-            checkedPerks: [],
-            checkedCategories: [],
             categories: null,
-            filtered_apartments: null,
+            filtered_apartments: [],
             isFiltered: false,
-            haveResults: true
+            haveResults: true,
+            ip_address: null
         }
     },
 
@@ -135,7 +141,7 @@ export default {
 
             checkboxes.forEach(element => {
 
-                if (this.checkedPerks.includes(element._value)) {
+                if (this.filters.checkedPerks.includes(element._value)) {
                     let button = document.getElementById(`button${element._value}`);
                     element.checked = true;
                     button.classList.toggle('active');
@@ -144,25 +150,25 @@ export default {
 
             let categoriesButtons = document.getElementsByName('categories');
             categoriesButtons.forEach(button => {
-                if (this.checkedCategories.includes(button.id)) {
+                if (this.filters.checkedCategories.includes(button.id)) {
                     button.classList.add('selected');
                 }
             });
         }, 100);
         },
 
-        searchDwelling(city){
+        searchDwelling(city, range){
 
-            this.apartments = null;
+            this.apartments = [];
             this.coordinates = null;
-            this.filtersError = false;
 
-            axios.get(this.apiUrl + '/search-dwelling/' + city)
+            axios.get(this.apiUrl + '/search-dwelling/' + city + '/' + range)
             .then(r =>{
+
                 this.apartments = r.data.dwellings;
                 this.coordinates = r.data.coordinates;
-
-                // console.log(this.apartments);
+                this.oldRange = range;
+                this.city = city;
 
                 if (this.perks == null && this.categories == null) {
                     this.perks = r.data.perks;
@@ -179,16 +185,18 @@ export default {
             .catch((error) =>{
                 console.log(error);
             });
+
+            this.filtersError = false;
         },
 
         addPerk(perkId) {
 
             let button = document.getElementById(`button${perkId}`);
-            if (!this.checkedPerks.includes(perkId)) {
-                this.checkedPerks.push((perkId));
+            if (!this.filters.checkedPerks.includes(perkId)) {
+                this.filters.checkedPerks.push((perkId));
                 button.classList.toggle('active');
             } else {
-                this.checkedPerks = this.arrayFilter(this.checkedPerks, perkId);
+                this.filters.checkedPerks = this.arrayFilter(this.filters.checkedPerks, perkId);
                 button.classList.toggle('active');
             }
         },
@@ -196,11 +204,11 @@ export default {
         addCategory(categoryId) {
             let button = document.getElementById(categoryId);
 
-            if (!this.checkedCategories.includes(categoryId)) {
-                this.checkedCategories.push(categoryId);
+            if (!this.filters.checkedCategories.includes(categoryId)) {
+                this.filters.checkedCategories.push(categoryId);
                 button.classList.toggle('selected');
             } else {
-                this.checkedCategories = this.arrayFilter(this.checkedCategories, categoryId);
+                this.filters.checkedCategories = this.arrayFilter(this.filters.checkedCategories, categoryId);
                 button.classList.toggle('selected');
             }
         },
@@ -215,33 +223,52 @@ export default {
         applyFilters() {
             this.$refs['my-modal'].hide();
 
-            if (this.checkedPerks.length > 0 || this.checkedCategories.length > 0) {
+            if (this.range != this.oldRange) {
+                this.searchDwelling(this.city, this.range);
+                return;
+            }
 
-                this.filtered_apartments = null;
+            if (this.apartments.length > 0) {
+                this.haveResults = true;
+            }
+
+            if (this.filters.checkedPerks.length > 0 || this.filters.checkedCategories.length > 0
+                || this.filters.beds != null || this.filters.rooms != null) {
+
+                this.filtered_apartments = [];
                 this.isFiltered = true;
 
                 const applyFilters = setTimeout(() => {
 
                     this.filtersError = false;
 
-                    let apartments_categories_filtered = [];
-                    let apartments_perks_filtered = [];
+                    let filtersResults = [];
+
+                    if (this.filters.beds != null) {
+                        filtersResults["apartments_beds_filtered"] = [];
+                        filtersResults['apartments_beds_filtered'] = this.apartments.filter(apartment => apartment.beds >= this.filters.beds)
+                    }
+
+                    if (this.filters.rooms != null) {
+                        filtersResults["apartments_rooms_filtered"] = [];
+                        filtersResults['apartments_rooms_filtered'] = this.apartments.filter(apartment => apartment.rooms >= this.filters.rooms)
+                    }
 
                     // se ci sono categorie selezionate
-                    if (this.checkedCategories.length > 0) {
-
+                    if (this.filters.checkedCategories.length > 0) {
+                        filtersResults["apartments_categories_filtered"] = [];
                         this.apartments.forEach(apartment => {
                             // controllo se la categoria dell'appartamento si trova tra le categorie selezionate
-                            if (this.checkedCategories.includes(`category${apartment.category}`)) {
+                            if (this.filters.checkedCategories.includes(`category${apartment.category}`)) {
 
-                                apartments_categories_filtered.push(apartment);
+                                filtersResults['apartments_categories_filtered'].push(apartment);
                             }
                         })
                     };
 
                     // se ci sono perks selezionati
-                    if (this.checkedPerks.length > 0) {
-
+                    if (this.filters.checkedPerks.length > 0) {
+                        filtersResults["apartments_perks_filtered"] = [];
                         // per ogni appartamento creo un array con i propri perks
                         this.apartments.forEach(apartment => {
 
@@ -253,24 +280,29 @@ export default {
 
                             });
 
-                            // controllo se i perks selezionati si trovano tuttitra i perks dell'appartamento
+                            // controllo se i perks selezionati si trovano tutti tra i perks dell'appartamento
 
-                            if (this.checkedPerks.every(el => apartmentPerks.includes(el))) {
+                            if (this.filters.checkedPerks.every(el => apartmentPerks.includes(el))) {
 
-                                apartments_perks_filtered.push(apartment);
+                                filtersResults['apartments_perks_filtered'].push(apartment);
                             }
                         });
                     }
 
-                    if (apartments_categories_filtered.length == 0) {
-                        this.filtered_apartments = apartments_perks_filtered;
-                    }
-                    else if (apartments_perks_filtered.length == 0) {
-                        this.filtered_apartments = apartments_categories_filtered;
-                    }
-                    else {
-                        this.filtered_apartments = apartments_perks_filtered.filter( el => apartments_categories_filtered.includes(el))
-                    }
+                    let filtersSummary = [];
+
+                    filtersResults = Object.entries(filtersResults);
+
+
+                    filtersResults.forEach(element => {
+                        filtersSummary = filtersSummary.concat(element[1]);
+                    });
+
+                    filtersSummary.forEach(element => {
+                        if (this.ripetitionsCount(filtersSummary, element) == filtersResults.length && !this.filtered_apartments.includes(element)) {
+                            this.filtered_apartments.push(element);
+                        }
+                    });
 
                     if (this.filtered_apartments.length == 0) {
                         this.haveResults = false;
@@ -279,7 +311,7 @@ export default {
                 }, 300);
             }
             else {
-                this.filtered_apartments = null;
+                this.filtered_apartments = [];
                 const setFilteredFalse = setTimeout(() => {
                     this.isFiltered = false;
                 }, 300);
@@ -287,18 +319,32 @@ export default {
 
         },
 
+        ripetitionsCount(array, value) {
+
+            let count = 0;
+            array.forEach(element => {
+                if (element == value) {
+                    count++;
+                }
+            });
+            return count;
+        },
+
         filtersErrorMethod() {
-            if (this.checkedPerks.length == 0 && this.checkedCategories.length == 0) {
+            if (this.filters.checkedPerks.length == 0 && this.filters.checkedCategories.length == 0 && this.filters.beds == null && this.filters.rooms == null && this.range != "20") {
                 this.filtersError = true;
             }
         },
 
         removeFilters() {
             this.$refs['my-modal'].hide()
-            this.checkedPerks = [];
-            this.checkedCategories = [];
-            this.filtered_apartments = null;
+            this.filters.checkedPerks = [];
+            this.filters.checkedCategories = [];
+            this.filtered_apartments = [];
             this.filtersError = false;
+            this.filters.beds = null;
+            this.filters.rooms = null;
+            this.range = "20";
             if (this.apartments.length > 0) {
                 this.haveResults = true;
             }
@@ -306,17 +352,29 @@ export default {
             const setFilteredFalse = setTimeout(() => {
                     this.isFiltered = false;
                 }, 300);
+        },
+        getIdAddress() {
+            axios.get('https://api.ipify.org?format=json')
+            .then(res =>{
+                this.ip_address = res.data.ip;
+            })
+            .catch((error) =>{
+                console.log(error);
+            });
         }
+
     },
 
     mounted() {
-        this.searchDwelling(this.city);
+        this.searchDwelling(this.city, this.range);
+        this.getIdAddress();
     }
 
 }
 </script>
 
 <style lang="scss" scoped>
+
 #requiredFilters {
     margin-bottom: 20px;
     & > div {
@@ -331,10 +389,8 @@ export default {
         }
     }
 }
-.container-card-map{
-    overflow-y: auto ;
-    max-height: 90vh;
-    width: 50%;
+.container-left{
+    max-height: 80vh;
 }
 #show-btn{
     height: 43px;
@@ -347,7 +403,7 @@ export default {
 }
 
 #map-box{
-width: 55%;
+width: 50%;
 
 }
 button.selected {
@@ -359,21 +415,16 @@ button.selected {
     padding-left: 0;
 }
 
+#cardsContainer {
+    max-height: 80%;
+    overflow-y: scroll;
+}
+
 .dwellingCard{
     // border: 1px solid black;
     border-radius: 5px;
     overflow: hidden;
     padding: 0;
-
-    .card-link{
-        text-decoration: none;
-        color: black;
-        margin-left: 0;
-
-        &:hover {
-            color: blue;
-        }
-    }
 }
 
 input.perk-link {

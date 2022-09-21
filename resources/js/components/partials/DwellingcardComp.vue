@@ -3,20 +3,18 @@
         <div class="dwelling_card">
             <div class="top">
                 <img v-if="apartment.image" class="w-100" :src="`/images/${apartment.image}`" alt="">
-                <img v-else class="w-100" :src="`/images/placeholder/1.png`" alt="">
+                <img v-else class="w-100" :src="`/images/placeholder/placeholder.jpeg`" alt="">
             </div>
-            <div class="bottom">
-                <div class="left d-flex">
-                    <div class="details">
-                        <h2>{{apartment.name}}</h2>
+            <div class="_bottom">
+                <div class="left d-flex align-items-center">
+                    <div class="details d-flex align-items-center justify-content-between">
+                        <h5 class="w-75 d-flex flex-wrap">{{apartment.name}}</h5>
                         <p>&euro;{{apartment.price}}</p>
                     </div>
-                    <router-link :to="{name: 'show-apartment', params:{ slug: apartment.slug}}" class="card-link buy">
-                        <!-- <div class="buy"> -->
+                    <router-link :to="{name: 'show-apartment', params:{ slug: apartment.slug, ip_address: ip_address}}" class="card-link buy">
 
-                            <h3>Dettagli</h3>
+                        <h5 class="mb-0">Dettagli</h5>
 
-                        <!-- </div> -->
                     </router-link>
                 </div>
             </div>
@@ -42,17 +40,21 @@
 <script>
 export default {
     name: 'DwellingcardComp',
-    props: { apartment: Object, categories: Array }
+
+    props: {
+        apartment: Object,
+        categories: Array,
+        ip_address: String
+    }
 }
 </script>
 
 <style lang="scss" scoped>
 
-
 .wrapper{
     background: white;
-    max-width: 450px;
-    max-height: 450px;
+    max-width: 300px;
+    height: fit-content;
     position: relative;
     overflow: hidden;
     border-radius: 10px 10px 10px 10px;
@@ -66,13 +68,19 @@ export default {
 
   .dwelling_card{
     width:100%;
-    height:100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
     .top{
-      width:100%;
+        width:100%;
+        max-height: 500px;
+        overflow-y: hidden;
     }
-    .bottom{
-      width: 100%;
-      transition: transform 0.5s;
+    ._bottom{
+    width: 100%;
+    transition: transform 0.5s;
+    align-items: center;
+
       &.clicked{
         transform: translateX(-50%);
       }
@@ -89,28 +97,27 @@ export default {
         width: 100%;
         background: #BEB7A4;
         position:relative;
-        float:left;
         .details{
             padding: 20px 10px 10px 20px;
-            float: left;
             width: 70%;
             height: 30%;
             color: #00394B;
+            border-right:solid thin rgba(0,0,0,0.1);
+
             h1 {
                 height: 100px;
                 overflow-y: scroll;
             }
         }
         .buy{
-            float:right;
             display: flex;
             align-items: center;
             justify-content: center;
             width: 30%;
+            height: 85px;
             color: #00394B;
             background: #BEB7A4;
             transition: background 0.5s;
-            border-left:solid thin rgba(0,0,0,0.1);
 
             i{
                 font-size:30px;

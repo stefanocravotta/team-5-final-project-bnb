@@ -18,7 +18,7 @@
 
                         @else
 
-                        <img class="dwelling-img" src="{{ asset('images/placeholder/1.png') }}" alt="default">
+                        <img class="dwelling-img" src="{{ asset('images/placeholder/placeholder.jpeg') }}" alt="default">
 
                         @endif
                     </div>

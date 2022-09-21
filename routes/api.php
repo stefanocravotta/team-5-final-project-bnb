@@ -26,8 +26,9 @@ Route::namespace('Api')
         Route::get('/auth-user','UserAuthController@authUser');
         Route::get('/sponsored-dwellings', 'SearchDwellingController@getSponsoredDwellings');
         Route::get('/dwellings-top/{city}', 'SearchDwellingController@getDwellingByCityTop');
-        Route::get('/search-dwelling/{city}', 'SearchDwellingController@SearchDwelling');
+        Route::get('/search-dwelling/{city}/{range}', 'SearchDwellingController@SearchDwelling');
         Route::get('/show-dwelling/{slug}', 'SearchDwellingController@showDwelling');
+        Route::get('/show-dwelling/{slug}/{ip_address}', 'SearchDwellingController@showDwelling');
         Route::get('/search-filtered/{category}/{dwelling}', 'SearchDwellingController@searchByCategory');
     });
 

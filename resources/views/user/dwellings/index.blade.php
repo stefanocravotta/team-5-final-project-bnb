@@ -43,7 +43,7 @@
                         <div class="card-custom my-2 col-12 col-md-6">
                             <div class="card-head h-75">
 
-                                <div class="card-image h-75" style="background-image: url({{ $dwelling->image ? asset('images/'.$dwelling->image) : asset('images/placeholder/1.png') }}) ">
+                                <div class="card-image h-75" style="background-image: url({{ $dwelling->image ? asset('images/'.$dwelling->image) : asset('images/placeholder/placeholder.jpeg') }}) ">
 
                                     <div class="layer d-flex justify-content-center align-items-center">
                                         <h3 class="span-view text-white">Vedi il tuo appartamento
@@ -130,7 +130,7 @@
 
                                     @else
 
-                                    <img class="img-fluid w-100" src="{{ asset('images/villa-affitto-italia-ada-1624884100.jpg') }}" alt="default">
+                                    <img class="img-fluid w-100" src="{{ asset('images/placeholder/placeholder.jpeg') }}" alt="default">
 
                                     @endif
                                     <div class="layer d-flex justify-content-center align-items-center">

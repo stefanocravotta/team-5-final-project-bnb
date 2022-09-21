@@ -6,13 +6,13 @@
             <h2 class="text-center mb-5">Cerca offerte su hotel, ville e tanto altro...</h2>
             <h3 class="text-center ">Inizia la tua ricerca da una città</h3>
 
-            <SearchbarComp />
+            <HomeSearchbarComp />
 
         </div>
         <div class="content mt-5 d-flex">
 
             <!-- INIZIO COLONNA  -->
-            <div class="dx-cont d-flex">
+            <div v-if="sponsoredDwellings.length > 0" class="dx-cont d-flex">
 
                 <h3 class="py-3">Appartamenti consigliati</h3>
                 <!-- SEZIONE IMG PRIMO PIANO -->
@@ -24,17 +24,6 @@
                     </div>
 
                 </div>
-                <!-- FINE SEZIONE IMG PRIMO PIANO -->
-                <!-- <h3 class="py-3">Nuove offerte</h3>
-                <div class="img-sec d-flex">
-
-                    <div v-for="dwelling in sponsoredDwellings" :key="`Offerte-${dwelling.id}`">
-
-                        <DwellingcardComp :apartment="dwelling" :categories="categories"/>
-
-                    </div>
-
-                </div> -->
 
             </div>
             <!-- FINE COLONNA  -->
@@ -53,7 +42,7 @@
                             <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Bali" @click="getValue('Bali, Rajasthan')"></router-link>
                         </div>
                         <div class="xs-box">
-                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Tanzania" @click="getValue('Tanzânia')"></router-link>
+                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Firenze" @click="getValue('Firenze')"></router-link>
                         </div>
                         <div class="xs-box">
                             <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Buenos Aires" @click="getValue('buenos-aires')"></router-link>
@@ -117,18 +106,18 @@
 
 <script>
 import JumboComp from './partials/JumboComp.vue';
-import SearchbarComp from './partials/SearchbarComp.vue';
 import FooterComp from './partials/FooterComp.vue';
 import DwellingcardComp from './partials/DwellingcardComp.vue';
+import HomeSearchbarComp from './partials/HomeSearchbarComp.vue';
 
 
 export default {
     name: 'HomeComp',
     components: {
         JumboComp,
-        SearchbarComp,
         FooterComp,
-        DwellingcardComp
+        DwellingcardComp,
+        HomeSearchbarComp
     },
     data(){
         return{

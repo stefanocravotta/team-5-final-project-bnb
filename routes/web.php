@@ -29,6 +29,7 @@ Route::middleware('auth')
         Route::get('/messages', 'MessagesController@index')->name('messages');
         Route::resource('dwellings', 'DwellingsController');
         Route::get('/sponsorisation', 'SponsorisationController@index')->name('sponsorisations');
+        Route::get('/statistics', 'StatisticsController@index')->name('statistics');
         Route::post('/sponsorisation-form', 'SponsorisationController@update')->name('sponsorisations-form');
     });
 

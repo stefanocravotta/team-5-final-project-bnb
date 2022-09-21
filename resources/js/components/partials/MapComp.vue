@@ -14,11 +14,21 @@ export default {
 
     props: {
         apartments: Array,
-        coordinates: Object
+        coordinates: Object,
+        range: String
     },
 
     setup(props) {
 
+        let Zoom = 0;
+        if (parseInt(props.range) > 10 ) {
+
+            Zoom = 10;
+        }
+        else {
+
+            Zoom = 11;
+        }
         const mapRef = ref(null)
 
          onMounted(() => {
@@ -29,7 +39,7 @@ export default {
                 key: 'sXZ074rJ8QHr7ocOwfW5NaIHLwTog1tx',
                 container: mapRef.value,
                 center: focus,
-                zoom: 10
+                zoom: Zoom
             })
 
             map.addControl(new tt.FullscreenControl());
@@ -87,12 +97,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 #map {
-    height: 60vh;
-    width: 45vw;
+    height: 78vh;
+    width: 54vw;
     border-radius: 5px;
-    @media screen and (max-width: 992px) {
-        width: 100%;
-        margin-top: 20px;
-    }
 }
 </style>

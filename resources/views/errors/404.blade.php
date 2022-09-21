@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
     <div class="error-wrap">
         <h1>404</h1>

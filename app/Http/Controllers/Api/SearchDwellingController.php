@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Category;
 use App\Dwelling;
 use App\Perk;
+use App\View;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Geocoder\Query\GeocodeQuery;
@@ -13,14 +14,15 @@ use Illuminate\Http\Request;
 
 class SearchDwellingController extends Controller
 {
-    public function getDwellingsByCity($city){
+    public function getDwellingsByCity($city, $range){
 
         $coordinates = $this->getCityCoordinates($city);
 
         $lat = $coordinates['lat'];
         $long = $coordinates['long'];
 
-        $radius = 0.3;
+        // $radius = (int)$radius;
+        $radius = (int)$range * 0.009;
 
         $dwellings = Dwelling::whereBetween('lat', [$lat - $radius, $lat + $radius])->whereBetween('long', [$long - $radius, $long + $radius])->with('perks')->get();
 
@@ -42,11 +44,11 @@ class SearchDwellingController extends Controller
 
     }
 
-    public function SearchDwelling($city){
+    public function SearchDwelling($city, $range){
 
         $coordinates = $this->getCityCoordinates($city);
 
-        $dwellings = $this->getDwellingsByCity($city);
+        $dwellings = $this->getDwellingsByCity($city, $range);
 
         $perks = Perk::all();
 
@@ -56,13 +58,42 @@ class SearchDwellingController extends Controller
         return response()->json(compact('dwellings', 'perks', 'categories', 'coordinates'));
     }
 
-    public function showDwelling($slug){
+    public function showDwelling($slug, $ip_address){
 
         $dwelling = Dwelling::where('slug', $slug)->with('perks')->first();
-        // dd($dwelling);
+
+        if ($ip_address != 'error') {
+
+            $last_view = View::orderBy('created_at', 'DESC')->where('ip_address', $ip_address)->where('dwelling_id', $dwelling->id)->first();
+
+            if ($last_view == '') {
+
+                $new_view = new View();
+                $new_view->dwelling_id = $dwelling->id;
+                $new_view->ip_address = $ip_address;
+                $new_view->save();
+            }
+            else {
+                $last_view_data = explode(' ', $last_view->created_at);
+
+                $last_view_date = $last_view_data[0];
+                $last_view_time = $last_view_data[1];
+
+                $today = explode(' ', Carbon::now());
+                $today_date = $today[0];
+                $today_time = substr($today[1], 0, 8);
+
+                if ($today_date > $last_view_date && $today_time >= $last_view_time) {
+
+                    $new_view = new View();
+                    $new_view->dwelling_id = $dwelling->id;
+                    $new_view->ip_address = $ip_address;
+                    $new_view->save();
+                }
+            }
+        }
 
         $categories = Category::all();
-        // dd($categories);
 
         return response()->json(compact('dwelling', 'categories'));
     }

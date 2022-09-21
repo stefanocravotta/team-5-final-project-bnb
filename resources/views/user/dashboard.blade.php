@@ -66,16 +66,16 @@
         <div class="right-box">
             <div class="dx-wrap">
 
-                <h3 style="color: black">Le tue statistiche:</h3>
+                <h3 style="color: black" class="text-center text-uppercase">strumenti</h3>
 
                 <div class="container-fluid">
                     <div class="row justify-content-around mb-4">
 
                         <div class="col-12 col-md-6">
                             <div class="small-box">
-                                <h4>Sessioni totali:</h4>
+                                <h4>Visualizzazioni totali di ieri:</h4>
                                 <div class="first d-flex justify-content-between">
-                                    <h2 class="sell-data">450</h2>
+                                    <h2 class="sell-data text-center">{{count($all_views)}}</h2>
                                     <div class="c-cont">
                                         <div class="c-wrap">
                                             <div class="c-1"></div>
@@ -87,9 +87,8 @@
                                 <div class="row-wrap d-flex">
                                     <div class="c-row"></div>
                                 </div>
-                                <div>
-                                </div>
-                                <span style="font-size: 18px; margin: 0 auto;">9 visitatori nell'ultima ora</span>
+
+                                <a class="btn btn-secondary" href="{{route('user.statistics')}}" style="font-size: 18px; margin: 0 auto;">Visualizza i grafici</a>
                             </div>
                         </div>
 
@@ -97,7 +96,7 @@
                             <div class="small-box">
                                 <h4>Vendite totali:</h4>
                                 <div class="d-flex justify-content-center">
-                                    <h2 class="sell-data">16</h2>
+                                    <h2 style="color: black; margin: 0 auto;">16</h2>
                                 </div>
                                 <div class="row-wrap d-flex">
                                     <div class="c-row"></div>

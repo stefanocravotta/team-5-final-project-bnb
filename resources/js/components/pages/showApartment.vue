@@ -8,7 +8,7 @@
                     <img v-if="apartment[0].image"
                     class="mb-principalImg"
                     :src="`/images/${apartment[0].image}`" :alt="apartment[0].name">
-                    <img class="mb-principalImg" v-else :src="`/images/placeholder/1.png`">
+                    <img class="mb-principalImg" v-else :src="`/images/placeholder/placeholder.jpeg`">
                 </div>
 
                 <MapComp class="col-lg-6 col-12" v-if="apartment != null" :apartments="apartment" :coordinates="coordinates" />
@@ -124,7 +124,7 @@
 </template>
 
 <script>
-import MapComp from '../partials/MapComp.vue';
+import MapComp from '../partials/MapShowComp.vue';
 export default {
   components: { MapComp },
     name: 'ShowApartment',
@@ -196,22 +196,40 @@ export default {
 
         getDwelling(){
 
-            axios.get(this.apiUrl + '/show-dwelling/' + this.$route.params.slug)
-            .then(r =>{
+            if (this.$route.params.ip_address != undefined && this.$route.params.ip_address != null) {
 
-                this.coordinates.lat = r.data.dwelling.lat;
-                this.coordinates.long = r.data.dwelling.long;
-                this.apartment = [r.data.dwelling];
-                this.categories = r.data.categories;
-                this.apartmentPerks = r.data.dwelling.perks;
-                this.dwelling_id = r.data.dwelling.id;
-                // console.log('risposta', r.data.dwelling);
-                // console.log(this.apartment);
-                this.findCategory()
-            })
-            .catch((er) =>{
-                console.log(er)
-            })
+                axios.get(this.apiUrl + '/show-dwelling/' + this.$route.params.slug + '/' + this.$route.params.ip_address)
+                .then(r =>{
+
+                    this.coordinates.lat = r.data.dwelling.lat;
+                    this.coordinates.long = r.data.dwelling.long;
+                    this.apartment = [r.data.dwelling];
+                    this.categories = r.data.categories;
+                    this.apartmentPerks = r.data.dwelling.perks;
+                    this.dwelling_id = r.data.dwelling.id;
+                    this.findCategory()
+                })
+                .catch((er) =>{
+                    console.log(er)
+                })
+            }
+            else {
+
+                axios.get(this.apiUrl + '/show-dwelling/' + this.$route.params.slug + '/' + 'error')
+                .then(r =>{
+
+                    this.coordinates.lat = r.data.dwelling.lat;
+                    this.coordinates.long = r.data.dwelling.long;
+                    this.apartment = [r.data.dwelling];
+                    this.categories = r.data.categories;
+                    this.apartmentPerks = r.data.dwelling.perks;
+                    this.dwelling_id = r.data.dwelling.id;
+                    this.findCategory()
+                })
+                .catch((er) =>{
+                    console.log(er)
+                })
+            }
 
 
 
