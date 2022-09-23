@@ -28,66 +28,62 @@
             </div>
             <!-- FINE COLONNA  -->
 
-            <div class="section d-flex align-items-center">
-                <div class="w-100">
-                    <h3 class="h3-margin text-center py-2">Le mete preferite dagli utenti</h3>
-                    <div class="d-flex justify-content-center">
-                        <div class="xs-box">
-                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Milano" @click="getValue('milano')"></router-link>
-                        </div>
-                        <div class="xs-box">
-                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Roma" @click="getValue('roma')"></router-link>
-                        </div>
-                        <div class="xs-box">
-                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Bali" @click="getValue('Bali, Rajasthan')"></router-link>
-                        </div>
-                        <div class="xs-box">
-                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Firenze" @click="getValue('Firenze')"></router-link>
-                        </div>
-                        <div class="xs-box">
-                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Buenos Aires" @click="getValue('buenos-aires')"></router-link>
-                        </div>
-                        <!-- prima riga -->
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <div class="xs-box">
-                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Cape Town" @click="getValue('cape-town')"></router-link>
-                        </div>
-                        <div class="xs-box">
-                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Palm Springs" @click="getValue('palm-springs')"></router-link>
-                        </div>
-                        <div class="xs-box">
-                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Utah" @click="getValue('Sevier School District, Utah, Stati Uniti')"></router-link>
-                        </div>
-                        <div class="xs-box">
-                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Mauritius" @click="getValue('mauritius')"></router-link>
-                        </div>
-                        <div class="xs-box">
-                            <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Florida" @click="getValue('Westville, FL, ')"></router-link>
-                        </div>
-                        <!-- seconda riga -->
-                    </div>
-                </div>
+            <div class="container-fluid w-75 m-auto">
+                <div class="row justify-content-center">
+                    <h3 class="h3-margin col-12 text-center py-2">Le mete preferite dagli utenti</h3>
 
+                    <div class="xs-box col-10 col-sm-5 col-md-3 col-lg-2 ">
+                        <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Milano" @click="getValue('milano')"></router-link>
+                    </div>
+                    <div class="xs-box col-10 col-sm-5 col-md-3 col-lg-2">
+                        <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Roma" @click="getValue('roma')"></router-link>
+                    </div>
+                    <div class="xs-box col-10 col-sm-5 col-md-3 col-lg-2">
+                        <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Bali" @click="getValue('Bali, Rajasthan')"></router-link>
+                    </div>
+                    <div class="xs-box col-10 col-sm-5 col-md-3 col-lg-2">
+                        <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Firenze" @click="getValue('Firenze')"></router-link>
+                    </div>
+                    <div class="xs-box col-10 col-sm-5 col-md-3 col-lg-2">
+                        <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Buenos Aires" @click="getValue('buenos-aires')"></router-link>
+                    </div>
+
+                    <div class="xs-box col-10 col-sm-5 col-md-3 col-lg-2">
+                        <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Cape Town" @click="getValue('cape-town')"></router-link>
+                    </div>
+                    <div class="xs-box col-10 col-sm-5 col-md-3 col-lg-2">
+                        <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Palm Springs" @click="getValue('palm-springs')"></router-link>
+                    </div>
+                    <div class="xs-box col-10 col-sm-5 col-md-3 col-lg-2">
+                        <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Utah" @click="getValue('Sevier School District, Utah, Stati Uniti')"></router-link>
+                    </div>
+                    <div class="xs-box col-10 col-sm-5 col-md-3 col-lg-2">
+                        <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Mauritius" @click="getValue('mauritius')"></router-link>
+                    </div>
+                    <div class="xs-box col-10 col-sm-5 col-md-3 col-lg-2">
+                        <router-link :to="{name:'search-results' , params:{city: city}}" class="search-link"><input type="button" class="search-input" id="city-top" value="Florida" @click="getValue('Westville, FL, ')"></router-link>
+                    </div>
+
+                </div>
             </div>
             <div class="section out">
                     <h3 class="text-center py-2">Trova ispirazione per i tuoi prossimi viaggi!</h3>
-                    <div class="row">
-                        <div class="col-md-4 col-xs-6 box-col d-flex ">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 col-xs-6 col-lg-4 mb-3 box-col d-flex ">
                             <img class="image" src="images/america.jpeg" alt="">
                             <div class="description">
                                 <h6>Città americane da visitare</h6>
                                 <p>Saluta l'estate senza rimpianti in una di queste città</p>
                             </div>
                         </div>
-                        <div class="col-md-4 col-xs-6 box-col d-flex">
+                        <div class="col-md-6 col-xs-6 col-lg-4 mb-3 box-col d-flex">
                             <img class="image" src="images/spagna.jpg" >
                             <div class="description ">
                                 <h6>6 mete ideali per un periodo sabbatico in Spagna</h6>
                                 <p>Dimentica il lavoro per un po' e goditi un soggiorno lungo in terra spagnola</p>
                             </div>
                         </div>
-                        <div class="col-md-4 col-xs-6 box-col d-flex">
+                        <div class="col-md-6 col-xs-6 col-lg-4 mb-3 box-col d-flex">
                             <img class="image" src="images/lasvegas.jpg" alt="">
                             <div class="description">
                                 <h6>Cosa fare in 48 ore a Las Vegas</h6>
@@ -130,7 +126,6 @@ export default {
     },
 
     methods:{
-
         getSponsoredDwellings(){
 
             axios.get(this.apiUrl + '/sponsored-dwellings')
@@ -251,9 +246,8 @@ export default {
         align-items: center;
         height: 50px;
         color: black;
-        width: calc(90%/5);
         background-color: #FAFAFA;
-        margin: 5px;
+        margin: 10px;
         padding: 10px;
         transition: 0.5s;
         cursor: pointer;

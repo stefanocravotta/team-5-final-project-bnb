@@ -90,7 +90,9 @@ export default {
         text-decoration: none;
     }
     .search-span {
-        padding: 12px 32px;
+        padding: 12px 20px;
+        width: 100%;
+        text-align: center;
     }
 }
 </style>

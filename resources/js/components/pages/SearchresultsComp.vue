@@ -4,9 +4,9 @@
         <div class="container-left px-2">
             <h2 class="text-center">Risultati della ricerca</h2>
 
-            <div class="d-flex align-items-center justify-content-center">
+            <div class="d-sm-flex align-items-center justify-content-center">
                 <SearchbarComp @searchDwelling="searchDwelling" :range="range"/>
-                <b-button id="show-btn" class="ml-1" @click="showModal"><i class="fa-solid fa-list"></i> Filtri</b-button>
+                <b-button id="show-btn" class="ml-1 mt-2 mt-sm-0" @click="showModal"><i class="fa-solid fa-list"></i> Filtri</b-button>
             </div>
 
             <div class="d-flex justify-content-center ">
@@ -400,8 +400,6 @@ export default {
 }
 #show-btn{
     height: 43px;
-    padding: 10px 19px;
-    margin-left: -40px;
 }
 .active{
     opacity: 1;
@@ -415,10 +413,6 @@ width: 50%;
 button.selected {
     color: rgb(172, 23, 23);
     border: 2px solid rgb(172, 23, 23);
-}
-
-._container{
-    padding-left: 0;
 }
 
 #cardsContainer {
