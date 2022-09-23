@@ -6,7 +6,7 @@
 
     @foreach ($dwellings as $dwelling)
         @if (count($dwelling->messages) > 0)
-            <h3>Per {{$dwelling->name}}:</h3>
+            <h3 class="mt-3">Per <strong style="color: #7B9FA0">{{$dwelling->name}}</strong> :</h3>
 
             <div class="container-fluid">
                 <div class="card my-3 flex-column flex-wrap mb-rowOfText">

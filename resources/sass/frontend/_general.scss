@@ -1,7 +1,7 @@
 main{
-    min-height: calc(100vh);
+    min-height: calc(100vh - 50px);
     background-color: $primary-color;
-    padding-top: 80px;
+    padding-top: 30px;
     padding-bottom: 30px;
     color: $secondary-color;
 }

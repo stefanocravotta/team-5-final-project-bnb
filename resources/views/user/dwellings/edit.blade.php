@@ -244,6 +244,7 @@
         var errorsKeys = Object.keys(errors);
         var oldAddress = @json(old('address'));
         var dwellingAddress = @json($dwelling->address);
+        console.log(dwellingAddress);
 
         var inputSearchBox = document.querySelector('.tt-search-box-input');
         inputSearchBox.setAttribute('name', 'address');

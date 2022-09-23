@@ -331,7 +331,7 @@ export default {
         },
 
         filtersErrorMethod() {
-            if (this.filters.checkedPerks.length == 0 && this.filters.checkedCategories.length == 0 && this.filters.beds == null && this.filters.rooms == null && this.range != "20") {
+            if (this.filters.checkedPerks.length == 0 && this.filters.checkedCategories.length == 0 && this.filters.beds == null && this.filters.rooms == null && this.range == '20') {
                 this.filtersError = true;
             }
         },
@@ -344,9 +344,14 @@ export default {
             this.filtersError = false;
             this.filters.beds = null;
             this.filters.rooms = null;
-            this.range = "20";
+
             if (this.apartments.length > 0) {
                 this.haveResults = true;
+            }
+
+            if (this.range != '20') {
+                this.range = "20";
+                this.searchDwelling(this.city, this.range);
             }
 
             const setFilteredFalse = setTimeout(() => {
@@ -391,6 +396,7 @@ export default {
 }
 .container-left{
     max-height: 80vh;
+    min-width: 50%;
 }
 #show-btn{
     height: 43px;

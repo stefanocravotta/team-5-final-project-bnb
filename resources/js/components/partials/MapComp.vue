@@ -97,7 +97,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 #map {
-    height: 78vh;
+    height: 79vh;
     width: 54vw;
     border-radius: 5px;
 }

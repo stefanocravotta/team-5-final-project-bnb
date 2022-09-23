@@ -6,6 +6,7 @@ use App\Category;
 use App\Dwelling;
 use App\Perk;
 use App\View;
+use App\Sponsorisation;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Geocoder\Query\GeocodeQuery;
@@ -107,10 +108,12 @@ class SearchDwellingController extends Controller
         $categories = Category::all();
 
         foreach ($dwellings as $key => $dwelling) {
-           if (Carbon::parse($dwelling->expiration_date) < $today) {
-
+            if (Carbon::parse($dwelling->expiration_date) < $today) {
+                $dwelling->sponsorisations()->detach();
                unset($dwellings[$key]);
-           }
+               $dwelling->expiration_date = null;
+               $dwelling->save();
+            }
         }
 
         return response()->json(compact('dwellings', 'categories'));
